@@ -1,0 +1,228 @@
+import { useState } from "react";
+import axios from 'axios';
+
+const Add = () => {
+    const[id]=useState('')
+    const [name, Namechange] = useState('');
+    const [Genre, Genrechange] = useState('');
+    const [Genre2, Genre2change] = useState('');
+    const [Screen,Screenchange]=useState('');
+    const [Released,Releasedchange]=useState('');
+    const [Runtime,Runtimechange]=useState('');
+    const [Certificate, Certificatechange] = useState('');
+    const[Cast,Castchange]=useState('');
+    const[CastImageUrl1,CastImageUrl1change]=useState(''); 
+    const[CastImageUrl2,CastImageUrl2change]=useState(''); 
+    const[CastImageUrl3,CastImageUrl3change]=useState(''); 
+    const[Crew,Crewchange]=useState('')
+    const[CrewImageUrl1,CrewImageUrl1change]=useState('');
+    const[CrewImageUrl2,CrewImageUrl2change]=useState('');
+    const[CrewImageUrl3,CrewImageUrl3change]=useState('');
+    const[Description,Descriptionchange]=useState('');
+    const [Language, Languagechange] = useState('');
+    const [Video, Videochange] = useState('');
+    const [Rating, Ratingchange] = useState('');
+    const [Response, Responsechange] = useState('');
+    const [Images, Imageschange] = useState('');
+    const [Images2, Images2change] = useState('');
+         
+
+    async function addMovie(e) {
+        e.preventDefault();
+        const newMovie = {
+            id,
+            name,
+            Genre,
+            Genre2,
+            Screen,
+            Certificate,
+            Released,
+            Cast,
+            CastImageUrl:[CastImageUrl1,CastImageUrl2,CastImageUrl3],
+            Crew,
+            CrewImageUrl:[CrewImageUrl1,CrewImageUrl2,CrewImageUrl3],
+            Language,
+            Response,
+            Description,
+            Rating,
+            Video,
+            Images,
+            Images2
+        };
+    
+        try{
+            const result=await(await axios.post("http://localhost:5000/api/movies/addMovies",newMovie)).data;
+            console.log(result)
+          }catch(error){
+             console.log(error)
+          }
+        
+    }
+
+    return (
+        <div className="">
+            <form onSubmit={addMovie}>
+                <label>ID</label>
+                <input 
+                value={id} 
+                disabled="disabled" 
+                className="form-control"/>
+                              
+                <input
+                    value={name}
+                    placeholder="Enter Movie Name"
+                    onChange={(e) => {Namechange(e.target.value)}}
+                    className="form-control"
+                />
+
+                <input
+                    value={Genre}
+                    placeholder="Enter Genre"
+                    onChange={(e) => {Genrechange(e.target.value)}}
+                    className="form-control"
+                />
+                 <input
+                    value={Genre2}
+                    placeholder="Enter Genre2"
+                    onChange={(e) => {Genre2change(e.target.value)}}
+                    className="form-control"
+                />
+
+                <input
+                    value={Screen}
+                    placeholder="Enter Screen Type"
+                    onChange={(e) => {Screenchange(e.target.value)}}
+                    className="form-control"
+                />
+                
+                <input
+                    value={Released}
+                    placeholder="Enter Realsie Date"
+                    onChange={(e) => {Releasedchange(e.target.value)}}
+                    className="form-control"
+                />
+                <input
+                    value={Runtime}
+                    placeholder="Enter Runtime "
+                    onChange={(e) => {Runtimechange(e.target.value)}}
+                    className="form-control"
+                />
+
+                <input
+                    value={CastImageUrl1}
+                    placeholder="Enter CastImage1"
+                    onChange={(e) => {CastImageUrl1change(e.target.value)}}
+                    className="form-control"
+                />
+                
+                <input
+                    value={CastImageUrl2}
+                    placeholder="Enter CastImage2"
+                    onChange={(e) => {CastImageUrl2change(e.target.value)}}
+                    className="form-control"
+                />
+                <input
+                    value={CastImageUrl3}
+                    placeholder="Enter CastImage2"
+                    onChange={(e) => {CastImageUrl3change(e.target.value)}}
+                    className="form-control"
+                />
+                
+                <input
+                    value={Crew}
+                    placeholder="Enter Crew"
+                    onChange={(e) => {Crewchange(e.target.value)}}
+                    className="form-control"
+                />
+
+                <input
+                    value={CrewImageUrl1}
+                    placeholder="Enter CrewImage1"
+                    onChange={(e) => {CrewImageUrl1change(e.target.value)}}
+                    className="form-control"
+                />
+                
+                <input
+                    value={CrewImageUrl2}
+                    placeholder="Enter CrewImage2"
+                    onChange={(e) => {CrewImageUrl2change(e.target.value)}}
+                    className="form-control"
+                />
+                <input
+                    value={CrewImageUrl3}
+                    placeholder="Enter CrewImage3"
+                    onChange={(e) => {CrewImageUrl3change(e.target.value)}}
+                    className="form-control"
+                />
+                
+                <input
+                    value={Description}
+                    placeholder="Enter Description"
+                    onChange={(e) => {Descriptionchange(e.target.value)}}
+                    className="form-control"
+                />
+                
+                <input
+                    value={Certificate}
+                    placeholder="Enter Certificate"
+                    onChange={(e) => {Certificatechange(e.target.value)}}
+                    className="form-control"
+                />
+                
+                <input
+                    required
+                    value={Cast}
+                    placeholder="Enter Cast"
+                    onChange={(e) => {Castchange(e.target.value)}}
+                    className="form-control"
+                />
+
+                <input
+                    value={Language}
+                    placeholder="Enter Language"
+                    onChange={(e) => {Languagechange(e.target.value)}}
+                    className="form-control"
+                />
+
+                <input
+                    value={Video}
+                    placeholder="Enter Video"
+                    onChange={(e) => {Videochange(e.target.value)}}
+                    className="form-control"
+                />
+                
+                <input
+                    value={Rating}
+                    placeholder="Enter Rating"
+                    onChange={(e) => {Ratingchange(e.target.value)}}
+                    className="form-control"
+                />
+                <input
+                    value={Images}
+                    placeholder="Enter Movie Image"
+                    onChange={(e) => {Imageschange(e.target.value)}}
+                    className="form-control"
+                />
+                <input
+                    value={Images2}
+                    placeholder="Enter Cast Image2"
+                    onChange={(e) => {Images2change(e.target.value)}}
+                    className="form-control"
+                />
+
+               <input 
+                 checked={Response} 
+                 onChange={e=>Responsechange(e.target.checked)} 
+                 type="checkbox" 
+                 className="form-check-input"/>
+              <label  className="form-check-label">Is Active</label>           
+              <br/>
+                <button className="btn btn-success" type="submit" style={{width:"215px"}}>
+                    Save
+                </button>
+            </form>
+        </div>
+    );
+};
+
+export default Add;

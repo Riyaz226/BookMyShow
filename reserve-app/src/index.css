@@ -1,0 +1,199 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+overflow-x: hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.navbar{
+  display: flex;
+  justify-content: center;
+  justify-content: space-around;
+ color: white;
+ background-color:#333545;
+}
+
+.navbar .left{
+  display: flex;
+}
+
+.navbar .left2,.navbar .right2{
+  display: none;
+}
+
+.left > img{
+  width: 9.7%;
+margin-left: 57px;
+}
+
+.left input{
+  margin-inline:10px;
+  border-radius: 3.5px;
+  width: 285%;
+  height: 37px;
+ border: none;
+margin-top: 4px;
+outline: none;
+font-size: 13px;
+word-spacing: 1px;
+}
+
+.right{
+  display: flex;
+margin-inline-start: auto;
+margin-top: -34px;
+margin-right: 40px;
+}
+.right p{
+  margin-inline:33px;
+ font-size: 14.8px;
+color: #cccccc;
+}
+
+.right button{
+  cursor: pointer;
+  margin-inline:7px;
+width: 65px;
+height: 28.6px;
+border: none;
+border-radius: 4px;
+background-color: #f84464;
+font-size: 12.8px;
+color: white;
+}
+.right>.i{
+  margin-inline:18px;
+  font-size: 27.5px;
+cursor: pointer;
+color: #cccccc;
+}
+
+/*media query*/
+@media only screen and (max-width: 1440px) {
+   .left input{
+   margin-inline:15px ;
+    margin-top: 4px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .left > img{
+    width: 10.7%;
+  margin-left: 37px;
+  }
+  .left input{
+  margin-inline:15px ;
+margin-top: 3.3px; 
+}
+.right{
+  margin-top: -33px;
+}
+}
+
+@media only screen and (max-width: 854px) {
+  .navbar{
+    height: 68px;
+ }
+  .navbar .left,.navbar .right{
+    display: none;
+  }
+  .navbar .left2{
+    display: block;
+  }
+  .navbar .left2 p{
+   margin-top: -7px;
+  font-size: 13px;
+  } 
+  .navbar .right2{
+    display: block;
+    display: flex;
+    color: #cccccc;
+  }
+  .navbar .right2 .gl{
+    font-size:1.38em;
+    margin-inline: 22px;
+  }
+  .navbar .right2 .gl2{
+    font-size:1.28em;
+    margin-inline: 22px;
+  }
+  }
+
+  @media only screen and (max-width: 350px) {
+    .navbar{
+      height: 64px;
+   }
+    .navbar .gl2{
+      display: none;
+    }
+}
+    
+/*Sec-Nav*/
+#sec-nav p{
+padding-left: 26px;
+font-size: 15px;
+}
+#sec-nav #tw p{
+  font-size: 13px;
+}
+.ad{
+  display: none;
+}
+@media only screen and (max-width: 1160px) {
+.bo1{
+  display: none;
+}
+}
+@media only screen and (max-width: 873px) {
+  #sec-nav div >p,#sec-nav #tw >p{
+    display: none;
+    }
+  .ad{
+    display: block;
+    font-size: 24px;
+    color: white;  
+  }
+  #sec-nav >div{
+    padding-left: 42px;
+  }
+   #sec-nav div .ad{
+    margin-left: 65px;
+  }
+}
+
+@media only screen and (max-width: 763px) {
+  #sec-nav >div{
+    padding-right: 1px;
+  }
+  #sec-nav div .ad{
+    margin-left: 39px;
+  }
+}
+
+@media only screen and (max-width: 539px) {
+  #sec-nav >div #on{
+    display: none;
+  }
+
+  #sec-nav >div{
+padding-left: 65px;
+}
+#sec-nav div .ad{
+  margin-left: 48px;
+}
+}
+@media only screen and (max-width: 400px) {
+  #sec-nav >div{
+    padding-left: 83px;
+    }
+    #sec-nav div .ad{
+      margin-left: 32px;
+    }
+}

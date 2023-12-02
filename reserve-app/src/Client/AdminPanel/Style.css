@@ -1,0 +1,16 @@
+/* table{
+    border: 1px solid black;
+    width: 234px;
+}
+table thead{
+    border: 1px solid black;
+}
+
+table thead th{
+    background-color: blue;
+    border-right:1px solid black;
+}
+table tbody td{
+    border-right:1px solid black;
+    color: black;
+} */
