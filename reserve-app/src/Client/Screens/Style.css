@@ -408,6 +408,7 @@ margin-top: 13px;
 }
 
 /*Search*/
+
 .search input{
     width: 475px;
     height: 30px;
@@ -434,6 +435,7 @@ padding-left: 16px;
    box-shadow: yellowgreen;
 }
 .search .close{
-    width:455px;
-    margin-left: 20px;
-    background-color
+    width:457px;
+    margin-left: 18px;
+    background-color: whitesmoke;
+}

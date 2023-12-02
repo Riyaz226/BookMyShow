@@ -27,11 +27,10 @@ function Search() {
                     <img src={seven} alt='' title='Nodia'/>
                     <img src={eight} alt='' title='Punjab'/>
                 </div>
-                <hr/>
-                  <p style={{ display: "flex", justifyContent: "center", alignItems: "center", fontSize: "0.60em", marginTop: "-9px",color:"#ee9eaf"}}>View All Cites</p>
+                  <p style={{ display: "flex", justifyContent: "center", alignItems: "center", fontSize: "0.60em", marginTop: "-9px",color:"#dc3558"}}>View All Cites</p>
                 <div className='close'>
                   
-                  <p style={{ display: "flex", justifyContent: "center", alignItems: "center", fontSize: "0.60em", marginTop: "-9px",color:"#ee9eaf"}}>Close</p>
+                  <p style={{ display: "flex", justifyContent: "center", alignItems: "center", fontSize: "0.60em", marginTop: "-9px",color:"#dc3558"}}>Close</p>
                 </div>
  
             </div>
