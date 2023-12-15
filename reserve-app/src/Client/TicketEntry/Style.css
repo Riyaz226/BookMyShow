@@ -1,0 +1,271 @@
+/*BookTab1*/
+iframe{
+    margin-left:49px;
+    border-radius:13px;
+}
+.book{
+    display:flex;
+    flex-direction:row;
+padding:7px;
+border: 1px solid black;
+background-color: #1f1c1c;
+}
+
+.box-2{
+    margin-top: 29px;
+   margin-left: 32px;
+}
+
+.box-2 .d-n{
+    font-size:31px;
+    color:white;
+}
+.box-2 .d-r{
+    font-size:20.5px;
+    margin-top:24px;
+    color:white;
+}
+.box-2 .d-r .i3{
+    margin-left:8px;
+    margin-top:-7px;
+    font-size:1.5em;
+    color:red;
+}
+
+.box-2 .d-r > i{
+    font-size:16px;
+    margin-left:12px;
+    cursor:pointer;
+}
+.b2{
+    display: flex;
+    flex-direction: row;
+    padding: 13px;
+    background-color: #333;
+    color: white;
+    border-radius: 12px;
+  height: 80px;
+ width: 410px;
+ margin-top: 16px;
+}
+.b2 h3{
+    font-size: 18px;
+ margin-top: 3px;
+ margin-left: 6px;
+}
+.b2 p{
+margin-top: 4px;
+color:#e5e5e5;
+}
+.b2 .p{
+    background-color: white;
+    padding: 8px;
+    border-radius: 8px;
+    color: red;
+    height: 38px;
+    font-size: 15px;
+    margin-top: 6px;
+    cursor: pointer;
+    margin-left: 88px;
+}
+
+.box-2 .genre{
+    text-align: left;
+    font-size: 16px;
+    margin: 13px 0;
+display: flex;
+flex-direction:row;
+margin-top: 26px;
+margin-left: -14px;
+}
+.box-2 .genre .category{
+    background-color: #e5e5e5;
+    text-decoration: none;
+    padding: 2px 12px;
+  margin-left: 23px;
+  border-radius: 4.5px;  
+word-spacing: 15px;
+}
+
+.box-2 .p4{
+    display: flex;
+    color: #e5e5e5;    
+font-size: 17px;
+margin-left: 13px;
+margin-top: -12px;
+}  
+.bt-1{
+    width: 213px;
+    height: 50px;
+ margin-left: 8px;
+ margin-top: -2px;
+ border: none;
+ border-radius:8px;
+ background-color: #f84464;
+ color:white;
+ font-size: 1.1em;
+ word-spacing: 3px;
+}  
+
+ .book .i1{
+    margin-left: 313px;
+    margin-top: 19px;
+    font-size: 2.1em;
+ }
+ .book .i2{
+margin-top: 23px;
+margin-left: 6px;
+}
+.box-3{
+    display: none;
+}
+@media screen and (max-width: 1281px) {
+  
+ iframe{
+    margin-top: 7px;
+    height:424px;
+ }   
+.box-2{
+    margin-top: 30px;
+   margin-left: 35px;
+}
+.box-2 .i3{
+font-size: 28px;
+color:red;
+margin-top: -7px;
+}
+.box-2 .d-n{
+    font-size:28px;
+    color:white;
+}
+.book .genre{
+    margin-top: 29px;
+} 
+.book .i1{
+        margin-left: 123px;
+        margin-top: 13px;
+        font-size: 2.0em;
+     }
+      
+}
+@media screen and (max-width: 1001px) {
+.box-2{
+        display: none;
+}
+.box-3{
+    display: block;
+}
+   
+.book{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: none;
+}
+.book .i1,.i2{
+    display: none;
+}
+  
+iframe{
+    width: 96.3%;
+    margin-left: 12px;
+    height: 335px;
+}
+.box-2 .d-r{
+display: block;
+margin-top: 234px;
+}
+
+.box-3 .b3{
+   display: flex;
+   flex-direction: row;    
+margin-top: 23px;
+margin-left: 22px;
+font-size: 1.3em;
+}
+.box-3 .i4{
+    font-size:1.44em;
+    margin-top: -8px;
+}
+.box-3 p >i{
+font-size: 16.5px;
+margin-left: 36px;
+}
+.box-3 .pe{
+padding-left: 398px;
+}
+.box-3 .genre{
+    text-align: left;
+    font-size: 15px;
+    margin: 13px 0;
+display: flex;
+flex-direction:row;
+margin-top: 18px;
+margin-left: -10px;
+}
+.box-3 .genre .category{
+    background-color: #e5e5e5;
+    text-decoration: none;
+    padding: 2px 12px;
+  margin-left: 23px;
+  border-radius: 4.5px;  
+word-spacing: 15px;
+} 
+.box-3 .p4{
+    display: flex;
+    /* color: #e5e5e5;     */
+font-size: 16.2px;
+margin-left: 16px;
+margin-top: -11px;
+}
+ }
+
+ @media screen and (max-width: 739px) {
+    .box-3 p >i{
+        margin-left: 29px;
+        }   
+    .box-3 .pe{
+        padding-left: 133px;
+      font-size: 18px;
+      margin-top: 3px;
+      word-spacing: 3px;
+    }
+}
+@media screen and (max-width: 468px) {
+    .box-3 p >i{
+        font-size: 16px;
+        margin-left: 34px;
+    }
+    .box-3 .pe{
+        padding-left: 83px;
+        }
+        .box-3 .p4{
+        font-size: 15px;
+        }
+    }
+    @media screen and (max-width: 412px) {
+        .box-3 p >i{
+            font-size: 15px;
+            margin-left: 42px;
+        }
+        .box-3 .pe{
+            padding-left: 63px;
+         font-size: 18px;    
+        }
+        }
+
+        @media screen and (max-width: 384px) {
+            .box-3 .b3{
+                font-size: 12px;
+            }
+            .box-3 .pe{
+                padding-left: 53px;
+               font-size: 12px;   
+            }
+            .box-3 .genre .category{
+                font-size: 13px;
+            }
+            .box-3 .p4{
+                font-size: 10.5px;
+            }
+            }

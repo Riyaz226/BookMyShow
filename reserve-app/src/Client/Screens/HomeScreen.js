@@ -18,8 +18,8 @@ return (
             <p style={{}}>{movie.Genre}</p>
         </div>
   </div>
-
-    </>
+  
+   </>
   )
 }
 

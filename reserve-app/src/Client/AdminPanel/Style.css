@@ -1,16 +1,96 @@
-/* table{
-    border: 1px solid black;
-    width: 234px;
-}
-table thead{
-    border: 1px solid black;
-}
-
-table thead th{
-    background-color: blue;
-    border-right:1px solid black;
+/*All*/
+table tbody{
+    background-color: white;
 }
 table tbody td{
-    border-right:1px solid black;
-    color: black;
-} */
+    color:black;
+}
+.flex{
+    display:flex;
+}
+.flex input{
+    flex-direction: column;
+}
+
+@media screen and (max-width: 519px) {
+    .table{
+        width: 434px;
+        margin-left: -13px;
+    }
+    
+}
+
+@media screen and (max-width: 489px) {
+    .table{
+        width: 389px;
+        margin-left: -13px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .table{
+        width: 300px;
+        margin-left: -19px;
+    }
+}
+
+/*Create*/
+@media screen and (max-width: 508px) {
+#input{
+    width: 323px;
+}
+.flex >#input1{
+    width:108px;
+}
+.flex >#input2{
+    width:70px;
+}
+.flex >#input3{
+    width:108px;
+}
+.flex >#input4{
+    width:108px;
+}
+.flex >#input5{
+    width:64.5px;
+}
+}
+@media screen and (max-width: 368px) {
+    #input{
+        width: 283px;
+    }
+.flex >#input1{
+        width:94px;
+    
+}
+.flex >#input2{
+    width:57px;
+}
+.flex >#input3{
+    width:95px;
+}
+.flex >#input4{
+    width:94px;
+}
+.flex >#input5{
+    width:56.5px;
+}
+}
+/*Show*/
+#fill{
+height:23px;
+    padding-left: 834px;   
+}
+@media screen and (max-width: 984px) {
+    #fill{
+        padding-left: 434px;   
+        height:23px;
+} 
+}
+@media screen and (max-width: 584px) {
+    #fill{
+        padding-left: 0px;   
+        height:23px;
+   
+    } 
+}

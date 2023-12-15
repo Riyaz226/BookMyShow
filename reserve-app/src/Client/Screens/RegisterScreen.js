@@ -30,7 +30,6 @@ function RegisterScreen() {
     try{
       const result=(await axios.post("http://localhost:5000/api/users/register",user)).data;
       alert(result)
-      window.location.href='/Lo'
     }catch(error){
        console.log(error)
     }

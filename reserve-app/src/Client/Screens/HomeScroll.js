@@ -15,6 +15,7 @@ import five from '../../Images/Cartoon.jpg'
 import six from '../../Images/Events.jpg'
 
 import Home from './HomeScreen'
+import Home2 from './HomeScreen2'
 import './Style.css'
 
 function Arrow(props) {
@@ -41,11 +42,12 @@ function HomeScroll() {
   }, [])
 
   var settings = {
-    dots: true,
-    infinite: false,
-    speed: 500,
+    infinite: true,
+    autoplay:true,
+    autoplaySpeed:2800,
     slidesToShow: 1,
     slidesToScroll: 1,
+    pauseOnHover:true,
     nextArrow:<Arrow/>,
     prevArrow:<Arrow/>,
   };
@@ -205,9 +207,10 @@ function HomeScroll() {
 <div>
     {data.map((movie) => {
           return <Home movie={movie} />
-        })}
+        })} 
 </div>
 
+<div><Home2/></div>
  
   
     </>

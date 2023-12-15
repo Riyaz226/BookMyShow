@@ -8,6 +8,8 @@ import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import LoginIcon from '@mui/icons-material/Login';
+import {ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios'
 
 
@@ -23,7 +25,7 @@ function LoginScreen() {
     const[email,setemail]=useState('')
     const[password,setpassword]=useState('')
   
-  
+    
   async function Login(){
        const user={
         email,
@@ -31,16 +33,20 @@ function LoginScreen() {
        }
        try{
         const result=(await axios.post("http://localhost:5000/api/users/login",user)).data;
-        alert("Login SucessFully Go->")
-  
+       
         localStorage.setItem('currentUser', JSON.stringify(result));
         window.location.href='/'
-
+        notify(); 
       }catch(error){
          console.log(error)
+         alert("Password Not Match")
       }
     }
-  
+    const notify = () => {
+      toast("Login SucessFully Go->", {
+        autoClose: 2000
+       });
+    };
     return (
     <div class="form" style={{marginLeft:"74px"}} >
     <TextField id="standard-basic" label="Email" variant="standard" sx={{width: '78%'}}
@@ -68,7 +74,7 @@ function LoginScreen() {
           <Button variant="contained" startIcon={<LoginIcon/>} onClick={Login}>
             Login
            </Button>
-      
+      <ToastContainer/>
         </FormControl>
   </div>
   )

@@ -1,6 +1,7 @@
 /* eslint-disable array-callback-return */
 import React from 'react';
-import data from '../../Json/movie2.json';
+import data from '../../Json/States.json';
+import './Style.css'
 
 function Cinema() {
   return (

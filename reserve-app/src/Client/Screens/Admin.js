@@ -8,6 +8,7 @@ import Show from '../AdminPanel/show'
 import Users from '../AdminPanel/Allusers'
 import Booking from '../AdminPanel/BoHis'
 
+import './Style.css'
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -40,20 +41,20 @@ export default function Admin() {
 
   return (
   <>
-  <h1 style={{textAlign:"center"}}>Admin Panel</h1> 
-    <Box sx={{ bgcolor: 'background.paper', width: 500 }}>
+  <h1 style={{textAlign:"center"}} className='anim'><i>Admin Panel</i></h1> 
+    <Box sx={{ bgcolor: 'background.paper', width: 500,border:"none" }}>
         <Tabs
           value={value}
           onChange={handleChange}
           indicatorColor="secondary"
           textColor="inherit"
-          variant="fullWidth"
+          variant="standard"
           aria-label="full width tabs example"
         >
-          <Tab label="Users" />
-          <Tab label="Items"  />
-          <Tab label="Add New"/>
-          <Tab label="Bookings"/>
+          <Tab label="Users" style={{border:"1px solid white"}}/>
+          <Tab label="Items" style={{border:"1px solid white"}} />
+          <Tab label="Add" style={{border:"1px solid white"}}/>
+          <Tab label="His" style={{border:"1px solid white"}}/>
         </Tabs>
         <TabPanel value={value} index={0} >
         <Users/>

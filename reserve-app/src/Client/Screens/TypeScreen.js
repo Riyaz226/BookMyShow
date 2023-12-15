@@ -5,6 +5,8 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Movie from '../Screens/Movie'
 import Cinema from '../Screens/Cinema'
+import Soon from '../Screens/Soon'
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -38,24 +40,29 @@ export default function Admin() {
 
   return (
   <>
+  <input type="text" placeholder="Search.." id="la"/>
     <Box sx={{ bgcolor: 'background.paper', width: 500 }}>
         <Tabs
           value={value}
           onChange={handleChange}
           indicatorColor="secondary"
           textColor="inherit"
-          variant="fullWidth"
+          variant="standard"
           aria-label="full width tabs example"
           
       >
-          <Tab label="MOVIES" style={{border:"1px solid whitesmoke"}}/>
-          <Tab label="CINEMAS" style={{border:"1px solid whitesmoke"}} />
-        </Tabs>
+          <Tab label="MOVIES" />
+          <Tab label="CINEMAS"  />
+          <Tab label="COMING🎬"  />
+      </Tabs>
         <TabPanel value={value} index={0} >
          <Movie/>
         </TabPanel>
         <TabPanel value={value} index={1} >
         <Cinema/>
+        </TabPanel>
+        <TabPanel value={value} index={2} >
+        <Soon/>
         </TabPanel>
 </Box>
  </>

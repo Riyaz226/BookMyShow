@@ -1,228 +1,75 @@
-import { useState } from "react";
-import axios from 'axios';
+import React from 'react'
+// import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
+// import LocalFireDepartmentOutlinedIcon from '@mui/icons-material/LocalFireDepartmentOutlined';
+// import OndemandVideoOutlinedIcon from '@mui/icons-material/OndemandVideoOutlined';
+// import EmojiEventsOutlinedIcon from '@mui/icons-material/EmojiEventsOutlined';
+// import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
+//import Ad from '../../Json/ads.json'
+//import one from '../../Images/logo.png'
+import './Style.css'
 
-const Add = () => {
-    const[id]=useState('')
-    const [name, Namechange] = useState('');
-    const [Genre, Genrechange] = useState('');
-    const [Genre2, Genre2change] = useState('');
-    const [Screen,Screenchange]=useState('');
-    const [Released,Releasedchange]=useState('');
-    const [Runtime,Runtimechange]=useState('');
-    const [Certificate, Certificatechange] = useState('');
-    const[Cast,Castchange]=useState('');
-    const[CastImageUrl1,CastImageUrl1change]=useState(''); 
-    const[CastImageUrl2,CastImageUrl2change]=useState(''); 
-    const[CastImageUrl3,CastImageUrl3change]=useState(''); 
-    const[Crew,Crewchange]=useState('')
-    const[CrewImageUrl1,CrewImageUrl1change]=useState('');
-    const[CrewImageUrl2,CrewImageUrl2change]=useState('');
-    const[CrewImageUrl3,CrewImageUrl3change]=useState('');
-    const[Description,Descriptionchange]=useState('');
-    const [Language, Languagechange] = useState('');
-    const [Video, Videochange] = useState('');
-    const [Rating, Ratingchange] = useState('');
-    const [Response, Responsechange] = useState('');
-    const [Images, Imageschange] = useState('');
-    const [Images2, Images2change] = useState('');
-         
-
-    async function addMovie(e) {
-        e.preventDefault();
-        const newMovie = {
-            id,
-            name,
-            Genre,
-            Genre2,
-            Screen,
-            Certificate,
-            Released,
-            Cast,
-            CastImageUrl:[CastImageUrl1,CastImageUrl2,CastImageUrl3],
-            Crew,
-            CrewImageUrl:[CrewImageUrl1,CrewImageUrl2,CrewImageUrl3],
-            Language,
-            Response,
-            Description,
-            Rating,
-            Video,
-            Images,
-            Images2
-        };
-    
-        try{
-            const result=await(await axios.post("http://localhost:5000/api/movies/addMovies",newMovie)).data;
-            console.log(result)
-          }catch(error){
-             console.log(error)
-          }
-        
-    }
-
-    return (
-        <div className="">
-            <form onSubmit={addMovie}>
-                <label>ID</label>
-                <input 
-                value={id} 
-                disabled="disabled" 
-                className="form-control"/>
-                              
-                <input
-                    value={name}
-                    placeholder="Enter Movie Name"
-                    onChange={(e) => {Namechange(e.target.value)}}
-                    className="form-control"
-                />
-
-                <input
-                    value={Genre}
-                    placeholder="Enter Genre"
-                    onChange={(e) => {Genrechange(e.target.value)}}
-                    className="form-control"
-                />
-                 <input
-                    value={Genre2}
-                    placeholder="Enter Genre2"
-                    onChange={(e) => {Genre2change(e.target.value)}}
-                    className="form-control"
-                />
-
-                <input
-                    value={Screen}
-                    placeholder="Enter Screen Type"
-                    onChange={(e) => {Screenchange(e.target.value)}}
-                    className="form-control"
-                />
-                
-                <input
-                    value={Released}
-                    placeholder="Enter Realsie Date"
-                    onChange={(e) => {Releasedchange(e.target.value)}}
-                    className="form-control"
-                />
-                <input
-                    value={Runtime}
-                    placeholder="Enter Runtime "
-                    onChange={(e) => {Runtimechange(e.target.value)}}
-                    className="form-control"
-                />
-
-                <input
-                    value={CastImageUrl1}
-                    placeholder="Enter CastImage1"
-                    onChange={(e) => {CastImageUrl1change(e.target.value)}}
-                    className="form-control"
-                />
-                
-                <input
-                    value={CastImageUrl2}
-                    placeholder="Enter CastImage2"
-                    onChange={(e) => {CastImageUrl2change(e.target.value)}}
-                    className="form-control"
-                />
-                <input
-                    value={CastImageUrl3}
-                    placeholder="Enter CastImage2"
-                    onChange={(e) => {CastImageUrl3change(e.target.value)}}
-                    className="form-control"
-                />
-                
-                <input
-                    value={Crew}
-                    placeholder="Enter Crew"
-                    onChange={(e) => {Crewchange(e.target.value)}}
-                    className="form-control"
-                />
-
-                <input
-                    value={CrewImageUrl1}
-                    placeholder="Enter CrewImage1"
-                    onChange={(e) => {CrewImageUrl1change(e.target.value)}}
-                    className="form-control"
-                />
-                
-                <input
-                    value={CrewImageUrl2}
-                    placeholder="Enter CrewImage2"
-                    onChange={(e) => {CrewImageUrl2change(e.target.value)}}
-                    className="form-control"
-                />
-                <input
-                    value={CrewImageUrl3}
-                    placeholder="Enter CrewImage3"
-                    onChange={(e) => {CrewImageUrl3change(e.target.value)}}
-                    className="form-control"
-                />
-                
-                <input
-                    value={Description}
-                    placeholder="Enter Description"
-                    onChange={(e) => {Descriptionchange(e.target.value)}}
-                    className="form-control"
-                />
-                
-                <input
-                    value={Certificate}
-                    placeholder="Enter Certificate"
-                    onChange={(e) => {Certificatechange(e.target.value)}}
-                    className="form-control"
-                />
-                
-                <input
-                    required
-                    value={Cast}
-                    placeholder="Enter Cast"
-                    onChange={(e) => {Castchange(e.target.value)}}
-                    className="form-control"
-                />
-
-                <input
-                    value={Language}
-                    placeholder="Enter Language"
-                    onChange={(e) => {Languagechange(e.target.value)}}
-                    className="form-control"
-                />
-
-                <input
-                    value={Video}
-                    placeholder="Enter Video"
-                    onChange={(e) => {Videochange(e.target.value)}}
-                    className="form-control"
-                />
-                
-                <input
-                    value={Rating}
-                    placeholder="Enter Rating"
-                    onChange={(e) => {Ratingchange(e.target.value)}}
-                    className="form-control"
-                />
-                <input
-                    value={Images}
-                    placeholder="Enter Movie Image"
-                    onChange={(e) => {Imageschange(e.target.value)}}
-                    className="form-control"
-                />
-                <input
-                    value={Images2}
-                    placeholder="Enter Cast Image2"
-                    onChange={(e) => {Images2change(e.target.value)}}
-                    className="form-control"
-                />
-
-               <input 
-                 checked={Response} 
-                 onChange={e=>Responsechange(e.target.checked)} 
-                 type="checkbox" 
-                 className="form-check-input"/>
-              <label  className="form-check-label">Is Active</label>           
-              <br/>
-                <button className="btn btn-success" type="submit" style={{width:"215px"}}>
-                    Save
-                </button>
-            </form>
+function HomeScreen2() {
+  
+  return (
+    <>
+ {/* <div className='ads'>
+        <div className='ad1'>
+         <MapOutlinedIcon style={{marginTop:"12px",fontSize:"2.5em"}} className='i' />          
+        <span style={{paddingLeft:"26px"}}>
+          <p style={{color:"brown",fontWeight:"23px"}}>BROWSE BY <span style={{color:"darkblue",fontWeight:"23px"}}>CINEMAS</span> <br/>See what's playing in cinemas near you</p>
+        </span>
         </div>
-    );
-};
+</div>    
 
-export default Add;
+
+<div  className='bnu'style={{marginTop:"18px"}} >
+<h4 style={{fontSize:"1.4em",paddingLeft:"63px"}}>Browse Events by Category:</h4>
+<div>
+   {
+          Ad.map((item) => (
+            <div key={item.id}>
+              <img src={item.Image} alt="" style={{width:"267px",height:"198px",cursor:"pointer"}}/>
+              <br/>
+              <p>{item.name}-({item.Rating}*)</p>
+            </div>
+          ))}
+ </div>
+ </div>  
+ 
+<div className='end'>
+<ul>
+  <img src={one} alt='' className='nm1'/>
+  <p>BookMyShow offers showtimes,<br/> movie tickets, reviews, trailers,<br/> concert tickets and events near <br/>Mumbai.  
+   Also features promotional<br/> offers, coupons and mobile ...</p><br/>
+  <p>@2024 BookMyShow All Rights Reserved</p>
+
+</ul>
+<ul>
+  <li style={{fontSize:"1.2em"}}><b>Categories</b></li>
+  <li>Ad's</li>
+  <li>Booking Movies</li>
+  <li>Telegast Festival</li>
+  <li>Lanuage</li>
+  <li>Area's</li>
+  <li>States Varities</li>
+</ul>
+<ul>
+ <li  style={{fontSize:"1.2em"}}><b>Support</b></li>
+  <li>Help Center</li>
+  <li>FAQ's</li>
+  <li>Site Map</li>
+  <li>Privacy Policy</li>
+  <li>Terms of Services</li>
+</ul>
+</div> 
+ <div className='end2'>
+ <li><LocalFireDepartmentOutlinedIcon style={{fontSize:'2.3em'}}/><br/>Home</li>
+ <li><OndemandVideoOutlinedIcon style={{fontSize:'2.1em'}}/><br/>Movies</li>
+ <li><EmojiEventsOutlinedIcon style={{fontSize:'2.1em'}}/><br/>Events</li> 
+ <li><GroupAddOutlinedIcon style={{fontSize:'2.1em'}}/><br/>Profile</li>
+ </div> */}
+    </>
+  )
+}
+
+export default HomeScreen2

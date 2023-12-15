@@ -6,12 +6,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 overflow-x: hidden;
+text-decoration: none;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
 .navbar{
   display: flex;
   justify-content: center;
@@ -29,17 +31,17 @@ code {
 }
 
 .left > img{
-  width: 9.7%;
-margin-left: 57px;
+  width: 9.8%;
+margin-left: 45px;
 }
 
 .left input{
   margin-inline:10px;
-  border-radius: 3.5px;
-  width: 285%;
-  height: 37px;
- border: none;
-margin-top: 4px;
+  border-radius: 3.7px;
+  width: 270%;
+height: 37px;
+border: none;
+margin-top: 5px;
 outline: none;
 font-size: 13px;
 word-spacing: 1px;
@@ -53,7 +55,7 @@ margin-right: 40px;
 }
 .right p{
   margin-inline:33px;
- font-size: 14.8px;
+ font-size: 14.2px;
 color: #cccccc;
 }
 
@@ -91,6 +93,7 @@ color: #cccccc;
   .left input{
   margin-inline:15px ;
 margin-top: 3.3px; 
+width:249%;
 }
 .right{
   margin-top: -33px;
@@ -109,7 +112,7 @@ margin-top: 3.3px;
   }
   .navbar .left2 p{
    margin-top: -7px;
-  font-size: 13px;
+  font-size: 13.9px;
   } 
   .navbar .right2{
     display: block;
@@ -125,7 +128,15 @@ margin-top: 3.3px;
     margin-inline: 22px;
   }
   }
-
+  @media only screen and (max-width: 387px) {
+    .left2{
+      margin-left: -8px;
+      margin-top: 4px;
+    }
+    .left2 h4{
+      font-size:18px;
+    }
+}
   @media only screen and (max-width: 350px) {
     .navbar{
       height: 64px;
@@ -133,9 +144,14 @@ margin-top: 3.3px;
     .navbar .gl2{
       display: none;
     }
+    .left2 h4{
+      font-size:18px;
+      font-weight: 20px;
+    }
 }
     
 /*Sec-Nav*/
+
 #sec-nav p{
 padding-left: 26px;
 font-size: 15px;
