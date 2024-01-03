@@ -1,26 +1,26 @@
 [
   {  
-  "name":"opo",
+  "name":"Indian2",
   "like":"2k",
-  "Release":"14,Dec 2023",
-  "image": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjE3MzA4Nzk3NV5BMl5BanBnXkFtZTgwNjAxMTc1ODE@._V1_SX1777_CR0,0,1777,744_AL_.jpg",
-  "Language":["Hindi","Tamil","Marthi"],
+  "Release":"12 April 2024",
+  "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHw9JvQ2Bw2zR5YT0RpMscMmqs9Eochw9_Kg&usqp=CAU",
+  "Language":["Tamil","Hindi","Marthi"],
   "Genre":"Action/Drama"
   },
   {  
-  "name":"opr",
-  "like":"0",
-  "Release":"1,Jan 2024",
-  "image": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjE3MzA4Nzk3NV5BMl5BanBnXkFtZTgwNjAxMTc1ODE@._V1_SX1777_CR0,0,1777,744_AL_.jpg",      
-  "Language":["Tamil","English","Malayalam","Kannada"],
-  "Genre":"Action" 
+  "name":"Deadpool2",
+  "like":"",
+  "Release":"26 July 2024",
+  "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzvFovRO3Ft0Wj_E0VVvdOKOlOgJtIuYeBVEOdrzPiUPd4_XpbbzuJaNfEfJVacx-4SV4&usqp=CAU",      
+  "Language":["English","Tamil","Malayalam","Kannada"],
+  "Genre":"Action/Period" 
   },
   {  
-  "name":"qwe",
-  "like":"2k",
-  "Release":"14,Feb 2024",
-  "image": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjE3MzA4Nzk3NV5BMl5BanBnXkFtZTgwNjAxMTc1ODE@._V1_SX1777_CR0,0,1777,744_AL_.jpg",
-   "Language":["English","Malayalam","Kannada"],
-   "Genre":"Comedy/Horrer" 
+  "name":"War2",
+  "like":"",
+  "Release":"14 August 2025",
+  "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuYU7tMcO3gh-ktFcu9S5xnTXXk35GuGA22S9Zhaub_5nNkqGJKS6HYTCCsRqoTYW_kXk&usqp=CAU",
+   "Language":["Hindi","Malayalam"],
+   "Genre":"Action/Crime" 
 }
 ]

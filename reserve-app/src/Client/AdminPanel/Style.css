@@ -94,3 +94,16 @@ height:23px;
    
     } 
 }
+
+/*Ticket Screen*/
+.tic3{
+    display: flex;
+    gap: 30px;
+}
+.tic3 >img{
+    margin-top: 29.8px;
+    width: 200px;
+    height: 158px;
+    border-radius:10px;
+}
+

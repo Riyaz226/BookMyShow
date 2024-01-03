@@ -1,5 +1,6 @@
 /*Home Scroll*/
 div >#img{
+    position: relative;
     height:308px;
 border-radius: 18px;
 }
@@ -85,14 +86,76 @@ color: white;
     cursor: pointer;
 }
 
-/*HomeScreen*/
+/*HomeScreen Movie*/
+.roll{
+    background-color: whitesmoke;
+    padding: 23px 76px;
+}
+
+.df{
+    display: flex;
+    gap:34px;
+    flex-wrap:wrap;
+}
 .dfr .img{
     cursor: pointer;
     width: 263px;
     height: 307px;
 border-radius:8px;
 }
-
+.deta{
+    text-align:center;
+}
+/*ADS*/
+.ADS{
+    margin-top: 23px;
+}
+.ADS2{
+    display: flex;
+    flex-wrap: wrap;
+    gap:23px ;
+    row-gap: 31px;
+    margin-left: 12px;
+}
+.ADS2 >img{
+    width:203px;
+    height: 136px;
+    cursor: pointer;
+    border-radius: 18px;
+}
+/*footer*/
+.foot{
+    display:flex;
+    gap: 144px;
+    flex-wrap: wrap;
+    margin-top: 26px;
+}
+.foot2{
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    gap: 235px;
+    padding-left:192px;
+     color: #cccccc;   
+    background-color: #282931;
+}
+@media screen and (max-width: 864px) {
+    .foot{
+        display:flex;
+        gap: 84px;
+        flex-wrap: wrap;
+        margin-top: 26px;
+    }
+    
+    .foot2{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 37px;
+        padding-left:83px;
+  
+    }
+    
+} 
 /*Book in Movie */
 .select{
 display: flex;
@@ -159,7 +222,7 @@ font-size: 17.5px;
 .search{
     margin-top: 4px;
 }
-.search input{
+.search >select{
     width: 475px;
     height: 33px;
    margin-left: 11px;
@@ -185,13 +248,29 @@ padding-left: 16px;
    box-shadow: yellowgreen;
 }
 .search .close{
-    width:457px;
-    margin-left: 18px;
+    width:460px;
+    margin-left: 1px;
     background-color: whitesmoke;
 }
 
+#dis{
+   list-style: none;
+display: flex;
+flex-wrap: wrap;
+row-gap: 18px;
+padding-top: 12px;
+margin-left: -43px;
+}
+#dis li{
+    font-size: 13.5px;
+padding-left: 26px;
+}
+#dis li:hover{
+    color:brown;
+}
+
 @media screen and (max-width: 561px) {
-.search input{
+.search > select{
         width: 375px;
         height: 33px;
     }
@@ -282,13 +361,12 @@ width: 237px;
      margin-left: 18px;
     }
 }
-
-/*Soon*/
 #fi2{
  border:none;
  border-radius: 10px;
 color:brown;
 cursor:pointer;
+overflow-x: hidden;
 }
 #fi3{
 display: flex;
@@ -337,162 +415,285 @@ margin-left: -22px;
         margin-left: 3px;
     }
 }
-/* .bnu >div{
-   display:flex;
-   justify-content: center;
-   gap:28px;
+
+/*AdRotater*/
+#ad{
+    position: absolute;
+    width: 385px;
+    height: 502px;
+    border: 1px solid white;
+    border-radius: 12px;
+    margin-top: -300px;
+    margin-left: 480px;
+    background-color:white;
+}
+.vb{
+    display: flex;
+    gap:298px;
+    cursor: pointer;
+    color: black;
+}
+    #ad >div{
+        padding: 5px 22px;
+    }
+    #ad div h3{
+    font-size: 19.5px;
+    word-spacing: 2px;
+    color: #404040;
+    }
+    #ad >div iframe{
+        width: 330px;
+        height: 433px;
+    border-radius: 12px;
+    margin-left: 4px;
+    }
+    .ro{
+        float: right;
+    }
+
+    @media screen and (max-width: 1305px) {
+        #ad{
+            width: 385px;
+    height: 440px;
+   margin-left:361px;
+            }
+            
+            #ad div h3{
+                font-size: 17px;
+                }
+         
+            #ad >div iframe{
+                width: 335px;
+                height: 369px;
+            
+           }   
+     
+    } 
+    @media screen and (max-width: 982px) {
+        #ad{
+            width: 385px;
+            height: 440px;
+            margin-left:273px ;
+            }
+            #ad >div iframe{
+                width: 335px;
+                height: 369px;
+             }   
+     
+    } 
+    @media screen and (max-width: 800px) {
+        #ad{
+            width: 380px;
+            height: 440px;
+            margin-left:118px ;
+            }
+            .vb{
+                display: none;
+            }
+            #ad >div{
+                padding: 3px 22px;
+            }
+            #ad >div iframe{
+                width: 327px;
+                height: 370px;
+             }   
+     
+    } 
+    @media screen and (max-width: 516px) {
+        #ad{
+            width: 285px;
+            height: 359px;
+            margin-left: 62px;
+            }
+            
+            
+            #ad div h3{
+            font-size: 18px;
+            word-spacing: 2px;
+            padding-left:30px;
+            }
+            #ad >div iframe{
+                width: 235px;
+                height: 280px;
+           }   
+    }
+    @media screen and (max-width: 424px) {
+        #ad{
+            width: 280px;
+            height: 334px;
+            margin-left: 20px;
+        }
+            
+            #ad div h3{
+            font-size: 18px;
+            word-spacing: 2px;
+            padding-left:30px;
+            }
+            #ad >div iframe{
+                width: 224px;
+                height: 260px;
+           }   
+    }    
+    
+/*CommandDis*/
+.eve{
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+}
+.recieve{
+    width:406px;
+    height: 223px;
+    border: 1px solid #cccccc;
+   border-radius: 7px;
+   margin-top: 8px;
+   padding-left: 22px;
+   padding-top: 17px;
+   overflow-x: hidden;
+}
+
+.recieve #rec1{
+    display: flex;
+    font-size: 16px;
+   gap: 8px;
+}
+.recieve #rec1 i{
+padding-top: 5px;
+}
+
+.recieve #i9{
+    font-size: 35px;
+    color: #e5e5e5;
+}
+
+.recieve #rec2{
+    display: flex;
+    font-size: 17px;
+   gap: 5px;
+padding-left: 303px;
+margin-top: -43px;
+}
+.recieve #rec3{
+font-size: 18px;
+display: flex;
 flex-wrap: wrap;
 }
-.bnu > div  img{
-    border-radius: 23px;
-    flex-direction: column;
+.recieve #rec4{
+  font-size: 15px;
+  padding-top: 7px;  
+  display: flex;
+  flex-wrap: wrap;
+  color: #404040;
 }
-.ads{
-    width: 397px;
-    height:93px;
-    border:1px solid #e5e5e5;
-   margin-left: 53px;
-   border-radius:12px ;
-  background-color: aliceblue;
-margin-top: 39px;
-}
-.ad1 {
-    display: flex;
-    padding-left: 28px;
-   padding-top: 22px;
-}
-.ad1 span{
-    flex-direction: column;
-}
-@media screen and (max-width: 1030px) {
-    .ads{
-        margin-top: 60px;
-    }        
-.ads > .h4{
-    font-size: 1em;
-}
-}
-
-@media screen and (max-width: 582px) {
- 
-.ads{
-    width: 333px;
-    margin-left:31px ;
-}
-.ads .ad1 span{
-margin-top:-12px
-}
-}
-
-
-@media screen and (max-width: 480px) {
-    .ads{
-        width: 320px;
-        margin-left:9px ;
-    }
-    .ads .ad1 span{
-    margin-top:-12px
-    }
-    .ads .ad1 span p{
-        font-size: 1em;
-        }
-        }
-
-        @media screen and (max-width: 340px) {
-            .ads{
-                width: 280px;
-                margin-left:29px ;
-            }
-            .ads .ad1 span{
-            margin-top:-12px
-            }
-            .ads .ad1 span p{
-                font-size: 1em;
-                }
-                }
-        
-.end {
-    display: flex;
-   gap: 115px;
-   flex-wrap: wrap;
-   padding-left: 83px;
-   margin-top: 23px;
-}      
-.end ul .nm1{
-    width: 143px;
-    height:46px;
-}
-.end ul{
-    flex-direction: column;
-     padding-top: 32px;
-     list-style: none;
-
-    }
-.end ul li{
-margin-top: 15px;
-}
-
-@media screen and (max-width: 1226px) {
- .end {
-        display: flex;
-       flex-wrap: wrap;
-       gap:114px;
-       padding-left: 70px;
-       margin-top: 23px;
-    }      
-    .end ul .nm1{
-        width: 143px;
-        height:46px;
-    }
-    .end ul{
-        flex-direction: column;
-         padding-top: 32px;
-    }
-    .end ul li{
-    margin-top: 12px;
-    }   
-}
-/* .end2{
-    display: none;
-} */
-
-/* @media screen and (max-width: 998px) {
-    .end {
-       padding-left: 28px;
-       gap:43px
-    }      
- 
-    .end2 {
-        display: block;
+.recieve #rec5{
+display: flex;
+    padding-top: 48px;
+gap: 28px;
+}  
+@media screen and (max-width: 867px) {
+    .eve{
         display:flex;
-      gap:146px;
-        height: 65px;
-        list-style: none;
-        padding-top: 16px;
-    padding-left: 73px;
+        gap:12px;
+        flex-wrap: wrap;
     }
-    .end2 li{
-        flex-direction: column;
-        color:#666;
+    .recieve{
+        width:220px;
+        height: 223px;
+        border: 1px solid #cccccc;
+       border-radius: 7px;
+       margin-top: 8px;
+       padding-left: 22px;
+       padding-top: 17px;
+       overflow-x: hidden;
     }
+    
 
+.recieve #rec1{
+    display: flex;
+    font-size: 16px;
+   gap: 8px;
 }
-@media screen and (max-width: 658px) {
-    .end2 {
-      gap:86px;
-      padding-left: 53px;
-    }
-}
-@media screen and (max-width: 488px) {
-    .end2 {
-      gap:46px;
-      padding-left: 33px;
-    }
+.recieve #rec1 i{
+padding-top: 5px;
 }
 
-@media screen and (max-width: 330px) {
-    .end2 {
-      gap:36px;
-      padding-left: 16px;
-    }
-} */ 
+.recieve #i9{
+    font-size: 32px;
+    color: #e5e5e5;
+}
+
+.recieve #rec2{
+    display: flex;
+    font-size: 17px;
+   gap: 5px;
+padding-left: 303px;
+margin-top: -43px;
+}
+.recieve #rec3{
+font-size: 18px;
+display: flex;
+flex-wrap: wrap;
+}
+.recieve #rec4{
+  font-size: 15px;
+  padding-top: 7px;  
+  display: flex;
+  flex-wrap: wrap;
+  color: #404040;
+}
+    .recieve #rec5{
+        display: flex;
+            padding-top: 48px;
+        gap: 18px;
+        }
+}
+/*tickets*/
+.tic{
+    display: flex;
+    gap: 23.5px;
+}
+.tic >#booo{
+    width: 70px;
+    height: 84px;
+    border-radius:10px;
+    margin-top:1px;
+}
+#full{
+    background-color: #e5e5e5;
+text-decoration: none;
+    padding: 2px 76px;
+  margin-left: 23px;
+  border-radius: 4.5px;  
+  margin-left: -62px;
+font-size: 15px;
+cursor: pointer;
+}
+.tic2{
+    margin-left: -12px;
+}
+.re{
+    margin-left: 73px;
+    margin-top: -19px;
+}
+.re>img{
+width: 183px;
+height: 145px;
+margin-top: -12px;
+margin-left:-4px;
+}
+
+#i12{
+margin-left: 72px;
+padding-top: 12px;
+}
+#full2{
+    background-color: #e5e5e5;
+text-decoration: none;
+    padding: 1px 76px;
+  margin-left: 23px;
+  border-radius: 4.5px;  
+  margin-left: -82px;
+font-size: 15px;
+cursor: pointer;
+}
+

@@ -1,75 +1,48 @@
-import React from 'react'
-// import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
-// import LocalFireDepartmentOutlinedIcon from '@mui/icons-material/LocalFireDepartmentOutlined';
-// import OndemandVideoOutlinedIcon from '@mui/icons-material/OndemandVideoOutlined';
-// import EmojiEventsOutlinedIcon from '@mui/icons-material/EmojiEventsOutlined';
-// import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
-//import Ad from '../../Json/ads.json'
-//import one from '../../Images/logo.png'
-import './Style.css'
-
-function HomeScreen2() {
-  
-  return (
-    <>
- {/* <div className='ads'>
-        <div className='ad1'>
-         <MapOutlinedIcon style={{marginTop:"12px",fontSize:"2.5em"}} className='i' />          
-        <span style={{paddingLeft:"26px"}}>
-          <p style={{color:"brown",fontWeight:"23px"}}>BROWSE BY <span style={{color:"darkblue",fontWeight:"23px"}}>CINEMAS</span> <br/>See what's playing in cinemas near you</p>
-        </span>
-        </div>
-</div>    
-
-
-<div  className='bnu'style={{marginTop:"18px"}} >
-<h4 style={{fontSize:"1.4em",paddingLeft:"63px"}}>Browse Events by Category:</h4>
-<div>
-   {
-          Ad.map((item) => (
-            <div key={item.id}>
-              <img src={item.Image} alt="" style={{width:"267px",height:"198px",cursor:"pointer"}}/>
-              <br/>
-              <p>{item.name}-({item.Rating}*)</p>
-            </div>
+<div className="deta">
+                <p style={{ wordSpacing: "83px" }}>&#x2B50;{movie.Rating} {movie.Votes}votes</p>
+                <p style={{ marginTop: "-5px" }}>{movie.name}</p>
+                <p>{movie.Genre}</p>
+              </div>
+                {/* <div className="ADS" >
+        <h3 style={{ paddingLeft: "18px" }}><MapOutlinedIcon style={{fontSize:"1em"}}/>The Best Events This Week</h3>
+        <p style={{ paddingLeft: "18px" }}>Live events for all your entertainment needs</p>
+        <div className="ADS2">
+          {ads.map((ad) => (
+            <>
+              <img src={ad.Image} alt='' title={ad.name} />
+            </>
           ))}
- </div>
- </div>  
- 
-<div className='end'>
-<ul>
-  <img src={one} alt='' className='nm1'/>
-  <p>BookMyShow offers showtimes,<br/> movie tickets, reviews, trailers,<br/> concert tickets and events near <br/>Mumbai.  
-   Also features promotional<br/> offers, coupons and mobile ...</p><br/>
-  <p>@2024 BookMyShow All Rights Reserved</p>
+        </div>
+        <p style={{ color: "brown", textAlign: "center",cursor:"pointer" }}>All details &#8650;</p>
+      </div>
 
-</ul>
-<ul>
-  <li style={{fontSize:"1.2em"}}><b>Categories</b></li>
-  <li>Ad's</li>
-  <li>Booking Movies</li>
-  <li>Telegast Festival</li>
-  <li>Lanuage</li>
-  <li>Area's</li>
-  <li>States Varities</li>
-</ul>
-<ul>
- <li  style={{fontSize:"1.2em"}}><b>Support</b></li>
-  <li>Help Center</li>
-  <li>FAQ's</li>
-  <li>Site Map</li>
-  <li>Privacy Policy</li>
-  <li>Terms of Services</li>
-</ul>
-</div> 
- <div className='end2'>
- <li><LocalFireDepartmentOutlinedIcon style={{fontSize:'2.3em'}}/><br/>Home</li>
- <li><OndemandVideoOutlinedIcon style={{fontSize:'2.1em'}}/><br/>Movies</li>
- <li><EmojiEventsOutlinedIcon style={{fontSize:'2.1em'}}/><br/>Events</li> 
- <li><GroupAddOutlinedIcon style={{fontSize:'2.1em'}}/><br/>Profile</li>
- </div> */}
-    </>
-  )
-}
-
-export default HomeScreen2
+      <div className='foot'>
+        <ul>
+          <p>BookMyShow offers showtimes,<br /> movie tickets, reviews, trailers,<br /> concert tickets and events near <br />Mumbai.
+            Also features promotional<br /> offers, coupons and mobile ...</p><br />
+          <p>@2024 BookMyShow All Rights Reserved</p>
+      </ul>
+        <ul>
+          <li style={{ fontSize: "1.2em" }}><b>Categories</b></li>
+          <li>Ad's</li>
+          <li>Booking Movies</li>
+          <li>Telegast Festival</li>
+          <li>Lanuage</li>
+          <li>Area's</li>
+          <li>States Varities</li>
+        </ul>
+        <ul>
+          <li style={{ fontSize: "1.2em" }}><b>Support</b></li>
+          <li>Help Center</li>
+          <li>FAQ's</li>
+          <li>Site Map</li>
+          <li>Privacy Policy</li>
+          <li>Terms of Services</li>
+        </ul>
+      </div>
+      <div className='foot2'>
+        <li><LocalFireDepartmentOutlinedIcon style={{ fontSize: '2.3em' }} /><br />Home</li>
+        <li><OndemandVideoOutlinedIcon style={{ fontSize: '2.1em' }} /><br />Movies</li>
+        <li><EmojiEventsOutlinedIcon style={{ fontSize: '2.1em' }} /><br />Events</li>
+        <li><a href='/Profile' style={{textDecoration:"none",color:"#cccccc"}}><GroupAddOutlinedIcon style={{ fontSize: '2.1em' }} /><br />Profile</a></li>
+      </div> */}

@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import './Style.css'
 
@@ -10,56 +8,55 @@ const Add = () => {
     const [name, Namechange] = useState('');
     const [Released, Releasedchange] = useState('');
     const [Runtime, Runtimechange] = useState('');
-    const [Genre, Genrechange] = useState('');
+    const [Genre1, Genre1change] = useState('');
     const [Genre2, Genre2change] = useState('');
     const [Genre3, Genre3change] = useState('');
-    const [Screen, Screenchange] = useState('');
+    const [Screen1, Screen1change] = useState('');
     const [Screen2, Screen2change] = useState('');
     const [Screen3, Screen3change] = useState('');
     const [Screen4, Screen4change] = useState('');
     const [Certificate, Certificatechange] = useState('');
-    const [Cast, Castchange] = useState('');
-    const [Images, Imageschange] = useState('');
+    const [Cast1, Cast1change] = useState('');
+    const [Cast2, Cast2change] = useState('');
+    const [Cast3, Cast3change] = useState('');
+    const [Image1, Image1change] = useState('');
     const [Image2, Image2change] = useState('');
     const [Image3, Image3change] = useState('');
-    const [Crew, Crewchange] = useState('');
-    const [Images2, Images2change] = useState('');
+    const [Crew1, Crew1change] = useState('');
+    const [Crew2, Crew2change] = useState('');
+    const [Crew3, Crew3change] = useState('');
     const [Image4, Image4change] = useState('');
     const [Image5, Image5change] = useState('');
+    const [Image6, Image6change] = useState('');
     const [Description, Descriptionchange] = useState('');
-    const [Language, Languagechange] = useState('');
+    const [Language1, Language1change] = useState('');
     const [Language2, Language2change] = useState('');
     const [Language3, Language3change] = useState('');
     const [Language4, Language4change] = useState('');
     const [Language5, Language5change] = useState('');
     const [Video, Videochange] = useState('');
-    const [Rating, Ratingchange] = useState('');
-    const [Votes, Voteschange] = useState('');
     const [Response, Responsechange] = useState('');
     const [MovieIcon, MovieIconchange] = useState('');
+    const [bgImg, bgImgchange] = useState('');
 
 
     async function addMovie(e) {
         e.preventDefault();
         const newMovie = {
-            id, MovieIcon, name, Released, Runtime, Genre: [Genre2, Genre3], Screen: [Screen2, Screen3, Screen4], Cast, Certificate, Language: [Language2, Language3, Language4, Language5], Video,
-            Images: [Image2, Image3], Crew, Images2: [Image4, Image5], Description, Rating, Votes, Response
+            id, MovieIcon:[MovieIcon,bgImg] , name, Released, Runtime, Genre: [Genre1, Genre2, Genre3], Screen: [Screen1, Screen2, Screen3, Screen4], Certificate, Language: [Language1, Language2, Language3, Language4], Video, Cast: [Cast1, Cast2, Cast3],
+            CastImages: [Image1, Image2, Image3], Crew: [Crew1, Crew2, Crew3], CrewImages: [Image4, Image5, Image6], Description, Response
         };
 
         try {
             const result = await (await axios.post("http://localhost:5000/api/movies/addMovies", newMovie)).data;
             console.log(result)
-            notify();
+            alert(result)
         } catch (error) {
             console.log(error)
         }
 
     }
-    const notify = () => {
-        toast("SuceesFully Inserted", {
-          autoClose: 2000 
-        });
-      };
+
     return (
         <div className="">
             <form onSubmit={addMovie}>
@@ -75,8 +72,16 @@ const Add = () => {
                     value={MovieIcon}
                     onChange={(e) => { MovieIconchange(e.target.value) }}
                     className="form-control" id="input"
-                    placeholder="Icon"
+                    placeholder="Movie Icon"
                 />
+                <input
+                    required
+                    value={bgImg}
+                    onChange={(e) => { bgImgchange(e.target.value) }}
+                    className="form-control" id="input"
+                    placeholder="Bg Icon"
+                />
+
                 <input
                     required
                     value={name}
@@ -103,8 +108,8 @@ const Add = () => {
                 />
                 <div className="flex">
                     <input
-                        value={Genre}
-                        onChange={(e) => { Genrechange(e.target.value) }}
+                        value={Genre1}
+                        onChange={(e) => { Genre1change(e.target.value) }}
                         className="form-control" id="input1"
                         placeholder="Genre:"
                     />
@@ -124,8 +129,8 @@ const Add = () => {
                 {/* Screen                */}
                 <div className="flex">
                     <input
-                        value={Screen}
-                        onChange={(e) => { Screenchange(e.target.value) }}
+                        value={Screen1}
+                        onChange={(e) => { Screen1change(e.target.value) }}
                         className="form-control" id="input2"
                         placeholder="Screens:"
                     />
@@ -158,18 +163,34 @@ const Add = () => {
                     placeholder="Certificate:"
                 />
 
-                <input
-                    required
-                    value={Cast}
-                    onChange={(e) => { Castchange(e.target.value) }}
-                    className="form-control" id="input"
-                    placeholder="Cast"
-                />
-
+                {/* Cast Name                */}
                 <div className="flex">
                     <input
-                        value={Images}
-                        onChange={(e) => { Imageschange(e.target.value) }}
+                        required
+                        value={Cast1}
+                        onChange={(e) => { Cast1change(e.target.value) }}
+                        className="form-control" id="input"
+                        placeholder="Cast1:"
+                    />
+                    <input
+                        required
+                        value={Cast2}
+                        onChange={(e) => { Cast2change(e.target.value) }}
+                        className="form-control" id="input"
+                        placeholder="Cast2:"
+                    />
+                    <input
+                        required
+                        value={Cast3}
+                        onChange={(e) => { Cast3change(e.target.value) }}
+                        className="form-control" id="input"
+                        placeholder="Cast3:"
+                    />
+                </div>
+                <div className="flex">
+                    <input
+                        value={Image1}
+                        onChange={(e) => { Image1change(e.target.value) }}
                         className="form-control" id="input3"
                         placeholder="Cast Url1:"
                     />
@@ -188,33 +209,53 @@ const Add = () => {
                         placeholder="Cast Url3:"
                     />
                 </div>
-                <input
-                    value={Crew}
-                    onChange={(e) => { Crewchange(e.target.value) }}
-                    className="form-control" id="input"
-                    placeholder="Crew Name:"
-                />
+                {/* Crew Name                */}
                 <div className="flex">
                     <input
-                        value={Images2}
-                        onChange={(e) => { Images2change(e.target.value) }}
-                        className="form-control" id="input4"
-                        placeholder="Crew Url1:"
+                        required
+                        value={Crew1}
+                        onChange={(e) => { Crew1change(e.target.value) }}
+                        className="form-control" id="input"
+                        placeholder="Crew1:"
                     />
+                    <input
+                        required
+                        value={Crew2}
+                        onChange={(e) => { Crew2change(e.target.value) }}
+                        className="form-control" id="input"
+                        placeholder="Crew2:"
+                    />
+                    <input
+                        required
+                        value={Crew3}
+                        onChange={(e) => { Crew3change(e.target.value) }}
+                        className="form-control" id="input"
+                        placeholder="Crew3:"
+                    />
+                </div>
 
+                <div className="flex">
                     <input
                         value={Image4}
                         onChange={(e) => { Image4change(e.target.value) }}
                         className="form-control" id="input4"
-                        placeholder="Crew Url2:"
+                        placeholder="Crew Url1:"
                     />
 
                     <input
                         value={Image5}
                         onChange={(e) => { Image5change(e.target.value) }}
                         className="form-control" id="input4"
+                        placeholder="Crew Url2:"
+                    />
+
+                    <input
+                        value={Image6}
+                        onChange={(e) => { Image6change(e.target.value) }}
+                        className="form-control" id="input4"
                         placeholder="Crew Url3:"
                     />
+
                 </div>
                 <input
                     value={Description}
@@ -226,8 +267,8 @@ const Add = () => {
                 {/* Language */}
                 <div className="flex">
                     <input
-                        value={Language}
-                        onChange={(e) => { Languagechange(e.target.value) }}
+                        value={Language1}
+                        onChange={(e) => { Language1change(e.target.value) }}
                         className="form-control" id="input5"
                         placeholder="Lang:"
                     />
@@ -264,19 +305,6 @@ const Add = () => {
                 />
 
 
-                <input
-                    value={Rating}
-                    onChange={(e) => { Ratingchange(e.target.value) }}
-                    className="form-control" id="input"
-                    placeholder="Rating:"
-                />
-
-                <input
-                    value={Votes}
-                    onChange={(e) => { Voteschange(e.target.value) }}
-                    className="form-control" id="input"
-                    placeholder="Add Votes:"
-                />
 
                 <input
                     checked={Response}

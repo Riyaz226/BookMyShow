@@ -20,30 +20,16 @@ const movieSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  Cast: {
-    type: String,
-    required: true
-  },
-  Images: [],
-  Crew: {
-    type: String,
-    required: true
-  },
-  Images2: [],
+  Cast:[],
+  CastImages: [],
+  Crew:[],
+  CrewImages: [],
   Description: {
     type: String,
     required: true
   },
   Language: [],
   Video: {
-    type: String,
-    required: true
-  },
-  Rating: {
-    type: Number,
-    required: true
-  },
-  Votes: {
     type: String,
     required: true
   },

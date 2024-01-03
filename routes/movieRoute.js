@@ -41,6 +41,16 @@ router.post("/addMovies",async(req,res)=>{
     
 });
 
+router.post("/getMovieById", async (req, res) => {
+  const movieId = req.body.movieId
+  try {
+    const movies = await Movie.findOne({ _id: movieId });
+    res.send(movies);
+  } catch (error) {
+    return res.status(400).json({ message: error });
+  }
+});
+
 
 // router.post("/updateMovies", async (req, res) => {
 //     try {

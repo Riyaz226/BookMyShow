@@ -17,7 +17,7 @@
        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8ZHCL-zkNDEsvVfR9OX8tBCi6YyQyiZ9CXeQbCifnBIza01PG3TcCDwsi9Owji0ufprk&usqp=CAU",
        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRn_Kxq2QRbxJbEx2sDnu-jMwapqvOwmDSkXVqhubh3n6Yn4vdLQeA8qzGsuNrqwLoXYTw&usqp=CAU"],
       "Description": "A notorious gangster is incited to transform into a flim hero and opts for a flimmaker and their projext desends into a scenario they had never anticipated.",
-      "Language": "Tamil,Hindi,Telghu,Kannada",
+      "Language": ["Tamil","Hindi","Telghu","Kannada"],
       "Video": "PvoUJejn1e4?si=yjpAfxFnQ9BnSlIT",
       "Rating": "8.8",
       "Votes": "7.4K",

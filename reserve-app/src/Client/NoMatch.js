@@ -4,7 +4,7 @@ import '../index.css'
 function NoMatch() {
   return (
     <>
-    <h4>Page Not Found-&#x1F610;</h4>
+    <h4 style={{display:"flex",justifyContent:"center",alignItems:"center",paddingTop:"148px"}}>Page Not Found-&#x1F610;</h4>
     </>
   )
 }
