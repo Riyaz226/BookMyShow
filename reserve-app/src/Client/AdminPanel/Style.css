@@ -76,6 +76,18 @@ table tbody td{
     width:56.5px;
 }
 }
+/*Update*/
+#input6{
+    width:376px;
+}
+#bnh{
+    width: 173px;
+    }
+    @media screen and (max-width: 375px) {
+        #input6{
+            width:216px;
+        }
+    }
 /*Show*/
 #fill{
 height:23px;

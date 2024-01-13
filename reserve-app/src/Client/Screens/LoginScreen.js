@@ -44,7 +44,7 @@ function LoginScreen() {
     <TextField id="standard-basic" label="Email" variant="standard" sx={{width: '78%'}}
       value={email} onChange={(e)=>{setemail(e.target.value)}}/>
     <br/>
-    <FormControl sx={{width: '78%'}} variant="filled">
+    <FormControl sx={{width: '78%'}} variant="standard">
     <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
          <Input
             id="standard-adornment-password"

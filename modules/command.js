@@ -19,10 +19,9 @@ const commandSchema = new mongoose.Schema({
     type: Number,
     required: [true, 'Voting value is required'],
   },
-  selectedOption: {
-    type: String,
-    required: [true, 'Selected option is required'],
-  }
+  selectedOptions:[String]
+}, {
+  timestamps: true
 });
 
 const Command = mongoose.model('Command', commandSchema);

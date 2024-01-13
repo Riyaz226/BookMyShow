@@ -88,9 +88,9 @@ function Search({ show, handleClose }) {
                                 <ul id="dis">
               {selectedDistricts.map((district, index) => (
                 <li key={index}>
-                  <NavLink to={`/explore/home/${district.district_name}`}>
-                    {district.district_name}
-                  </NavLink>
+                   <NavLink to={`/explore/home/${district.district_name}`}>
+                  {district.district_name}
+                </NavLink>
                 </li>
               ))}
             </ul>

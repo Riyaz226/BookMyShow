@@ -10,8 +10,8 @@ function CommandSec() {
   const [command, setCommand] = useState('');
   const [range, setRating] = useState(0);
   const [voting, setVoting] = useState(0);
-  const [selectedOption, setSelectedOption] = useState('');
-
+  const [selectedOptions, setSelectedOptions] = useState([]);
+  
   useEffect(() => {
     const fetchMovie = async () => {
       try {
@@ -27,9 +27,12 @@ function CommandSec() {
   }, [movieId]);
 
   const handleOptionClick = (value) => {
-    setSelectedOption(value);
+    if (selectedOptions.length < 5) {
+      setSelectedOptions(prevOptions => [...prevOptions, value]);
+    } else {
+      console.log('Reached maximum limit');
+    }
   };
-
   const handleIncrement = () => {
     setVoting(voting + 1);
   };
@@ -46,7 +49,7 @@ function CommandSec() {
     const user = JSON.parse(localStorage.getItem('currentUser'));
 
 
-    if (user) {
+    if (user && user.name) {
       const { name } = user;
 
       const addCommandData = {
@@ -54,7 +57,7 @@ function CommandSec() {
         command,
         range,
         voting,
-        selectedOption,
+        selectedOptions,
       };
 
       try {
@@ -88,8 +91,8 @@ function CommandSec() {
         <form>
           <h5 style={{ marginTop: "7px" }}>Summary of reviews.</h5><br />
           <div className="val">
-            <p id="click" onClick={() => handleOptionClick("Blockbuster")}>Blockbuster</p>
-            <p id="click" onClick={() => handleOptionClick("SuperDirection")}>SuperDirection</p>
+           <p id="click" onClick={() => handleOptionClick("Blockbuster")}>Blockbuster</p>
+           <p id="click" onClick={() => handleOptionClick("SuperDirection")}>SuperDirection</p>
             <p id="click" onClick={() => handleOptionClick("GreatActing")}>GreatActing</p>
             <p id="click" onClick={() => handleOptionClick("Rocking")}>Rocking</p>
             <p id="click" onClick={() => handleOptionClick("Awesome")}>Awesome</p>

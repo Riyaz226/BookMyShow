@@ -29,10 +29,10 @@ function CommandDis() {
     <>
     <div className='eve'>
       {comm.map((com) => (
-        <div className="recieve">
+        <div className="recieve"  key={com.id}>
           <p id="rec1"> <AccountCircleIcon id="i9" /><i>{com.user}</i></p>
           <p id="rec2"><BiSolidStar className="i10" style={{ color: "red", fontSize: "19px" }} />{com.range}/10</p>
-          <b id="rec3">#{com.selectedOption}</b>
+          <b id="rec3">#{com.selectedOptions.join('#')}</b>
           <h6 id="rec4">{com.command}</h6>
           <p id="rec5"><ThumbUpOffAltIcon/>{com.voting}<ThumbDownOffAltIcon/></p>
         </div>

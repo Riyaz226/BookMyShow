@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable array-callback-return */
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
@@ -5,14 +7,33 @@ import LocalFireDepartmentOutlinedIcon from '@mui/icons-material/LocalFireDepart
 import OndemandVideoOutlinedIcon from '@mui/icons-material/OndemandVideoOutlined';
 import EmojiEventsOutlinedIcon from '@mui/icons-material/EmojiEventsOutlined';
 import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
+import DeleteIcon from '@mui/icons-material/Delete';
+import CloseIcon from '@mui/icons-material/Close';
 import Badge from '@mui/material/Badge'
+import Menu from '@mui/material/Menu';
+import Table from 'react-bootstrap/Table'
+import Card from 'react-bootstrap/Card'
+import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux';
+import { ADD } from '../redux/actions/action'
+import { DLT } from '../redux/actions/action';
 
+import axios from 'axios'
 import ads from '../../Json/ads.json';
 import Load from '../Loader/load'
 
 import './Style.css';
 
 function HomeMovie() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -27,12 +48,54 @@ function HomeMovie() {
       });
   }, [])
 
+  const [comm, setCommand] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/command/getAllCommands');
+        const data = response.data;
+        console.log(data);
+        setCommand(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const getdata = useSelector((state) => state.cartreducer.carts)
+
+  const dispatch = useDispatch();
+
+  const send = (ad) => {
+    dispatch(ADD(ad))
+  }
+
+  const dlt = (id) => {
+    dispatch(DLT(id))
+  }
+
+  const [price, setPrice] = useState(0)
+  console.log(price)
+
+  const total = () => {
+    let price = 0;
+    getdata.map(function (ad) {
+      price = ad.Price + price;
+    });
+    setPrice(price)
+  }
+
+  useEffect(() => {
+    total()
+  }, [total])
 
   return (
     <>
       <div className="roll">
-        <h3>Recommended Movies</h3>
-        <p style={{ float: "right", marginTop: "-28px", textDecoration: "none" }}><a href="/explore/home/:districtName">See All &#8594;</a></p>
+        <h3 id="off" style={{ paddingLeft: "18px" }}>Movies</h3>
+        <p id="off2"><a href="/explore/home/:districtName" style={{ textDecoration: "none", color: "brown" }}>See All &#8594;</a></p>
         {loading ? (
           <div className="spinner-border" role="status">
             <span className="visually-hidden"><Load /></span>
@@ -47,9 +110,15 @@ function HomeMovie() {
                   </NavLink>
 
                   <div className="deta">
-                    <p style={{ wordSpacing: "83px" }}>&#x2B50;{movie.Rating} {movie.Votes}votes</p>
+                    {comm.map((com) => (
+                      <>
+                        <p style={{ wordSpacing: "83px" }}>&#x2B50;{com.range} {com.voting}kvotes</p>
+                      </>
+                    ))}
                     <p style={{ marginTop: "-5px" }}>{movie.name}</p>
+
                     <p >{movie.Genre.join('/')}</p>
+
                   </div>
                 </div>
               </>
@@ -57,17 +126,30 @@ function HomeMovie() {
           </div>
         )}
       </div>
-      <div className="ADS" >
+      <div className='container mt-3'>
         <h3 style={{ paddingLeft: "18px" }}><MapOutlinedIcon style={{ fontSize: "1em" }} />The Best Events This Week</h3>
         <p style={{ paddingLeft: "18px" }}>Live events for all your entertainment needs</p>
-        <div className="ADS2">
-          {ads.map((ad) => (
-            // <NavLink to={`/explore/Ads/${ad.id}`}>
-            <img src={ad.Image} alt='' title={ad.name} />
-            // </NavLink>
-          ))}
+
+        <div className="row d-flex justify-content-center align-items-center">
+          {
+            ads.map((element, id) => {
+              return (
+                <>
+                  <Card style={{ width: '22rem', border: "none" }} id="ADS" className="mx-2 mt-1 card_style">
+                    <Card.Img variant="top" src={element.Image} onClick={() => send(element)} style={{ width: "18rem", height: "11rem", cursor: "pointer" }} className="mt-3" />
+                    <Card.Body>
+                      <Card.Title>{element.name}</Card.Title>
+                      <Card.Text>
+                        Price : ₹ {element.Price}
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                </>
+              )
+            })
+          }
+
         </div>
-        <p style={{ color: "brown", textAlign: "center", cursor: "pointer" }}>All details &#8650;</p>
       </div>
 
       <div className='foot'>
@@ -95,18 +177,98 @@ function HomeMovie() {
         </ul>
       </div>
       <div className='foot2'>
-        <li><a href='/' style={{ textDecoration: "none", color: "#cccccc" }}>
-          <LocalFireDepartmentOutlinedIcon style={{ fontSize: '2.3em' }} />
-          <br />Home</a></li>
-        <li>< a href='/explore/home/:city'>
+        <li>
+          <a href='/' style={{ textDecoration: "none", color: "#cccccc" }}>
+            <LocalFireDepartmentOutlinedIcon style={{ fontSize: '2.3em' }} />
+            <br />
+            Home
+          </a>
+        </li>
+        <li>
+          <Badge badgeContent={getdata.length} color="secondary"
+            id="basic-button"
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onClick={handleClick}>
+            <EmojiEventsOutlinedIcon style={{ fontSize: '2.1em' }} />
+          </Badge>
+          <br />
+          Events</li>
+
+        <li><a href='https://www.google.com/search?q=new+movies+all+2024&rlz=1C1CHBF_enIN1015IN1015&oq=new+movies+all+2024&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIPCAEQABgNGIMBGLEDGIAEMg8IAhAAGA0YgwEYsQMYgAQyCQgDEAAYDRiABDIJCAQQABgNGIAEMgkIBRAAGA0YgAQyCQgGEAAYDRiABDIJCAcQABgNGIAEMgkICBAAGA0YgAQyCQgJEAAYDRiABNIBCDk3OTRqMWo3qAIAsAIA&sourceid=chrome&ie=UTF-8#wxpd=browse:true' style={{ textDecoration: "none", color: "#cccccc" }}>
           <OndemandVideoOutlinedIcon style={{ fontSize: '2.1em' }} />
           <br />Movies</a></li>
-        <li><EmojiEventsOutlinedIcon style={{ fontSize: '2.1em' }} /><br />Events</li>
         <li><a href='/Profile' style={{ textDecoration: "none", color: "#cccccc" }}>
-          <Badge badgeContent={4} color="primary">
+          <Badge badgeContent={0} color="primary">
             <GroupAddOutlinedIcon style={{ fontSize: '2.1em' }} />
           </Badge>
           <br />Profile</a></li>
+
+
+        <Menu
+          id="basic-menu"
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          MenuListProps={{
+            'aria-labelledby': 'basic-button',
+          }}
+        >
+
+          {
+            getdata.length ?
+              <div className='card_details' style={{ width: "24rem", padding: 10 }}>
+                <Table>
+                  <thead>
+                    <tr>
+                      <th>Photo</th>
+                      <th>Events</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                      getdata.map((ad) => {
+                        return (
+                          <>
+                            <tr>
+                              <td>
+                                <NavLink to={`/explore/Ads/${ad.id}`} onClick={handleClose}>
+                                  <img src={ad.Image} style={{ width: "5.5rem", height: "5rem" }} alt="" />
+                                </NavLink>
+                              </td>
+                              <td>
+                                <p>{ad.name}</p>
+                                <p>Price : ₹{ad.Price}</p>
+                                <p>Quantity : {ad.qnty}</p>
+                                <p style={{ color: "red", fontSize: 20, cursor: "pointer" }} onClick={() => dlt(ad.id)}>
+                                  <DeleteIcon id="del2" />
+                                </p>
+                              </td>
+
+                              <td className='mt-5' style={{ color: "red", fontSize: 20, cursor: "pointer" }} onClick={() => dlt(ad.id)}>
+                                <DeleteIcon id="del1" />
+                              </td>
+                            </tr>
+                          </>
+                        )
+                      })
+                    }
+                    <p className='text-center'>Total :₹ {price}</p>
+                  </tbody>
+                </Table>
+              </div> :
+
+              <div className='card_details d-flex justify-content-center align-items-center' style={{ width: "24rem", padding: 10, position: "relative" }}>
+                <CloseIcon
+                  onClick={handleClose}
+                  style={{ position: "absolute", top: 2, right: 20, fontSize: 23, cursor: "pointer" }} />
+                <p style={{ fontSize: 22 }}>Your carts is empty</p>
+              </div>
+          }
+
+        </Menu>
+
       </div>
 
     </>

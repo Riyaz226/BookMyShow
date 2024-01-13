@@ -13,7 +13,7 @@ import './Style.css';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
+  
   return (
     <div
       role="tabpanel"
@@ -39,12 +39,19 @@ export default function Admin() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
-
-  return (
+  const handleSelect = (event) => {
+    const selectedMovie = event.target.value;
+    console.log(`Selected movie: ${selectedMovie}`);
+  }; 
+return (
     <>
-      <input type="text" placeholder="Search.." id="la" />
-      <Box sx={{ bgcolor: 'background.paper', width: 500 }}>
+    <select onChange={handleSelect} id="la">
+      <option value="">Select a movie</option>
+      <option value="movie1">Movie 1</option>
+      <option value="movie2">Movie 2</option>
+      <option value="movie3">Movie 3</option>
+    </select> 
+    <Box sx={{ bgcolor: 'background.paper', width: 500 }}>
         <Tabs
           value={value}
           onChange={handleChange}
@@ -133,15 +140,22 @@ export function Movie() {
 }
 
 /* Cinema*/
-
 export function Cinema() {
-  const { district_name } = useParams();
+  const { district_name } = useParams(); // Fetching district_name parameter from URL
 
+  // Finding district based on the district_name parameter
   const district = theaterData && theaterData.districts
     ? theaterData.districts.find(
-      (district) => district.district_name === district_name
-    )
+        (district) => district.district_name === district_name
+      )
     : undefined;
+
+  // Logging information based on district existence
+  if (district) {
+    console.log(district.theaters); // Logging theaters if district is found
+  } else {
+    console.log('District not found or theater information not available');
+  }
 
   return (
     <div>
@@ -161,9 +175,7 @@ export function Cinema() {
       )}
     </div>
   );
-
 }
-
 /*Soon*/
 
 export function Soon() {

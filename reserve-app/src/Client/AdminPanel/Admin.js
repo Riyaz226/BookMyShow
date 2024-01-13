@@ -3,13 +3,15 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { Grid, Paper } from '@mui/material'
+//import { Grid, Paper } from '@mui/material'
 import { Link } from 'react-router-dom';
 import Load from '../Loader/load'
+import Table from 'react-bootstrap/Table'
 import './Style.css'
 
 import Add from '../AdminPanel/Create'
-import one from '../../Images/Agra.jpg'
+//import one from '../../Images/Agra.jpg'
+import axios from 'axios'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -107,6 +109,15 @@ export function Show() {
     setSelectedGenre(event.target.value);
   };
 
+  const handleDelete = async (movieId) => {
+    try {
+      const response = await axios.delete(`http://localhost:5000/api/movies/deleteMovieById/${movieId}`);
+      console.log(response.data);
+      alert(response.data)
+    } catch (error) {
+      console.error('Error:', error.response.data);
+    }
+  };
   return (
     <>
       <div className="select" id="fill">
@@ -126,7 +137,7 @@ export function Show() {
           <span className="visually-hidden"><Load /></span>
         </div>
       ) : (
-        <table className='table table-dark table-bordered'>
+        <Table className='table table-dark table-bordered'>
           <thead>
             <tr>
               <th>Name</th>
@@ -141,7 +152,7 @@ export function Show() {
                   <Link to={`/cart/Update/${item._id}`} className='btn btn-success'>
                     Edit
                   </Link>
-                  <Link to={`/cart/Delete/${item._id}`} className='btn btn-danger'>
+                  <Link to="#" onClick={() => handleDelete(item._id)} className='btn btn-danger'>
                     Remove
                   </Link>
                   <Link to={`/city/movies/${item._id}`} className='btn btn-primary'>
@@ -151,7 +162,7 @@ export function Show() {
               </tr>
             ))}
           </tbody>
-        </table>
+        </Table>
       )}
     </>
   )
@@ -194,10 +205,10 @@ export function AllUsers() {
       ) : (
         <div className='row'>
           <div className="col-md-12">
-            <table className='table table-dark table-bordered' id="table">
+            <Table className='table table-dark table-bordered' id="table">
               <thead>
                 <tr>
-                  <th>User Id</th>
+                  <th>name</th>
                   <th>Email</th>
                   <th>Is Admin</th>
                 </tr>
@@ -205,13 +216,13 @@ export function AllUsers() {
               <tbody style={{ color: "black" }}>
                 {users && Array.isArray(users) && users.map(item => (
                   <tr key={item.id}>
-                    <td>{item.id}</td>
-                    <td>{item.email}</td>
+                    <td>{item.name}</td>
+                   <td>{item.email}</td>
                     <td>{item.isAdmin ? 'Yes' : 'No'}</td>
                   </tr>
                 ))}
               </tbody>
-            </table>
+            </Table>
           </div>
         </div>
       )}
@@ -223,27 +234,40 @@ export function AllUsers() {
 
 export function BoHis() {
   const paperStyle = {
-    padding: 20, height: '45vh', width: "84vh",borderRadious:"22px"
+    padding: 20, height: '45vh', width: "84vh", borderRadious: "22px"
   }
   return (
-<>
-    <Grid>
-      <Paper elevation={10} style={paperStyle}>
-        <b style={{textAlign:"center"}}>Puspha</b>
-      <div className='tic3' style={{ paddingLeft: "2px", fontSize: "15px !important" }}>
-          <img src={one} alt="" id="booo"/>
-          <div className='tic4'>
-            <p >user Id:</p>
-            <p >movie Id:</p>
-            <p>Date:</p>
-            <p>Threater (or) Place</p>
-            <p>Cost:</p>
-            <p>Status:</p>
-         </div>
-        </div>
-       
-      </Paper>
-    </Grid>
-  </>
-    )
+    <>
+      {/* <Grid>
+        <Paper elevation={10} style={paperStyle}>
+          <b style={{ textAlign: "center" }}>Puspha</b>
+          <div className='tic3' style={{ paddingLeft: "2px", fontSize: "15px !important" }}>
+            <img src={one} alt="" id="booo" />
+            <div className='tic4'>
+              <p >user Id:</p>
+              <p >movie Id:</p>
+              <p>Date:</p>
+              <p>Threater (or) Place</p>
+              <p>Cost:</p>
+              <p>Status:</p>
+            </div>
+          </div>
+
+        </Paper>
+      </Grid> */}
+      <Table>
+      <thead>
+            <tr>
+              <th>Booking ID</th>
+              <th>User Id</th>
+              <th>Date</th>
+              <th>status</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        
+      </Table>
+    </>
+  )
 }

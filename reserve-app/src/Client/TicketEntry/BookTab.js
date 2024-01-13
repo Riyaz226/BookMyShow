@@ -32,7 +32,7 @@ function BookTab() {
         console.error('Error fetching movie:', error);
       }
     };
-fetchMovie();
+    fetchMovie();
   }, [movieId]);
 
   const handleMovieClick = (movie) => {
@@ -49,9 +49,9 @@ fetchMovie();
       console.log('You can proceed with this movie.');
     }
   };
-  
-const [data2, setData] = useState([]);
- useEffect(() => {
+
+  const [data2, setData] = useState([]);
+  useEffect(() => {
     fetch('http://localhost:5000/api/movies/getallMovies')
       .then((response) => response.json())
       .then((json) => {
@@ -59,6 +59,21 @@ const [data2, setData] = useState([]);
         setData(json.movies);
       });
   }, [])
+  const [comm, setCommand] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/command/getAllCommands');
+        const data = response.data;
+        console.log(data);
+        setCommand(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -87,7 +102,11 @@ const [data2, setData] = useState([]);
                 ></iframe>
                 <div className="box-2">
                   <h2 className="d-n">{movie.name}</h2>
-                  <p class="d-r"><BiSolidStar class="i3" /><i>Votes&#8594;</i></p>
+                  {comm.map((com) => (
+                    <>
+                      <p class="d-r"><BiSolidStar class="i3" />{com.range}<i><a href={`/city/movie/${movie._id}/user-reviews`} style={{ textDecoration: "none", color: "white" }}>{com.voting}Votes&#8594;</a></i></p>
+                    </>
+                  ))}
                   <div className="b2">
                     <h3>Add your rating & review <br /><p>Your ratings matter</p> </h3>
                     <p className='p'><a href={`/city/movie/${movie._id}/user-reviews`} style={{ textDecoration: "none", color: "#ae8166" }}>Rate now</a></p>
@@ -121,7 +140,7 @@ const [data2, setData] = useState([]);
                     <p style={{ marginTop: "-5px" }}>.</p>
                     <p style={{ wordSpacing: "3px" }}>{movie.Released}</p>
                   </p>
-                  <button class="bt-1" onClick={() => handleMovieClick(movie)} style={{color:"white"}}>Book tickets</button>
+                  <button class="bt-1" onClick={() => handleMovieClick(movie)} style={{ color: "white" }}>Book tickets</button>
                 </div>
                 <div className='box-3'>
                   <div class="b3">
@@ -216,11 +235,11 @@ const [data2, setData] = useState([]);
                 <hr />
 
                 <div className="movies">
-                <h3>You might also like</h3>
+                  <h3>You might also like</h3>
                   <p style={{ float: "right", marginTop: "-28px", textDecoration: "none" }}><a href="/explore/home/:districtName">See All &#8594;</a></p>
-                   
-              <div className='df'>
-                      {data2.map((movie) => (
+
+                  <div className='df'>
+                    {data2.map((movie) => (
                       <div key={movie._id} className='dfr'>
                         <NavLink to={`/city/movies/${movie._id}`}>
                           <img src={movie.MovieIcon[0]} alt="" className='img' />
@@ -232,10 +251,10 @@ const [data2, setData] = useState([]);
                         </div>
                       </div>
                     ))}
-              </div>
+                  </div>
                 </div>
 
-</div>
+              </div>
 
               <div className="en">
                 <p style={{ color: "#666b74", fontSize: "15px" }}>Report Content &#187;</p>
@@ -255,7 +274,7 @@ const [data2, setData] = useState([]);
                 </div>
               </div>
 
-              <button class="bt-2" onClick={()=>handleMovieClick(movie)} style={{color:"white"}}>Book tickets</button>
+              <button class="bt-2" onClick={() => handleMovieClick(movie)} style={{ color: "white" }}>Book tickets</button>
             </>
           )}
         </>

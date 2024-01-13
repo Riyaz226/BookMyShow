@@ -66,7 +66,6 @@ const Add = () => {
                     className="form-control" id="input"
                     placeholder="Id" />
 
-
                 <input
                     required
                     value={MovieIcon}
@@ -139,7 +138,7 @@ const Add = () => {
                         onChange={(e) => { Screen2change(e.target.value) }}
                         className="form-control" id="input2"
                         placeholder="Screen2:"
-                        style={{ width: "113px" }}
+                        style={{ width: "111px" }}
                     />
                     <input
                         value={Screen3}
@@ -169,21 +168,21 @@ const Add = () => {
                         required
                         value={Cast1}
                         onChange={(e) => { Cast1change(e.target.value) }}
-                        className="form-control" id="input"
+                        className="form-control" id="input4"
                         placeholder="Cast1:"
                     />
                     <input
                         required
                         value={Cast2}
                         onChange={(e) => { Cast2change(e.target.value) }}
-                        className="form-control" id="input"
+                        className="form-control" id="input4"
                         placeholder="Cast2:"
                     />
                     <input
                         required
                         value={Cast3}
                         onChange={(e) => { Cast3change(e.target.value) }}
-                        className="form-control" id="input"
+                        className="form-control" id="input4"
                         placeholder="Cast3:"
                     />
                 </div>
@@ -191,21 +190,21 @@ const Add = () => {
                     <input
                         value={Image1}
                         onChange={(e) => { Image1change(e.target.value) }}
-                        className="form-control" id="input3"
+                        className="form-control" id="input4"
                         placeholder="Cast Url1:"
                     />
 
                     <input
                         value={Image2}
                         onChange={(e) => { Image2change(e.target.value) }}
-                        className="form-control" id="input3"
+                        className="form-control" id="input4"
                         placeholder="Cast Url2:"
                     />
 
                     <input
                         value={Image3}
                         onChange={(e) => { Image3change(e.target.value) }}
-                        className="form-control" id="input3"
+                        className="form-control" id="input4"
                         placeholder="Cast Url3:"
                     />
                 </div>
@@ -215,21 +214,21 @@ const Add = () => {
                         required
                         value={Crew1}
                         onChange={(e) => { Crew1change(e.target.value) }}
-                        className="form-control" id="input"
+                        className="form-control" id="input4"
                         placeholder="Crew1:"
                     />
                     <input
                         required
                         value={Crew2}
                         onChange={(e) => { Crew2change(e.target.value) }}
-                        className="form-control" id="input"
+                        className="form-control" id="input4"
                         placeholder="Crew2:"
                     />
                     <input
                         required
                         value={Crew3}
                         onChange={(e) => { Crew3change(e.target.value) }}
-                        className="form-control" id="input"
+                        className="form-control" id="input4"
                         placeholder="Crew3:"
                     />
                 </div>

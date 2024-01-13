@@ -1,84 +1,127 @@
-const express=require("express")
+const express = require("express");
+const router = express.Router();
 const bodyParser = require('body-parser');
-const router=express.Router()
-const User=require("../modules/user")
-//const nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer');
+const os = require('os');
+require('dotenv').config();
+
+const User = require("../modules/user");
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
-router.post("/register", async (req, res) => {
+router.post('/register', async (req, res) => {
+  const { name, email, password, cpassword } = req.body;
+
+  if (!email.toLowerCase().endsWith('@gmail.com')) {
+    return res.status(400).json({ error: 'Email must end with @gmail.com' });
+}
   const newUser = new User({
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password,
-    cpassword: req.body.cpassword,
+    name,
+    email,
+    password,
+    cpassword,
   });
 
   try {
     const user = await newUser.save();
-    // const transporter = nodemailer.createTransport({
-    //   service: "gmail",
-    //   auth: {
-    //     user: process.env.EMAIL, // Change 'email' to 'user'
-    //     pass: process.env.PASSWORD // Change 'password' to 'pass'
-    //   }
-    // });
 
-    // const mailOptions = {
-    //   from: process.env.EMAIL,
-    //   to: req.body.email,
-    //   subject: "BookMyShow Authentication",
-    //   html: '<h2>Congratulations! You have successfully registered.</h2>'
-    // };
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.USER,
+        pass: process.env.PASS,
+      },
+    });
+    
+    function getLocalIP() {
+      const interfaces = os.networkInterfaces();
+      for (const interfaceName in interfaces) {
+        const iface = interfaces[interfaceName];
+        for (let i = 0; i < iface.length; i++) {
+          const { address, family, internal } = iface[i];
+          if (family === 'IPv4' && !internal) {
+            return address;
+          }
+        }
+      }
+      return null;
+    }
 
-    // transporter.sendMail(mailOptions, (error, info) => {
-    //   if (error) {
-    //     console.log("Error:", error);
-    //     res.status(500).json({ status: 500, error: 'Email could not be sent' });
-    //   } else {
-    //     console.log("Email sent:", info.response);
-    //     res.send('User Registered Successfully and Email Sent');
-    //   }
-    // });
-    res.send('User Registered Sucessfully')
+    const localIP = getLocalIP();
+    if (localIP) {
+      const mailOptions = {
+        from: 'your_email@gmail.com',
+        to: email,
+        subject: 'Registration Confirmation',
+        html: `
+          <h3>Hello ${name},</h3>
+          <p>Thank you for registering with My BookMyShow! Click the link below to visit our homepage:</p>
+          <p><a href="http://${localIP}:3000">Visit My BookMyShow</a></p>
+        `,
+      };
+
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.error('Error sending email:', error);
+          res.status(500).json({ error: 'Error sending confirmation email' });
+        } else {
+          console.log('Email sent: ' + info.response);
+          res.send('User Registered Successfully. Confirmation email sent.');
+        }
+      });
+    } else {
+      console.log('Unable to retrieve the local IP address.');
+      res.status(500).json({ error: 'Unable to retrieve the local IP address' });
+    }
   } catch (error) {
     console.error('Error registering user:', error);
-    res.status(400).json({ error: 'Internal Server Error' });
-  }
-});
 
-
-router.post("/login",async(req,res)=>{
-    const {email,password}=req.body;
-    try{
-        const user=await User.findOne({email:email,password:password})
-        if(user){
-            const temp={
-                name:user.name,
-                email:user.email,
-                isAdmin:user.isAdmin,
-                _id:user._id
-            }
-            res.send(temp)
-        }else{
-            return res.status(400).json({message:"Login Failed"})
-        }
-    }catch(error){
-        console.log(error)
-        return res.status(400).json({error})
+    if (error.errors && error.errors.email) {
+        return res.status(400).json({ error: error.errors.email.message });
     }
-});
 
-router.get('/getallUsers',async(req,res)=>{
- try{
-    const users=await User.find({})
-    res.send(users)
- }
- catch(error){
-    return res.status(400).json({error}) 
+    res.status(500).json({ error: 'Internal Server Error' });
 }
 });
 
+router.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    let user;
+    
+    if (typeof password === 'number') {
+      user = await User.findOne({ email: email, password: password });
+    } else if (typeof password === 'string') {
+      user = await User.findOne({ email: email, password: password });
+    } else {
+      return res.status(400).json({ message: "Invalid password format" });
+    }
 
-module.exports=router;
+    if (user) {
+      const temp = {
+        name: user.name,
+        email: user.email,
+        isAdmin: user.isAdmin,
+        _id: user._id
+      }
+      res.send(temp);
+    } else {
+      return res.status(400).json({ message: "Login Failed" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({ error });
+  }
+});
+
+router.get('/getallUsers', async (req, res) => {
+  try {
+    const users = await User.find({});
+    res.send(users);
+  } catch (error) {
+    return res.status(400).json({ error });
+  }
+});
+
+module.exports = router;

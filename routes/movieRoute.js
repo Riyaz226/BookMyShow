@@ -41,36 +41,40 @@ router.post("/addMovies",async(req,res)=>{
     
 });
 
-router.post("/getMovieById", async (req, res) => {
-  const movieId = req.body.movieId
+router.post("/updateMovieById", async (req, res) => {
+  const movieId = req.body.movieId;
+  const updatedMovieData = req.body.updatedMovieData;
+
   try {
-    const movies = await Movie.findOne({ _id: movieId });
-    res.send(movies);
+    const movie = await Movie.findOneAndUpdate(
+      { _id: movieId },
+      updatedMovieData,
+      { new: true }
+    );
+
+    if (!movie) {
+      return res.status(404).json({ message: 'Movie not found' });
+    }
+
+    res.send(movie);
   } catch (error) {
-    return res.status(400).json({ message: error });
+    return res.status(400).json({ message: 'Failed to update movie', error: error.message });
   }
 });
 
+router.delete("/deleteMovieById/:id", async (req, res) => {
+  const movieId = req.params.id;
 
-// router.post("/updateMovies", async (req, res) => {
-//     try {
-//       const movieId = req.params.movieId;
-//       const updateFields = req.body; // Fields to update
-  
-//       const updatedMovie = await Movie.findByIdAndUpdate(
-//         _id,
-//         { $set: updateFields },
-//         { new: true }
-//       );
-  
-//       if (!updatedMovie) {
-//         return res.status(404).json({ error: 'Movie not found' });
-//       }
-  
-//       res.json({ message: 'Movie updated successfully', updatedMovie });
-//     } catch (error) {
-//       return res.status(500).json({ error: 'Internal Server Error' });
-//     }
-//   });
-  
+  try {
+    const movie = await Movie.findOneAndDelete({ _id: movieId });
+
+    if (!movie) {
+      return res.status(404).json({ message: 'Movie not found' });
+    }
+
+    res.json({ message: 'Movie deleted successfully', deletedMovie: movie });
+  } catch (error) {
+    return res.status(400).json({ message: 'Failed to delete movie', error: error.message });
+  }
+});
 module.exports=router;

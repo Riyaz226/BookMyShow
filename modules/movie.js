@@ -36,8 +36,7 @@ const movieSchema = mongoose.Schema({
   Response: {
     type: String,
     required: true
-  },
-  currentbookings: []
+  }
 }, {
   timestamps: true
 })

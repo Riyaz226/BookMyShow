@@ -71,7 +71,7 @@ export function User() {
 
   useEffect(() => {
     if (!user) {
-      window.location.href = '/Lo';
+      window.location.href = '/';
     }
   }, [user]);
   if (!user) {

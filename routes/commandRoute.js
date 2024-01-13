@@ -7,19 +7,33 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
 router.post('/addCommand', async (req, res) => {
-  const newCommand = new Command({
-    user: req.body.user,
-    command: req.body.command,
-    range: req.body.range,
-    voting: req.body.voting,
-    selectedOption: req.body.selectedOption
-  });
+  const { user, command, range, voting, selectedOptions } = req.body;
 
   try {
-    const com = await newCommand.save();
-    res.status(201).send('User Review Registered');
+    let existingCommand = await Command.findOne({ user });
+
+    if (existingCommand) {
+      existingCommand.command = command;
+      existingCommand.range = range;
+      existingCommand.voting = voting;
+      existingCommand.selectedOptions = selectedOptions;
+
+      await existingCommand.save();
+      res.status(200).send('User Review Updated');
+    } else {
+      const newCommand = new Command({
+        user,
+        command,
+        range,
+        voting,
+        selectedOption,
+      });
+
+      await newCommand.save();
+      res.status(201).send('User Review Registered');
+    }
   } catch (error) {
-    console.error('Error registering user:', error);
+    console.error('Error registering/updating user review:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });

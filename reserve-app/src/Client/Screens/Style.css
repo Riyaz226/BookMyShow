@@ -91,7 +91,15 @@ color: white;
     background-color: whitesmoke;
     padding: 23px 76px;
 }
-
+#off{
+    font-size: 18px;
+    margin-left:-23px;
+}
+#off2{
+     text-align: end;
+     margin-top: -28.5px;
+     margin-right: -36px;
+    }
 .df{
     display: flex;
     gap:34px;
@@ -106,22 +114,83 @@ border-radius:8px;
 .deta{
     text-align:center;
 }
+@media screen and (max-width: 503px) {
+#off{
+margin-left: -47px;
+font-size: 19px;
+}
+#off2{
+    text-align: end;
+ margin-top: -28.5px;
+ font-size: 15px;
+ margin-right: -36px;
+}
+.df{
+        display: flex;
+        gap:12px;
+        flex-wrap:wrap;
+        justify-content: center;
+        align-items: center;
+}   
+
+}
 /*ADS*/
-.ADS{
-    margin-top: 23px;
-}
-.ADS2{
+
+
+.iteamsdetails{
+    max-width: 800px;
+    margin: auto;
     display: flex;
-    flex-wrap: wrap;
-    gap:23px ;
-    row-gap: 31px;
-    margin-left: 12px;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.082);
 }
-.ADS2 >img{
-    width:203px;
-    height: 136px;
-    cursor: pointer;
-    border-radius: 18px;
+.items_img{
+    flex: .4;
+}
+.items_img img{
+    width: 20rem;
+    border-radius: 5px;
+}
+
+.details{
+    flex: .5;
+};
+
+.rating{
+    background-color: green;
+}
+#del1{
+    display:block;
+}
+#del2{
+    display:none;
+}
+@media (max-width:772px){
+   
+    .iteamsdetails{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    #del1{
+        display:none;
+    }
+    #del2{
+        display:block;
+    }
+}
+
+@media (max-width:450px){
+    #ADS{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+     }
+    .items_img img{
+        width: 16rem;
+    }
+    
 }
 /*footer*/
 .foot{
@@ -131,18 +200,28 @@ border-radius:8px;
     margin-top: 26px;
 }
 .foot2{
+    font-size: 13px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     list-style: none;
-    gap: 235px;
-    padding-left:192px;
      color: #cccccc;   
     background-color: #282931;
+    gap: 124px;
 }
-@media screen and (max-width: 864px) {
+@media screen and (max-width: 936px) {
     .foot{
         display:flex;
-        gap: 84px;
+        gap: 54px;
+        flex-wrap: wrap;
+        margin-top: 26px;
+    }
+}
+@media screen and (max-width: 518px) {
+    .foot{
+        display:flex;
+        gap: 24px;
         flex-wrap: wrap;
         margin-top: 26px;
     }
@@ -150,11 +229,11 @@ border-radius:8px;
     .foot2{
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
         gap: 37px;
-        padding-left:83px;
-  
-    }
-    
+        font-size: 14px;
+  }
 } 
 /*Book in Movie */
 .select{
@@ -222,6 +301,7 @@ font-size: 17.5px;
 .search{
     margin-top: 4px;
 }
+
 .search >select{
     width: 475px;
     height: 33px;
@@ -275,6 +355,13 @@ padding-left: 26px;
         height: 33px;
     }
 }
+
+@media screen and (max-width: 393px) {
+    .search > select{
+        width: 324px;
+        height: 33px;
+    }
+}    
 
 /*HomeScreen2*/
 .show1{
@@ -533,7 +620,7 @@ margin-left: -22px;
                 width: 224px;
                 height: 260px;
            }   
-    }    
+    }     
     
 /*CommandDis*/
 .eve{

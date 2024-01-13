@@ -112,21 +112,23 @@ function Navbar() {
       </nav>
       <nav class="d-flex justify-content-around" id="sec-nav" style={{ paddingRight: "39px", cursor: "pointer", backgroundColor: "#222539", color: "white", paddingTop: "10px" }}>
         <div class="d-flex flex-row" style={{ color: "#cccccc", paddingRight: "23px" }}>
-          <MdOutlineLocalMovies class="ad" /><p>
+        <a href="/explore/home/:city" style={{ textDecoration: "None", color: "#cccccc" }}><MdOutlineLocalMovies class="ad" /></a>
+          <p>
             <a href="/explore/home/:city" style={{ textDecoration: "None", color: "#cccccc" }}>Movies</a>
           </p>
-          <SiCodestream style={{ fontSize: "21px" }} class="ad" /><p>Stream</p>
+          <a href="https://www.google.com/search?q=new+events+2024&sca_esv=595989641&rlz=1C1CHBF_enIN1015IN1015&sxsrf=AM9HkKkI3cocKQgNkq1y3c8n5DErXM_raQ%3A1704472119404&ei=Ny6YZZGpGNKs4-EP3tuxsA8&ved=0ahUKEwjRoNO51caDAxVS1jgGHd5tDPYQ4dUDCBA&uact=5&oq=new+events+2024&gs_lp=Egxnd3Mtd2l6LXNlcnAiD25ldyBldmVudHMgMjAyNDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB5I4jZQiQZY0DRwAngBkAECmAGYA6AB5SCqAQowLjExLjcuMS4xuAEDyAEA-AEBwgIKEAAYRxjWBBiwA8ICBBAjGCfCAgsQABiABBiKBRiRAsICERAAGIAEGIoFGJECGLEDGIMBwgIIEAAYgAQYsQPCAg0QABiABBgUGIcCGLEDwgILEAAYgAQYsQMYgwHCAhAQABiABBiKBRhDGLEDGIMBwgIKEAAYgAQYigUYQ8ICExAuGIAEGIoFGEMYsQMYgwEY1ALCAg4QABiABBiKBRiRAhixA8ICChAuGIAEGIoFGEPCAhAQLhiABBiKBRhDGLEDGIMBwgINEAAYgAQYigUYQxixA8ICDRAuGIAEGIoFGEMYsQPCAg4QABiABBiKBRixAxiDAcICDhAuGIAEGMcBGK8BGJgFwgILEC4YgAQYxwEYrwHiAwQYACBBiAYBkAYI&sclient=gws-wiz-serp" style={{ textDecoration: "None", color: "#cccccc" }}><SiCodestream style={{ fontSize: "21px" }} class="ad" /></a>
+          <p>Stream</p>
           <TfiCup style={{ fontSize: "21px" }} class="ad" /><p>
 
-            <a href="" style={{ textDecoration: "None", color: "#cccccc" }}>Events</a>
+            <a href="https://www.google.com/search?q=new+events+2024&sca_esv=595989641&rlz=1C1CHBF_enIN1015IN1015&sxsrf=AM9HkKkI3cocKQgNkq1y3c8n5DErXM_raQ%3A1704472119404&ei=Ny6YZZGpGNKs4-EP3tuxsA8&ved=0ahUKEwjRoNO51caDAxVS1jgGHd5tDPYQ4dUDCBA&uact=5&oq=new+events+2024&gs_lp=Egxnd3Mtd2l6LXNlcnAiD25ldyBldmVudHMgMjAyNDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB5I4jZQiQZY0DRwAngBkAECmAGYA6AB5SCqAQowLjExLjcuMS4xuAEDyAEA-AEBwgIKEAAYRxjWBBiwA8ICBBAjGCfCAgsQABiABBiKBRiRAsICERAAGIAEGIoFGJECGLEDGIMBwgIIEAAYgAQYsQPCAg0QABiABBgUGIcCGLEDwgILEAAYgAQYsQMYgwHCAhAQABiABBiKBRhDGLEDGIMBwgIKEAAYgAQYigUYQ8ICExAuGIAEGIoFGEMYsQMYgwEY1ALCAg4QABiABBiKBRiRAhixA8ICChAuGIAEGIoFGEPCAhAQLhiABBiKBRhDGLEDGIMBwgINEAAYgAQYigUYQxixA8ICDRAuGIAEGIoFGEMYsQPCAg4QABiABBiKBRixAxiDAcICDhAuGIAEGMcBGK8BGJgFwgILEC4YgAQYxwEYrwHiAwQYACBBiAYBkAYI&sclient=gws-wiz-serp" style={{ textDecoration: "None", color: "#cccccc" }}>Events</a>
 
           </p>
           <BsMusicNoteList style={{ fontSize: "21px" }} class="ad" /> <p>
-            <a href="" style={{ textDecoration: "None", color: "#cccccc" }}>
+            <a href="https://www.google.com/search?q=new+events+2024+olympics&sca_esv=595989641&rlz=1C1CHBF_enIN1015IN1015&sxsrf=AM9HkKnYdB1evSSPG7D_ogdiReQLjDCkMQ%3A1704472240633&ei=sC6YZf6gI9iu4-EP76iA8Ag&oq=new+events+2024+&gs_lp=Egxnd3Mtd2l6LXNlcnAiEG5ldyBldmVudHMgMjAyNCAqAggAMgUQABiABDIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yCRAAGBYYHhjJA0i94ANQvzdY378CcAN4AZABAZgB3SSgAetnqgEDOS0zuAEDyAEA-AEBwgIKEAAYRxjWBBiwA-IDBBgAIEGIBgGQBgg&sclient=gws-wiz-serp" style={{ textDecoration: "None", color: "#cccccc" }}>
               Plays
             </a></p>
-          <FcSportsMode style={{ fontSize: "21px" }} class="ad" /> <p>
-            <a href="" style={{ textDecoration: "None", color: "#cccccc" }}>
+            <a href="https://www.youtube.com/results?search_query=sports+2024" style={{ textDecoration: "None", color: "#cccccc" }}><FcSportsMode style={{ fontSize: "21px" }} class="ad" /></a><p>
+            <a href="https://www.youtube.com/results?search_query=sports+2024" style={{ textDecoration: "None", color: "#cccccc" }}>
               Sports
             </a></p>
           <VscLayoutActivitybarLeft style={{ fontSize: "21px" }} class="ad" id="on" /><p>Activaties</p>
@@ -136,14 +138,14 @@ function Navbar() {
         </div>
 
         <div class="d-flex flex-row" id="tw" style={{ paddingLeft: "52px" }}>
-          <p>ListYourShow</p>
+          <p><a href='https://www.youtube.com/results?search_query=lifeyour+show+in+2024' style={{textDecoration:"none",color:"white"}}>ListYourShow</a></p>
           <p>Corporate</p>
           <p>Offer</p>
           <p class="bo1">Gift Cards</p>
         </div>
 
       </nav>
-      <Modal show={show} onHide={handleClose} className='Modal'>
+      <Modal show={show} onHide={handleClose} className='Modal' id="mo">
         <Modal.Title>
           {checked ? (
             <Chip icon={<FaceIcon />} label="SignIn" color="primary" variant="outlined" style={{ marginLeft: "202px" }} />
@@ -170,7 +172,7 @@ function Navbar() {
         </Modal.Footer>
       </Modal>
 
-      <Modal show={show2}>
+      <Modal show={show2} id="mo2">
         <Modal.Title>
           <Search show={show2} handleClose={handleClose2} />
         </Modal.Title>
