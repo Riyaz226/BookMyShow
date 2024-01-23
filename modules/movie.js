@@ -20,9 +20,9 @@ const movieSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  Cast:[],
+  Cast: [],
   CastImages: [],
-  Crew:[],
+  Crew: [],
   CrewImages: [],
   Description: {
     type: String,
@@ -33,6 +33,18 @@ const movieSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  theater: [],
+  payment: {
+    type: Number,
+    required: true
+  },
+  convenience: {
+    type: Number,
+    required: true
+  },
+  time: [],
+  currentbookings: [],
+  reviews:[],
   Response: {
     type: String,
     required: true

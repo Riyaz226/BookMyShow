@@ -2,16 +2,16 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const Command = require('../modules/command');
+const Movie=require('../modules/movie')
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
 router.post('/addCommand', async (req, res) => {
-  const { user, command, range, voting, selectedOptions } = req.body;
+  const {movie,user, command, range, voting, selectedOptions } = req.body;
 
   try {
     let existingCommand = await Command.findOne({ user });
-
     if (existingCommand) {
       existingCommand.command = command;
       existingCommand.range = range;
@@ -22,14 +22,26 @@ router.post('/addCommand', async (req, res) => {
       res.status(200).send('User Review Updated');
     } else {
       const newCommand = new Command({
+        movie:movie._id,
         user,
         command,
         range,
         voting,
-        selectedOption,
+        selectedOptions,
       });
 
       await newCommand.save();
+      const movietemp = await Movie.findOne({ _id: movie._id });
+      movietemp.reviews.push({
+        user,
+        command,
+        range,
+        voting,
+        selectedOptions,
+      });
+
+      await movietemp.save();
+     
       res.status(201).send('User Review Registered');
     }
   } catch (error) {

@@ -42,7 +42,7 @@ function Search({ show, handleClose }) {
 
                 <div className='search'>
                     <CloseIcon style={{ color: "brown", float: "right", fontSize: "0.85em", marginRight: "10px", cursor: "pointer" }} onClick={handleClose} className="er" />
-                    <select value={selectedState} onChange={handleStateSelect} >
+                    <select value={selectedState} onChange={handleStateSelect} id="sea" >
                         <option value="">Select a State</option>
                         {data.states.map((state, index) => (
                             <option key={index} value={state.state}>
@@ -50,7 +50,7 @@ function Search({ show, handleClose }) {
                             </option>
                         ))}
                     </select>
-                    <p style={{ color: "#7b7b7b", fontSize: "0.6em", paddingLeft: '15px', paddingTop: "7.5px", cursor: "pointer" }}><MyLocationIcon style={{ fontSize: "1.5em", paddingTop: "5.5px", cursor: "pointer" }} />Detect my location</p>
+                    <p  style={{ color: "#7b7b7b", fontSize: "0.6em", paddingLeft: '15px', paddingTop: "7.5px", cursor: "pointer" }}><MyLocationIcon style={{ fontSize: "1.5em", paddingTop: "5.5px", cursor: "pointer" }} />Detect my location</p>
                     <hr />
                     <p style={{ color: "#7b7b7b", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "0.61em", marginTop: "-9px" }}>Popular Cities</p>
 

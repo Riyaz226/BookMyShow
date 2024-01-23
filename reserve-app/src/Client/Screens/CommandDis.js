@@ -8,36 +8,37 @@ import axios from 'axios'
 import './Style.css'
 
 
-function CommandDis() {
-  const [comm, setCommand] = useState([]);
+function CommandDis({movieId}) {
+  const [comm, setComm] = useState([]);
+
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchMovie = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/command/getAllCommands');
-        const data = response.data;
+        const data = (await axios.post('http://localhost:5000/api/movies/getMovieById', { movieId: movieId })).data;
+        setComm(data.reviews); 
         console.log(data);
-        setCommand(data);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching movie:', error);
       }
     };
 
-    fetchData();
-  }, []);
+    fetchMovie();
+  }, [movieId]);
 
   return (
     <>
     <div className='eve'>
-      {comm.map((com) => (
-        <div className="recieve"  key={com.id}>
-          <p id="rec1"> <AccountCircleIcon id="i9" /><i>{com.user}</i></p>
-          <p id="rec2"><BiSolidStar className="i10" style={{ color: "red", fontSize: "19px" }} />{com.range}/10</p>
-          <b id="rec3">#{com.selectedOptions.join('#')}</b>
-          <h6 id="rec4">{com.command}</h6>
-          <p id="rec5"><ThumbUpOffAltIcon/>{com.voting}<ThumbDownOffAltIcon/></p>
-        </div>
-      ))}
-     </div> 
+        {comm.map((com) => (
+          <div className="recieve" key={com.id}>
+            <p id="rec1"> <AccountCircleIcon id="i9" /><i>{com.user}</i></p>
+            <p id="rec2"><BiSolidStar className="i10" style={{ color: "red", fontSize: "19px" }} />{com.range}/10</p>
+            <b id="rec3">#{com.selectedOptions.join('#')}</b>
+            <h6 id="rec4">{com.command}</h6>
+            <p id="rec5"><ThumbUpOffAltIcon/>{com.voting}<ThumbDownOffAltIcon/></p>
+            <p id="rec6">{com.uploadTime}</p> 
+          </div>
+        ))}
+      </div> 
     </>
   );
 }

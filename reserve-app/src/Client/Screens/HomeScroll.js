@@ -15,7 +15,7 @@ import five from '../../Images/Cartoon.jpg'
 import six from '../../Images/Events.jpg'
 
 import HomeMovie from './HomeMovie'
-//import AdRotater from './Adrotate';
+import AdRotater from './Adrotate';
 import './Style.css'
 
 function Arrow(props) {
@@ -195,7 +195,7 @@ function HomeScroll() {
       </Slider>
       <div><HomeMovie/></div>
 
-      {/* <div><AdRotater /></div> */}
+     <div><AdRotater /></div> 
 
 
     </>

@@ -17,7 +17,6 @@ function CommandSec() {
       try {
         const data = (await axios.post('http://localhost:5000/api/movies/getMovieById', { movieId })).data;
         setMovie(data);
-        console.log(data);
       } catch (error) {
         console.error('Error fetching movie:', error);
       }
@@ -53,6 +52,7 @@ function CommandSec() {
       const { name } = user;
 
       const addCommandData = {
+        movie,
         user: name,
         command,
         range,
@@ -64,11 +64,14 @@ function CommandSec() {
         const result = await axios.post("http://localhost:5000/api/command/addCommand", addCommandData);
         console.log(result.data);
         alert(result.data);
-      } catch (error) {
+        window.location.href=`/city/movies/${movie.name}/${movie._id}`
+       }catch (error) {
         console.log(error);
+        alert("Error occurred while adding command. Please try again.");
       }
     } else {
       console.log('User data not found in localStorage');
+      alert("User data not found. Please log in.");
     }
   };
 
@@ -124,7 +127,7 @@ function CommandSec() {
             onChange={(e) => setCommand(e.target.value)}
             placeholder="Write your review..."
           /><br />
-          <button onClick={handleSubmit} style={{ width: "156px", cursor: "pointer", borderRadius: "2px" }}>Submit</button>
+          <button onClick={handleSubmit} style={{fontSize:"15px", width: "156px", cursor: "pointer", borderRadius: "2px",border:"none"}}>Submit Rating</button>
         </form>
       </div>
     </>

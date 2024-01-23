@@ -27,14 +27,15 @@ function App() {
           <Route path='*' element={<No/>} />
           <Route path='/' element={<Ho1 />} />
           <Route path='/admin' element={<Admin />} />
-          <Route path='/city/movies/:movieId' element={<Bo1 />} />
+          <Route path='/city/movies/:name/:movieId' element={<Bo1 />} />
+          <Route path='/explore/home/list' element={<Ty />} />
           <Route path='/explore/home/:district_name' element={<Ty />} />
           <Route path='/explore/Ads/:id' element={<Ad />} />
           <Route path='/profile' element={<Us />} />
-          <Route path='/city/movie/:movieId/user-reviews' element={<Com />} />
-          <Route path='/buytickets/:name/movie-tric-ET00337321-MT/20231231' element={<Tic />} />
+          <Route path='/city/:movie/:movieId/user-reviews' element={<Com />} />
+          <Route path='/buytickets/:name/movie-tric-ET00337321-MT/:movieId' element={<Tic />} />
 
-              <Route path='/cart/Update/:id' element={<Up />} />
+              <Route path='/cart/update/:id' element={<Up />} />
            
         </Routes>
       </Router>

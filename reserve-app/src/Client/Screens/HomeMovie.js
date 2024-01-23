@@ -18,7 +18,7 @@ import { useDispatch } from 'react-redux';
 import { ADD } from '../redux/actions/action'
 import { DLT } from '../redux/actions/action';
 
-import axios from 'axios'
+// import axios from 'axios'
 import ads from '../../Json/ads.json';
 import Load from '../Loader/load'
 
@@ -48,22 +48,7 @@ function HomeMovie() {
       });
   }, [])
 
-  const [comm, setCommand] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/api/command/getAllCommands');
-        const data = response.data;
-        console.log(data);
-        setCommand(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+  
   const getdata = useSelector((state) => state.cartreducer.carts)
 
   const dispatch = useDispatch();
@@ -105,16 +90,12 @@ function HomeMovie() {
             {data.map((movie) => (
               <>
                 <div key={movie._id} className='dfr'>
-                  <NavLink to={`/city/movies/${movie._id}`}>
+                  <NavLink to={`/city/movies/${movie.name}/${movie._id}`}>
                     <img src={movie.MovieIcon[0]} alt="" className='img' />
                   </NavLink>
 
                   <div className="deta">
-                    {comm.map((com) => (
-                      <>
-                        <p style={{ wordSpacing: "83px" }}>&#x2B50;{com.range} {com.voting}kvotes</p>
-                      </>
-                    ))}
+                        <p style={{ wordSpacing: "83px" }}>&#x2B50;</p>
                     <p style={{ marginTop: "-5px" }}>{movie.name}</p>
 
                     <p >{movie.Genre.join('/')}</p>
@@ -136,7 +117,7 @@ function HomeMovie() {
               return (
                 <>
                   <Card style={{ width: '22rem', border: "none" }} id="ADS" className="mx-2 mt-1 card_style">
-                    <Card.Img variant="top" src={element.Image} onClick={() => send(element)} style={{ width: "18rem", height: "11rem", cursor: "pointer" }} className="mt-3" />
+                    <Card.Img variant="top" src={element.Image} onClick={() => send(element)} style={{ width: "18rem", height: "11rem", cursor: "pointer",borderRadious:"12px"}} className="mt-3" />
                     <Card.Body>
                       <Card.Title>{element.name}</Card.Title>
                       <Card.Text>
@@ -191,7 +172,7 @@ function HomeMovie() {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
             onClick={handleClick}>
-            <EmojiEventsOutlinedIcon style={{ fontSize: '2.1em' }} />
+            <EmojiEventsOutlinedIcon style={{ fontSize: '2.1em',cursor:"pointer" }} />
           </Badge>
           <br />
           Events</li>

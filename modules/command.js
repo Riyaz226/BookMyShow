@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const commandSchema = new mongoose.Schema({
+  movie: {
+    type: String,
+    required: true,
+    unique:true
+  },
   user: {
     type: String,
     required: [true, 'A command must have a name'],
@@ -19,9 +24,12 @@ const commandSchema = new mongoose.Schema({
     type: Number,
     required: [true, 'Voting value is required'],
   },
-  selectedOptions:[String]
-}, {
-  timestamps: true
+  selectedOptions: [String],
+  uploadTime: {
+    type: Date,
+    default: Date.now,
+    get: (value) => value && value.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+  }
 });
 
 const Command = mongoose.model('Command', commandSchema);

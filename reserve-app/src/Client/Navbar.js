@@ -55,12 +55,12 @@ function Navbar() {
         </div>
         <div class='right'>
           <p onClick={handleShow2} style={{ cursor: "pointer" }}>Location</p>
-          <button variant="primary">
+          <button variant="primary" id="sign">
             {
               user ? (
                 <>
                   <div class="dropdown show">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{ color: "white", textDecoration: "None" }}>
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{ color: "white", textDecoration: "None"}}>
                       {user.name}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" >
@@ -112,9 +112,9 @@ function Navbar() {
       </nav>
       <nav class="d-flex justify-content-around" id="sec-nav" style={{ paddingRight: "39px", cursor: "pointer", backgroundColor: "#222539", color: "white", paddingTop: "10px" }}>
         <div class="d-flex flex-row" style={{ color: "#cccccc", paddingRight: "23px" }}>
-        <a href="/explore/home/:city" style={{ textDecoration: "None", color: "#cccccc" }}><MdOutlineLocalMovies class="ad" /></a>
+        <a href='/explore/home/:district_name' style={{ textDecoration: "None", color: "#cccccc" }}><MdOutlineLocalMovies class="ad" /></a>
           <p>
-            <a href="/explore/home/:city" style={{ textDecoration: "None", color: "#cccccc" }}>Movies</a>
+            <a href="/explore/home/list" style={{ textDecoration: "None", color: "#cccccc" }}>Movies</a>
           </p>
           <a href="https://www.google.com/search?q=new+events+2024&sca_esv=595989641&rlz=1C1CHBF_enIN1015IN1015&sxsrf=AM9HkKkI3cocKQgNkq1y3c8n5DErXM_raQ%3A1704472119404&ei=Ny6YZZGpGNKs4-EP3tuxsA8&ved=0ahUKEwjRoNO51caDAxVS1jgGHd5tDPYQ4dUDCBA&uact=5&oq=new+events+2024&gs_lp=Egxnd3Mtd2l6LXNlcnAiD25ldyBldmVudHMgMjAyNDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB5I4jZQiQZY0DRwAngBkAECmAGYA6AB5SCqAQowLjExLjcuMS4xuAEDyAEA-AEBwgIKEAAYRxjWBBiwA8ICBBAjGCfCAgsQABiABBiKBRiRAsICERAAGIAEGIoFGJECGLEDGIMBwgIIEAAYgAQYsQPCAg0QABiABBgUGIcCGLEDwgILEAAYgAQYsQMYgwHCAhAQABiABBiKBRhDGLEDGIMBwgIKEAAYgAQYigUYQ8ICExAuGIAEGIoFGEMYsQMYgwEY1ALCAg4QABiABBiKBRiRAhixA8ICChAuGIAEGIoFGEPCAhAQLhiABBiKBRhDGLEDGIMBwgINEAAYgAQYigUYQxixA8ICDRAuGIAEGIoFGEMYsQPCAg4QABiABBiKBRixAxiDAcICDhAuGIAEGMcBGK8BGJgFwgILEC4YgAQYxwEYrwHiAwQYACBBiAYBkAYI&sclient=gws-wiz-serp" style={{ textDecoration: "None", color: "#cccccc" }}><SiCodestream style={{ fontSize: "21px" }} class="ad" /></a>
           <p>Stream</p>
@@ -177,9 +177,7 @@ function Navbar() {
           <Search show={show2} handleClose={handleClose2} />
         </Modal.Title>
       </Modal>
-
-
-    </>
+</>
   )
 }
 

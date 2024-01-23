@@ -9,11 +9,12 @@ import { useParams } from 'react-router-dom';
 import theaterData from '../../Json/States.json';
 import soo from '../../Json/Coming.json';
 import page from '../../Images/page.jpg'
+import HouseIcon from '@mui/icons-material/House';
 import './Style.css';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-  
+
   return (
     <div
       role="tabpanel"
@@ -39,19 +40,17 @@ export default function Admin() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const handleSelect = (event) => {
-    const selectedMovie = event.target.value;
-    console.log(`Selected movie: ${selectedMovie}`);
-  }; 
-return (
+  return (
     <>
-    <select onChange={handleSelect} id="la">
-      <option value="">Select a movie</option>
-      <option value="movie1">Movie 1</option>
-      <option value="movie2">Movie 2</option>
-      <option value="movie3">Movie 3</option>
-    </select> 
-    <Box sx={{ bgcolor: 'background.paper', width: 500 }}>
+    <a href='/'><HouseIcon style={{fontSize:"1.8em"}}/></a>
+    
+      <Box
+        sx={{
+          bgcolor: 'background.paper',
+          width: '100%',
+          maxWidth: 500,
+        }}
+      >
         <Tabs
           value={value}
           onChange={handleChange}
@@ -59,19 +58,18 @@ return (
           textColor="inherit"
           variant="standard"
           aria-label="full width tabs example"
-
         >
           <Tab label="MOVIES" />
           <Tab label="CINEMAS" />
           <Tab label="COMING🎬" />
         </Tabs>
-        <TabPanel value={value} index={0} >
+        <TabPanel value={value} index={0}>
           <Movie />
         </TabPanel>
-        <TabPanel value={value} index={1} >
+        <TabPanel value={value} index={1}>
           <Cinema />
         </TabPanel>
-        <TabPanel value={value} index={2} >
+        <TabPanel value={value} index={2}>
           <Soon />
         </TabPanel>
       </Box>
@@ -141,16 +139,14 @@ export function Movie() {
 
 /* Cinema*/
 export function Cinema() {
-  const { district_name } = useParams(); // Fetching district_name parameter from URL
+  const { district_name } = useParams();
 
-  // Finding district based on the district_name parameter
   const district = theaterData && theaterData.districts
     ? theaterData.districts.find(
-        (district) => district.district_name === district_name
-      )
+      (district) => district.district_name === district_name
+    )
     : undefined;
 
-  // Logging information based on district existence
   if (district) {
     console.log(district.theaters); // Logging theaters if district is found
   } else {
@@ -177,7 +173,6 @@ export function Cinema() {
   );
 }
 /*Soon*/
-
 export function Soon() {
   const [selectedLanguage, setSelectedLanguage] = useState(null);
   const [filteredItems, setFilteredItems] = useState([]);
@@ -205,11 +200,11 @@ export function Soon() {
         ))}
       </div>
 
-      <div className="s1" style={{ marginTop: "14px" }}>
+      <div className="s1" style={{ marginTop: "14px", backgroundColor: "rose" }}>
         {filteredItems.length > 0 ? (
           filteredItems.map((item, index) => (
             <div key={index}>
-              <img src={item.image} alt="" />
+             <a href={`https://www.${item.name}.com`} style={{cursor:"pointer"}}><img src={item.image} alt="" /></a>
               <p style={{ wordSpacing: "5px", paddingLeft: "35px", marginTop: "10px", backgroundColor: "#e5e5e5", color: "Black", borderRadius: "11px" }}>
                 &#x1F44D;{item.like}<i style={{ paddingLeft: "28px" }}>{item.Release}</i>
               </p>

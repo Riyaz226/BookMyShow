@@ -35,7 +35,10 @@ const userSchema=mongoose.Schema({
       message: 'Confirm Password must be either a number or a string',
     },
   },
-   
+  visitCount: {
+    type: Number,
+    default: 0
+  },
 isAdmin:{
         type:Boolean, default :false
     }

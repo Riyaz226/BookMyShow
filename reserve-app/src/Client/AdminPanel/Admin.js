@@ -1,16 +1,17 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-//import { Grid, Paper } from '@mui/material'
 import { Link } from 'react-router-dom';
 import Load from '../Loader/load'
 import Table from 'react-bootstrap/Table'
+import HouseIcon from '@mui/icons-material/House';
 import './Style.css'
 
 import Add from '../AdminPanel/Create'
-//import one from '../../Images/Agra.jpg'
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import axios from 'axios'
 
 function TabPanel(props) {
@@ -44,8 +45,16 @@ export default function Admin() {
 
   return (
     <>
+    <a href='/'><HouseIcon style={{fontSize:"1.8em"}}/></a>
       <h1 style={{ textAlign: "center" }} className='anim'><i>Admin Panel</i></h1>
-      <Box sx={{ bgcolor: 'background.paper', width: 500, border: "none" }}>
+      <Box
+        sx={{
+          bgcolor: 'background.paper',
+          width: '100%',
+          border: 'none', 
+          maxWidth: 500,
+        }}
+      >
         <Tabs
           value={value}
           onChange={handleChange}
@@ -59,16 +68,16 @@ export default function Admin() {
           <Tab label="Add" style={{ border: "1px solid white" }} />
           <Tab label="His" style={{ border: "1px solid white" }} />
         </Tabs>
-        <TabPanel value={value} index={0} >
+        <TabPanel value={value} index={0}>
           <AllUsers />
         </TabPanel>
-        <TabPanel value={value} index={1} >
+        <TabPanel value={value} index={1}>
           <Show />
         </TabPanel>
-        <TabPanel value={value} index={2} >
+        <TabPanel value={value} index={2}>
           <Add />
         </TabPanel>
-        <TabPanel value={value} index={3} >
+        <TabPanel value={value} index={3}>
           <BoHis />
         </TabPanel>
       </Box>
@@ -113,8 +122,9 @@ export function Show() {
     try {
       const response = await axios.delete(`http://localhost:5000/api/movies/deleteMovieById/${movieId}`);
       console.log(response.data);
-      alert(response.data)
-    } catch (error) {
+      alert("Remove Sucessfully😎")
+      window.location.href='/admin'
+      } catch (error) {
       console.error('Error:', error.response.data);
     }
   };
@@ -142,6 +152,7 @@ export function Show() {
             <tr>
               <th>Name</th>
               <th>Action</th>
+              <th>bookCount</th>
             </tr>
           </thead>
           <tbody>
@@ -149,17 +160,18 @@ export function Show() {
               <tr key={item.id}>
                 <td>{item.name}</td>
                 <td>
-                  <Link to={`/cart/Update/${item._id}`} className='btn btn-success'>
+                  <Link to={`/cart/update/${item._id}`} className='btn btn-success'>
                     Edit
                   </Link>
                   <Link to="#" onClick={() => handleDelete(item._id)} className='btn btn-danger'>
                     Remove
                   </Link>
-                  <Link to={`/city/movies/${item._id}`} className='btn btn-primary'>
+                  <Link to={`/city/movies/${item.name}/${item._id}`} className='btn btn-primary'>
                     Details
                   </Link>
                 </td>
-              </tr>
+                <td>{item.currentbookings.length}</td>
+          </tr>
             ))}
           </tbody>
         </Table>
@@ -203,7 +215,7 @@ export function AllUsers() {
       ) : error ? (
         <h5>Error: {error.message}</h5>
       ) : (
-        <div className='row'>
+        <div className='row' style={{backgroundColor:"rose"}}>
           <div className="col-md-12">
             <Table className='table table-dark table-bordered' id="table">
               <thead>
@@ -211,6 +223,7 @@ export function AllUsers() {
                   <th>name</th>
                   <th>Email</th>
                   <th>Is Admin</th>
+                  <th><VisibilityIcon/></th>
                 </tr>
               </thead>
               <tbody style={{ color: "black" }}>
@@ -219,6 +232,7 @@ export function AllUsers() {
                     <td>{item.name}</td>
                    <td>{item.email}</td>
                     <td>{item.isAdmin ? 'Yes' : 'No'}</td>
+                    <td>{item.visitCount}</td>
                   </tr>
                 ))}
               </tbody>
@@ -231,43 +245,55 @@ export function AllUsers() {
 }
 
 /*Booking History*/
-
+// BoHis.jsx
 export function BoHis() {
-  const paperStyle = {
-    padding: 20, height: '45vh', width: "84vh", borderRadious: "22px"
-  }
+  const [bookings, setBookings] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post("http://localhost:5000/api/bookings/getallbookings");
+        setBookings(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error(error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
-      {/* <Grid>
-        <Paper elevation={10} style={paperStyle}>
-          <b style={{ textAlign: "center" }}>Puspha</b>
-          <div className='tic3' style={{ paddingLeft: "2px", fontSize: "15px !important" }}>
-            <img src={one} alt="" id="booo" />
-            <div className='tic4'>
-              <p >user Id:</p>
-              <p >movie Id:</p>
-              <p>Date:</p>
-              <p>Threater (or) Place</p>
-              <p>Cost:</p>
-              <p>Status:</p>
-            </div>
-          </div>
-
-        </Paper>
-      </Grid> */}
-      <Table>
-      <thead>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <Table>
+          <thead>
             <tr>
               <th>Booking ID</th>
               <th>User Id</th>
               <th>Date</th>
-              <th>status</th>
+              <th>Name</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
+            {bookings.map(booking => (
+              <tr key={booking._id}>
+                <td>{booking._id}</td>
+                <td>{booking.userid}</td>
+                <td>{booking.date}</td>
+                <td>{booking.movie}</td>
+                <td>{booking.status}</td>
+              </tr>
+            ))}
           </tbody>
-        
-      </Table>
+        </Table>
+      )}
     </>
-  )
+  );
 }
+

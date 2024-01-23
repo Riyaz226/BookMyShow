@@ -35,6 +35,7 @@ table tbody td{
 }
 
 /*Create*/
+
 @media screen and (max-width: 508px) {
 #input{
     width: 323px;
@@ -53,6 +54,9 @@ table tbody td{
 }
 .flex >#input5{
     width:64.5px;
+}
+.flex >#input7{
+    width:141px;
 }
 }
 @media screen and (max-width: 368px) {
@@ -119,3 +123,14 @@ height:23px;
     border-radius:10px;
 }
 
+
+/*Box*/
+@media (max-width: 600px) {
+    .MuiTabs-root {
+      flex-direction: column; 
+    }
+    .MuiTab-root {
+        width: 10%; 
+        margin-bottom: 8px; 
+      }
+  }

@@ -7,18 +7,27 @@ import FestivalIcon from '@mui/icons-material/Festival';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
+import Modal from 'react-bootstrap/Modal';
+import {
+  FacebookShareButton, FacebookIcon, EmailShareButton, EmailIcon, LinkedinShareButton, LinkedinIcon,
+  PinterestShareButton, PinterestIcon, TelegramShareButton, TelegramIcon, TwitterShareButton, TwitterIcon,
+  WhatsappShareButton, WhatsappIcon
+} from 'react-share'
 import './Style.css';
 
 import Review from '../Screens/CommandDis'
 import axios from 'axios'
 import Load from '../Loader/load'
+import HouseIcon from '@mui/icons-material/House';
 
 function BookTab() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const [show, setShow] = useState(false);
   const [backgroundImage, setBackgroundImage] = useState('');
+  const [comm, setCommand] = useState([]);
+
   useEffect(() => {
     const fetchMovie = async () => {
       try {
@@ -28,6 +37,14 @@ function BookTab() {
         console.log(data);
         setLoading(false);
         setBackgroundImage(data.MovieIcon[1]);
+
+        const updatedComm = data.reviews.map(item => ({
+          ...item,
+          range: item.range * 4,
+          voting: item.voting * 12,
+        }));
+         setCommand(updatedComm);
+
       } catch (error) {
         console.error('Error fetching movie:', error);
       }
@@ -36,16 +53,20 @@ function BookTab() {
   }, [movieId]);
 
   const handleMovieClick = (movie) => {
+    const movieName = encodeURIComponent(movie.name);
+    const movieId = encodeURIComponent(movie._id);
+
     if (movie.Certificate && movie.Certificate === 'A') {
       const proceed = window.confirm(
-        'This movie is rated A and is only for viewers above 18.Please carry a vaild ID/Age Proof to the theatre.if you are denied entry due to age or ID issues,you will not get a refund.'
+        'This movie is rated A and is only for viewers above 18. Please carry a valid ID/Age Proof to the theatre. If you are denied entry due to age or ID issues, you will not get a refund.'
       );
+
       if (proceed) {
-        window.location.href = '/buytickets/name/movie-tric-ET00337321-MT/20231231';
+        window.location.href = `/buytickets/${movieName}/movie-tric-ET00337321-MT/${movieId}`;
         console.log('Redirecting to the next page...');
       }
     } else {
-      window.location.href = '/buytickets/name/movie-tric-ET00337321-MT/20231231';
+      window.location.href = `/buytickets/${movieName}/movie-tric-ET00337321-MT/${movieId}`;
       console.log('You can proceed with this movie.');
     }
   };
@@ -55,25 +76,21 @@ function BookTab() {
     fetch('http://localhost:5000/api/movies/getallMovies')
       .then((response) => response.json())
       .then((json) => {
-        console.log(json);
         setData(json.movies);
       });
   }, [])
-  const [comm, setCommand] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/api/command/getAllCommands');
-        const data = response.data;
-        console.log(data);
-        setCommand(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
 
-    fetchData();
-  }, []);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const shareUrl = "https://www.facebook.com/"
+  const shareUrl2 = "https://mail.google.com/"
+  const shareUrl3 = "https://www.facebook.com/"
+  const shareUrl4 = "https://in.pinterest.com/login/"
+  const shareUrl5 = "https://web.telegram.org/"
+  const shareUrl6 = "https://twitter.com/i/flow/login"
+  const shareUrl7 = "https://web.whatsapp.com/"
 
   return (
     <>
@@ -93,6 +110,8 @@ function BookTab() {
                   backgroundAttachment: 'fixed',
                   minHeight: '55vh',
                 }}>
+                <a href='/'><HouseIcon style={{ fontSize: "1.8em" }} /></a>
+
                 <iframe
                   title={movie?.name}
                   width="265"
@@ -102,14 +121,12 @@ function BookTab() {
                 ></iframe>
                 <div className="box-2">
                   <h2 className="d-n">{movie.name}</h2>
-                  {comm.map((com) => (
-                    <>
-                      <p class="d-r"><BiSolidStar class="i3" />{com.range}<i><a href={`/city/movie/${movie._id}/user-reviews`} style={{ textDecoration: "none", color: "white" }}>{com.voting}Votes&#8594;</a></i></p>
-                    </>
+                  {comm.map(item => (
+                    <p class="d-r"><BiSolidStar class="i3" />{item.range}<i><a href={`/city/movie/${movie._id}/user-reviews`} style={{ textDecoration: "none", color: "white" }}>{item.voting}KVotes&#8594;</a></i></p>
                   ))}
                   <div className="b2">
                     <h3>Add your rating & review <br /><p>Your ratings matter</p> </h3>
-                    <p className='p'><a href={`/city/movie/${movie._id}/user-reviews`} style={{ textDecoration: "none", color: "#ae8166" }}>Rate now</a></p>
+                    <p className='p'><a href={`/city/${movie.name}/${movie._id}/user-reviews`} style={{ textDecoration: "none", color: "#ae8166" }}>Rate now</a></p>
                   </div>
                   <p class="genre">
                     <p class="category " style={{ display: 'flex' }}>
@@ -144,37 +161,38 @@ function BookTab() {
                 </div>
                 <div className='box-3'>
                   <div class="b3">
-                    <p><BiSolidStar class="i4" style={{ color: "red", fontSize: "26px" }} /><i>Votes&#8594;</i></p>
-                    <p className='pe'>Your rating</p>
+                    <p><BiSolidStar class="i4" style={{ color: "red", fontSize: "26px" }} /><i style={{ color: "white" }}>KVotes&#8594;</i></p>
+                    <p className='pe' style={{ color: "white" }}>Your rating</p>
+                    <ShareIcon className='i10' style={{ color: "white", cursor: "pointer", fontSize: "2em", marginLeft: "34px" }} onClick={handleShow} />
                   </div>
                   <div class="genre">
-                    <p class="category" style={{ display: 'flex' }}>
+                    <p class="category" style={{ display: 'flex' }} id="cate">
                       {movie.Screen.map((scr, index) => (
                         <span key={index} style={{ marginRight: '6px' }}>
                           {scr}
                         </span>
                       ))}
                     </p>
-                    <p class="category -2" style={{ display: 'flex' }}>
-                      {movie.Genre.map((gen, index) => (
+                    <p class="category -2" style={{ display: 'flex' }} id="cate2">
+                      {movie.Language.map((Lan, index) => (
                         <span key={index} style={{ marginRight: '6px' }}>
-                          {gen}
+                          {Lan}
                         </span>
                       ))}
                     </p>
                   </div>
                   <div class="p4">
-                    <p style={{ wordSpacing: "3px" }}>{movie.Runtime}</p>
-                    <p style={{ marginTop: "-4px" }}>.</p>
-                    <p style={{ marginInline: "21px" }}>{movie.Genre.join(',')}</p>
-                    <p style={{ marginTop: "-4px" }}>.</p>
-                    <p style={{ marginInline: "10px" }}>{movie.Certificate}</p>
-                    <p style={{ marginTop: "-4px" }}>.</p>
-                    <p style={{ wordSpacing: "3px" }}>{movie.Released}</p>
+                    <p style={{ wordSpacing: "3px", color: "white" }}>{movie.Runtime}</p>
+                    <p style={{ marginTop: "-4px", color: "white" }}>.</p>
+                    <p style={{ marginInline: "21px", color: "white" }}>{movie.Genre.join(',')}</p>
+                    <p style={{ marginTop: "-4px", color: "white" }}>.</p>
+                    <p style={{ marginInline: "10px", color: "white" }}>{movie.Certificate}</p>
+                    <p style={{ marginTop: "-4px", color: "white" }}>.</p>
+                    <p style={{ wordSpacing: "3px", color: "white" }}>{movie.Released}</p>
                   </div>
                 </div>
-                <ShareIcon className='i1' style={{ color: "white" }} />
-                <p className='i2' style={{ color: "white" }}>Share</p>
+                <ShareIcon className='i1' style={{ color: "white", cursor: "pointer" }} onClick={handleShow} />
+                <p className='i2' style={{ color: "white", cursor: "pointer" }} onClick={handleShow}>Share</p>
               </div>
 
               {/* Actors and booking */}
@@ -204,7 +222,10 @@ function BookTab() {
                   </p>
                   <p className="caname">
                     {movie.Cast.map((ca, index) => (
-                      <span key={index} >{ca}</span>
+                      <span key={index} >
+                        <a href={`https://www.${ca}.com`} style={{ cursor: "pointer" }}>
+                        </a>
+                      </span>
                     ))}
                   </p>
                 </div>
@@ -220,7 +241,10 @@ function BookTab() {
                   </p>
                   <p className="caname">
                     {movie.Crew.map((ca, index) => (
-                      <span key={index} >{ca}</span>
+                      <span key={index} >
+                        <a href={`https://www.${ca}.com`} style={{ cursor: "pointer", color: "black", textDecoration: "none" }}>
+                        </a>
+                      </span>
                     ))}
                   </p>
                 </div>
@@ -228,7 +252,7 @@ function BookTab() {
 
                 <div className="review">
                   <h3>Top reviews</h3>
-                  <Review />
+                  <Review movieId={movieId} />
                   <hr />
                   <h3>Critic reviews</h3>
                 </div>
@@ -241,11 +265,13 @@ function BookTab() {
                   <div className='df'>
                     {data2.map((movie) => (
                       <div key={movie._id} className='dfr'>
-                        <NavLink to={`/city/movies/${movie._id}`}>
+                        <NavLink to={`/city/movies/${movie.name}/${movie._id}`}>
                           <img src={movie.MovieIcon[0]} alt="" className='img' />
                         </NavLink>
                         <div className="deta">
-                          <p style={{ wordSpacing: "83px" }}>&#x2B50;{movie.Rating} {movie.Votes}votes</p>
+                          {comm.map(item => (
+                            <p style={{ wordSpacing: "83px" }}>&#x2B50;{movie.Rating} {movie.Votes}votes</p>
+                          ))}
                           <p style={{ marginTop: "-7px" }}>{movie.name}</p>
                           <p >{movie.Genre.join('/')}</p>
                         </div>
@@ -279,7 +305,54 @@ function BookTab() {
           )}
         </>
       )}
+      <Modal show={show} onHide={handleClose} id="mo5">
+        <Modal.Body>
+          <h5>Share via</h5>
+          <div id="icons">
+            <FacebookShareButton url={shareUrl}>
+              <FacebookIcon size={40} />
+              <br />
+              <span>FaceBook</span>
+            </FacebookShareButton>
 
+            <EmailShareButton url={shareUrl2}>
+              <EmailIcon size={40} />
+              <br />
+              <span>Gmail</span>
+            </EmailShareButton>
+
+            <LinkedinShareButton url={shareUrl3}>
+              <LinkedinIcon size={40} />
+              <br />
+              <span>message</span>
+            </LinkedinShareButton>
+
+            < PinterestShareButton url={shareUrl4}>
+              <PinterestIcon size={40} />
+              <br />
+              <span>Share</span>
+            </PinterestShareButton>
+
+            <TelegramShareButton url={shareUrl5}>
+              <TelegramIcon size={40} />
+              <br />
+              <span>Telegram</span>
+            </TelegramShareButton>
+
+            < TwitterShareButton url={shareUrl6}>
+              <TwitterIcon size={40} />
+              <br />
+              <span>Twitter</span>
+            </TwitterShareButton>
+
+            <WhatsappShareButton url={shareUrl7}>
+              <WhatsappIcon size={40} />
+              <br />
+              <span>WhatsApp</span>
+            </WhatsappShareButton>
+          </div>
+        </Modal.Body>
+      </Modal>
     </>
   );
 }

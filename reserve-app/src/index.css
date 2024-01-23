@@ -59,10 +59,10 @@ margin-right: 40px;
 color: #cccccc;
 }
 
-.right button{
+.right> #sign{
   cursor: pointer;
   margin-inline:7px;
-width: 90px;
+width: 100px;
 height: 28.6px;
 border: none;
 border-radius: 4px;
@@ -93,7 +93,7 @@ color: #cccccc;
   .left input{
   margin-inline:15px ;
 margin-top: 3.3px; 
-width:228%;
+width:218%;
 }
 .right{
   margin-top: -33px;
@@ -113,7 +113,7 @@ width:228%;
   .navbar .left2 p{
    margin-top: -7px;
   font-size: 13.9px;
-  } 
+} 
   .navbar .right2{
     display: block;
     display: flex;
@@ -130,6 +130,12 @@ width:228%;
   .left2 h4{
     font-size:20.5px;
   }
+  }
+  @media only screen and (max-width: 429px) {
+    .navbar .right2 .gl{
+      display:none;
+    
+    }
   }
   @media only screen and (max-width: 387px) {
     .left2{
@@ -194,8 +200,17 @@ font-size: 15px;
   #sec-nav div .ad{
     margin-left: 51px;
   }
+  
+}
+@media only screen and (max-width:616px){
+  #mo2 {
+    width: 60%;
+  margin: 0 auto;
+   margin-top:18px;  
+    
 }
 
+}
 @media only screen and (max-width: 539px) {
   #sec-nav >div #on{
     display: none;
@@ -207,6 +222,28 @@ padding-left: 63px;
 #sec-nav div .ad{
   margin-left: 48px;
 }
+
+#mo {
+  width: 81%;
+margin-left: 37px;
+margin-top:26px;  
+}
+#mo2 {
+  width: 71%;
+  margin-left:46px;
+}
+}
+@media only screen and (max-width: 425px) {
+  #mo {
+    width: 73%;
+  margin-left: 37.5px;
+margin-top:23px;  
+}  
+  #mo2 {
+      width: 68%;
+    margin-left: 37.5px;
+    }
+  
 }
 @media only screen and (max-width: 400px) {
   #sec-nav >div{
@@ -215,4 +252,12 @@ padding-left: 63px;
     #sec-nav div .ad{
       margin-left: 32px;
     }
+    #mo{
+      margin-left: 23px;
+      
+    }
+    #mo2 {
+      width: 60%;
+    margin-left: 34px;
+    }   
 }

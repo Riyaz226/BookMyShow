@@ -38,7 +38,7 @@ function Update() {
   };
 
   return (
-    <div style={{display:'flex',justifyContent:"center",alignItems:"center"}}>
+    <div style={{display:'flex',justifyContent:"center",alignItems:"center",paddingTop:"23px"}}>
       <br/>
       <form onSubmit={handleUpdate}>
         <input

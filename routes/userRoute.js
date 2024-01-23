@@ -87,31 +87,35 @@ router.post('/register', async (req, res) => {
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
+
   try {
     let user;
-    
-    if (typeof password === 'number') {
-      user = await User.findOne({ email: email, password: password });
-    } else if (typeof password === 'string') {
-      user = await User.findOne({ email: email, password: password });
+
+    if (typeof password === 'number' || typeof password === 'string') {
+      user = await User.findOneAndUpdate(
+        { email, password },
+        { $inc: { visitCount: 1 } },
+        { new: true }
+      );
     } else {
       return res.status(400).json({ message: "Invalid password format" });
     }
 
     if (user) {
-      const temp = {
+      const userData = {
         name: user.name,
         email: user.email,
         isAdmin: user.isAdmin,
-        _id: user._id
-      }
-      res.send(temp);
+        _id: user._id,
+        visitCount: user.visitCount
+      };
+      res.json(userData);
     } else {
       return res.status(400).json({ message: "Login Failed" });
     }
   } catch (error) {
-    console.log(error);
-    return res.status(400).json({ error });
+    console.error(error);
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
