@@ -59,6 +59,7 @@ function Seat1({ movie, date, time, theater, screen, language, ticketsToBook }) 
       if (prevSelectedSeats.length >= ticketsToBook) {
         alert(`You can only book up to ${ticketsToBook} tickets.`);
         return prevSelectedSeats;
+      
       }
 
       // Rearrange seats by removing all seats and adding the new one
@@ -195,7 +196,7 @@ function Seat1({ movie, date, time, theater, screen, language, ticketsToBook }) 
       const result = await axios.post('http://localhost:5000/api/bookings/bookTickets', bookingDetails);
       console.log(result)
       alert('Ticket Booked Successfully')
-      window.location.href = '/Profile'
+      //window.location.href = '/Profile'
     } catch (error) {
       console.log(error);
       alert('Network issue...')
@@ -235,7 +236,7 @@ function Seat1({ movie, date, time, theater, screen, language, ticketsToBook }) 
             </div>
           </div>
         </div>
-        <img src={six} alt="screen" style={{ width: '264px', height: '148px' }} />
+        <img src={six} alt="screen" style={{ width: '234px', height: '148px' }} />
 
         {showPaymentButton && (
           <div>

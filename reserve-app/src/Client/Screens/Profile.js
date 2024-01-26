@@ -114,13 +114,13 @@ export function Ticket() {
   const paperStyle = {
     padding: 20, height: '100%', borderRadious: "22px"
   }
-  const handleDownload = () => {
+  const handleDownload = (imageUrl) => {
     const link = document.createElement('a');
-    link.href = `url(${item.bookImg})`;
+    link.href = imageUrl;
     link.download = 'downloaded-ticket.jpg';
     link.click();
   };
-
+  
   const user = JSON.parse(localStorage.getItem("currentUser"));
 
   const [bookings, setbookings] = useState([])
@@ -147,7 +147,6 @@ export function Ticket() {
       window.location.href = '/'; 
     } catch (error) {
       console.error(error);
-      alert('Network issue or internal server error');
     }
   }
 
@@ -207,7 +206,7 @@ export function Ticket() {
                 </div>
                 <div style={{ display: "flex", paddingLeft: "10px", color: "red" }} id="do">
                 <DeleteIcon style={{ cursor: "pointer" }}/>
-               <DownloadIcon onClick={handleDownload} style={{ color: "black", cursor: "pointer" }}>Download Ticket</DownloadIcon>
+               <DownloadIcon onClick={() => handleDownload(item.bookImg)} style={{ color: "black", cursor: "pointer" }}>Download Ticket</DownloadIcon>
                 </div>
               </Paper>
             </Grid>

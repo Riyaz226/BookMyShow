@@ -193,9 +193,10 @@ function HomeScroll() {
           </div>
         </div>
       </Slider>
+      <div><AdRotater /></div> 
+
       <div><HomeMovie/></div>
 
-     <div><AdRotater /></div> 
 
 
     </>

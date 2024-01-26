@@ -49,7 +49,7 @@ function Navbar() {
       <nav class="navbar">
         <div class="left">
           <img src={one} alt="" />
-          <NavLink to={'/explore/home/:city'}>
+          <NavLink to={'/explore/home/list'}>
             <input type="text" placeholder='Search For Movies Events Plays Sports and Activities' />
           </NavLink>
         </div>
@@ -112,7 +112,7 @@ function Navbar() {
       </nav>
       <nav class="d-flex justify-content-around" id="sec-nav" style={{ paddingRight: "39px", cursor: "pointer", backgroundColor: "#222539", color: "white", paddingTop: "10px" }}>
         <div class="d-flex flex-row" style={{ color: "#cccccc", paddingRight: "23px" }}>
-        <a href='/explore/home/:district_name' style={{ textDecoration: "None", color: "#cccccc" }}><MdOutlineLocalMovies class="ad" /></a>
+        <a href='/explore/home/list' style={{ textDecoration: "None", color: "#cccccc" }}><MdOutlineLocalMovies class="ad" /></a>
           <p>
             <a href="/explore/home/list" style={{ textDecoration: "None", color: "#cccccc" }}>Movies</a>
           </p>

@@ -1,0 +1,31 @@
+ const handleSeatClick = (seatNumber) => {
+    setSelectedSeats((prevSelectedSeats) => {
+      const currentIndex = prevSelectedSeats.indexOf(seatNumber);
+
+      if (currentIndex !== -1) {
+        // Deselect the seat
+        const updatedSeats = prevSelectedSeats.filter((seat) => seat !== seatNumber);
+        updatePayment(updatedSeats);
+        return updatedSeats;
+      }
+
+      if (prevSelectedSeats.length < ticketsToBook) {
+        // Select the seat
+        const updatedSeats = [...prevSelectedSeats, seatNumber];
+        updatePayment(updatedSeats);
+        return updatedSeats;
+      }
+
+      // Check if the user is trying to select more than the allowed number of tickets
+      if (prevSelectedSeats.length >= ticketsToBook) {
+        alert(`You can only book up to ${ticketsToBook} tickets.`);
+        return prevSelectedSeats;
+      
+      }
+
+      // Rearrange seats by removing all seats and adding the new one
+      const updatedSeats = [seatNumber];
+      updatePayment(updatedSeats);
+      return updatedSeats;
+    });
+  };

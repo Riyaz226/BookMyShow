@@ -26,7 +26,7 @@ function BookTab() {
   const [loading, setLoading] = useState(true);
   const [show, setShow] = useState(false);
   const [backgroundImage, setBackgroundImage] = useState('');
-  const [comm, setCommand] = useState([]);
+  const [isInCinemas, setIsInCinemas] = useState(false);
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -37,14 +37,8 @@ function BookTab() {
         console.log(data);
         setLoading(false);
         setBackgroundImage(data.MovieIcon[1]);
-
-        const updatedComm = data.reviews.map(item => ({
-          ...item,
-          range: item.range * 4,
-          voting: item.voting * 12,
-        }));
-         setCommand(updatedComm);
-
+        const today = new Date().toISOString().split('T')[0];
+        setIsInCinemas(data.Released === today);
       } catch (error) {
         console.error('Error fetching movie:', error);
       }
@@ -110,8 +104,7 @@ function BookTab() {
                   backgroundAttachment: 'fixed',
                   minHeight: '55vh',
                 }}>
-                <a href='/'><HouseIcon style={{ fontSize: "1.8em" }} /></a>
-
+                <a href='/'><HouseIcon style={{ fontSize: "1.8em", color: "blue" }} /></a>
                 <iframe
                   title={movie?.name}
                   width="265"
@@ -121,9 +114,7 @@ function BookTab() {
                 ></iframe>
                 <div className="box-2">
                   <h2 className="d-n">{movie.name}</h2>
-                  {comm.map(item => (
-                    <p class="d-r"><BiSolidStar class="i3" />{item.range}<i><a href={`/city/movie/${movie._id}/user-reviews`} style={{ textDecoration: "none", color: "white" }}>{item.voting}KVotes&#8594;</a></i></p>
-                  ))}
+                  <p class="d-r"><BiSolidStar class="i3" /><i><a href={`/city/movie/${movie._id}/user-reviews`} style={{ textDecoration: "none", color: "white" }}>KVotes&#8594;</a></i></p>
                   <div className="b2">
                     <h3>Add your rating & review <br /><p>Your ratings matter</p> </h3>
                     <p className='p'><a href={`/city/${movie.name}/${movie._id}/user-reviews`} style={{ textDecoration: "none", color: "#ae8166" }}>Rate now</a></p>
@@ -157,7 +148,13 @@ function BookTab() {
                     <p style={{ marginTop: "-5px" }}>.</p>
                     <p style={{ wordSpacing: "3px" }}>{movie.Released}</p>
                   </p>
-                  <button class="bt-1" onClick={() => handleMovieClick(movie)} style={{ color: "white" }}>Book tickets</button>
+                  <p style={{marginTop:"-15.5px",paddingLeft:"14.5px",color:"white",fontSize:"18px",wordSpacing: "3px"}}>{isInCinemas ? 'In cinemas' : 'Not in cinemas'}</p>
+                
+                  {isInCinemas && (
+            <button className="bt-1" onClick={() => handleMovieClick(movie)} style={{ color: 'white' }}>
+              Book tickets
+            </button>
+          )}
                 </div>
                 <div className='box-3'>
                   <div class="b3">
@@ -189,6 +186,7 @@ function BookTab() {
                     <p style={{ marginInline: "10px", color: "white" }}>{movie.Certificate}</p>
                     <p style={{ marginTop: "-4px", color: "white" }}>.</p>
                     <p style={{ wordSpacing: "3px", color: "white" }}>{movie.Released}</p>
+                    <p style={{marginTop:"-15.5px",paddingLeft:"14.5px",color:"white",fontSize:"18px",wordSpacing: "3px"}}>{isInCinemas ? 'In cinemas' : 'Not in cinemas'}</p>
                   </div>
                 </div>
                 <ShareIcon className='i1' style={{ color: "white", cursor: "pointer" }} onClick={handleShow} />
@@ -200,14 +198,14 @@ function BookTab() {
               <div className='inf'>
                 <div className="sto">
                   <h3>About the movie</h3>
-                  <p id="des1">Brace yourself for an extraordinary tale of rebellion filled with power-packed action.</p>
+                  <p id="des1">{movie.Description}.</p>
 
                   <div className="b4">
                     <h3>Add your rating & review <br /><p>Your ratings matter</p> </h3>
                     <p className='p'><a href={`/city/movie/${movie._id}/user-reviews`} style={{ textDecoration: "none", color: "#ae8166" }}>Rate now</a></p>
                   </div>
 
-                  <p id="des2">Brace yourself for an extraordinary tale of rebellion filled with power-packed action.</p>
+                  <p id="des2">{movie.Description}.</p>
                 </div>
                 <hr />
 
@@ -223,8 +221,7 @@ function BookTab() {
                   <p className="caname">
                     {movie.Cast.map((ca, index) => (
                       <span key={index} >
-                        <a href={`https://www.${ca}.com`} style={{ cursor: "pointer" }}>
-                        </a>
+                        {ca}
                       </span>
                     ))}
                   </p>
@@ -242,8 +239,7 @@ function BookTab() {
                   <p className="caname">
                     {movie.Crew.map((ca, index) => (
                       <span key={index} >
-                        <a href={`https://www.${ca}.com`} style={{ cursor: "pointer", color: "black", textDecoration: "none" }}>
-                        </a>
+                        {ca}
                       </span>
                     ))}
                   </p>
@@ -269,9 +265,7 @@ function BookTab() {
                           <img src={movie.MovieIcon[0]} alt="" className='img' />
                         </NavLink>
                         <div className="deta">
-                          {comm.map(item => (
-                            <p style={{ wordSpacing: "83px" }}>&#x2B50;{movie.Rating} {movie.Votes}votes</p>
-                          ))}
+                          <p style={{ wordSpacing: "83px" }}>&#x2B50;votes</p>
                           <p style={{ marginTop: "-7px" }}>{movie.name}</p>
                           <p >{movie.Genre.join('/')}</p>
                         </div>
@@ -299,8 +293,11 @@ function BookTab() {
                   <ContactMailIcon style={{ color: "#838385", fontSize: "3.5em" }} id="i7" />
                 </div>
               </div>
-
-              <button class="bt-2" onClick={() => handleMovieClick(movie)} style={{ color: "white" }}>Book tickets</button>
+         {isInCinemas && (
+            <button className="bt-2" onClick={() => handleMovieClick(movie)} style={{ color: 'white' }}>
+              Book tickets
+            </button>
+          )}
             </>
           )}
         </>

@@ -102,8 +102,8 @@ color: white;
     }
 .df{
     display: flex;
-    gap:34px;
-    flex-wrap:wrap;
+justify-content:center;
+align-items: center;
 }
 .dfr .img{
     cursor: pointer;
@@ -112,7 +112,17 @@ color: white;
 border-radius:8px;
 }
 .deta{
-    text-align:center;
+     display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+.deta2{
+    display:flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
 }
 @media screen and (max-width: 503px) {
 #off{
@@ -127,16 +137,24 @@ font-size: 19px;
 }
 .df{
         display: flex;
-        gap:12px;
+        gap:32px;
         flex-wrap:wrap;
         justify-content: center;
         align-items: center;
 }   
-
 }
+@media screen and (max-width: 400px) {
+   
+    .dfr .img{
+        width: 143px;
+        height: 307px;
+    }   
+    
+}   
+    
 /*ADS*/
 .iteamsdetails{
-    max-width: 940px;
+    max-width: 900px;
     margin: auto;
     display: flex;
     justify-content: space-evenly;
@@ -167,7 +185,8 @@ font-size: 19px;
 @media (max-width:772px){
    
     .iteamsdetails{
-        flex-direction: column;
+         max-width: 1200px;
+    flex-direction: column;
         align-items: center;
         justify-content: center;
     }
@@ -180,6 +199,14 @@ font-size: 19px;
 }
 
 @media (max-width:450px){
+    .iteamsdetails{
+        max-width: 900px;
+        margin: auto;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.082);
+    }
     #ADS{
         display: flex;
         justify-content: center;
@@ -190,6 +217,7 @@ font-size: 19px;
     }
     
 }
+
 /*footer*/
 .foot{
     display:flex;
@@ -352,6 +380,13 @@ padding-left: 26px;
 .search > select{
         width: 92%;
         height: 33px;
+    }
+    
+    .search .collect img{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 }
 
@@ -605,8 +640,8 @@ margin-left: -22px;
     }
     @media screen and (max-width: 424px) {
         #ad{
-            width: 280px;
-            height: 334px;
+            width: 302px;
+            height: 354px;
             margin-left: 20px;
         }
             
@@ -616,8 +651,8 @@ margin-left: -22px;
             padding-left:30px;
             }
             #ad >div iframe{
-                width: 224px;
-                height: 260px;
+                width: 255px;
+                height: 284px;
            }   
     }     
     
@@ -750,7 +785,6 @@ flex-wrap: wrap;
 /*tickets*/
 #paper4{
     width:84%;
-    overflow-x: scroll;
 }
 .tic{
     display: flex;

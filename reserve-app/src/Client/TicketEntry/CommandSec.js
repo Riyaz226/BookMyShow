@@ -80,7 +80,7 @@ function CommandSec() {
   return (
     <>
       <div className='command'>
-        <h2>RATINGS</h2>
+        <h2>REVIEWS</h2>
         <p className="d-r"><BiSolidStar className="i8" />{range}/10<b style={{ paddingLeft: "20px" }}>{voting}Votes&#8594;</b></p>
         <p>{movie?.name}</p>
       </div>

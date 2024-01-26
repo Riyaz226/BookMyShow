@@ -101,14 +101,6 @@ async function sendConfirmationEmail(userEmail, user, booking, res) {
         from: process.env.USER,
         to: userEmail,
         subject: 'Ticket Booking Confirmation',
-        // text: `𝕿𝖍𝖆𝖓𝖐 𝖞𝖔𝖚, ${booking.username}, 𝖋𝖔𝖗 𝖇𝖔𝖔𝖐𝖎𝖓𝖌 𝖙𝖎𝖈𝖐𝖊𝖙𝖘!\𝖓\𝖓𝕭𝖔𝖔𝖐𝖎𝖓𝖌 𝕯𝖊𝖙𝖆𝖎𝖑𝖘:\n` +
-        //   `𝔅𝔬𝔬𝔨𝔦𝔫𝔤ℑ𝔡: ${booking._id}\n` +
-        //   `𝔇𝔞𝔱𝔢: ${booking.date}\n` +
-        //   `𝔗𝔦𝔪𝔢: ${booking.time}\n` +
-        //   `𝔐𝔬𝔳𝔦𝔢: ${booking.movie}\n` +
-        //   `𝔓𝔞𝔶𝔪𝔢𝔫𝔱: ${booking.paymentAmount}\n` +
-        //   `𝔗𝔥𝔢𝔞𝔱𝔢𝔯: ${booking.theater}\n` +
-        //   `𝔖𝔱𝔞𝔱𝔲𝔰: ${booking.status}\n`,
         html: `
           <p>Thank you, ${booking.username}, for booking tickets!</p>
           <p>Your payment in ${booking.paymentAmount},transaction Sucessfully</p>
@@ -134,7 +126,6 @@ async function sendConfirmationEmail(userEmail, user, booking, res) {
     res.status(500).json({ error: 'Error sending confirmation email' });
   }
 }
-
 router.post("/cancelbooking", async (req, res) => {
   const { bookingid, movieid } = req.body;
 
@@ -155,49 +146,12 @@ router.post("/cancelbooking", async (req, res) => {
     }
 
     movie.currentbookings.pull({ _id: bookingid });
+
     await movie.save();
 
-    const originalPaymentAmount = bookingItem.paymentAmount;
-    const refundAmount = 0.2 * originalPaymentAmount;
-    const finalPaymentAmount = originalPaymentAmount - refundAmount;
-
-    const userEmail = bookingItem.userEmail;
-
-    // Check if userEmail is defined and not an empty string
-    if (!userEmail || userEmail.trim() === '') {
-      return res.status(400).json({ error: "User email is missing or invalid" });
-    }
-
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.USER,
-        pass: process.env.PASS,
-      },
-    });
-
-    const mailOptions = {
-      from: process.env.USER,
-      to: userEmail,
-      subject: 'Booking Cancellation Confirmation',
-      html: `<p>Your booking for movie ${movie.name} has been canceled.</p>
-             <p>We have processed a refund of ${refundAmount} and your final payment amount is ${finalPaymentAmount}.</p>
-             <p>We hope to see you again soon!</p>`
-    };
-
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
-      } else {
-        console.log('Email sent: ' + info.response);
-        res.status(200).json({ message: 'Your booking is cancelled' });
-      }
-    });
+    res.status(200).json({ message: 'Your booking is cancelled' });
   } catch (error) {
-    console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
-
 module.exports = router;

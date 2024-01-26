@@ -9,8 +9,8 @@ function Update() {
     Released: '',
     Runtime: '',
     Certificate: '',
-    Description:'',
-    Video:'',
+    Description: '',
+    Video: '',
   });
 
   const handleInputChange = (e) => {
@@ -65,7 +65,7 @@ function Update() {
        className="form-control" id="input6"
           type="text"
           name="Released"
-          placeholder="Released"
+          placeholder="YYYY-MM-DD"
           value={updatedMovieData.Released}
           onChange={handleInputChange}
         />
@@ -109,9 +109,9 @@ function Update() {
           onChange={handleInputChange}
         />
         <br/>
-        <button className="btn btn-success" type="submit" id='bnh' >
-                    Update Details
-                </button>
+        <button className="btn btn-success" type="submit" id="bnh">
+          Update Details
+        </button>
       </form>
     </div>
   );

@@ -18,10 +18,11 @@ import { useDispatch } from 'react-redux';
 import { ADD } from '../redux/actions/action'
 import { DLT } from '../redux/actions/action';
 
-// import axios from 'axios'
 import ads from '../../Json/ads.json';
 import Load from '../Loader/load'
-
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import './Style.css';
 
 function HomeMovie() {
@@ -76,36 +77,71 @@ function HomeMovie() {
     total()
   }, [total])
 
+  var settings = {
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1336,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+         
+        }
+      },
+      {
+        breakpoint: 998,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 714,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1
+        }
+      },
+      {
+        breakpoint: 698,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 2
+        }
+      }
+    ]
+  };
   return (
     <>
       <div className="roll">
         <h3 id="off" style={{ paddingLeft: "18px" }}>Movies</h3>
-        <p id="off2"><a href="/explore/home/:districtName" style={{ textDecoration: "none", color: "brown" }}>See All &#8594;</a></p>
+        <p id="off2"><a href="/explore/home/list" style={{ textDecoration: "none", color: "brown" }}>See All &#8594;</a></p>
         {loading ? (
           <div className="spinner-border" role="status">
             <span className="visually-hidden"><Load /></span>
           </div>
         ) : (
-          <div className='df'>
-            {data.map((movie) => (
-              <>
-                <div key={movie._id} className='dfr'>
-                  <NavLink to={`/city/movies/${movie.name}/${movie._id}`}>
-                    <img src={movie.MovieIcon[0]} alt="" className='img' />
-                  </NavLink>
-
-                  <div className="deta">
-                        <p style={{ wordSpacing: "83px" }}>&#x2B50;</p>
-                    <p style={{ marginTop: "-5px" }}>{movie.name}</p>
-
-                    <p >{movie.Genre.join('/')}</p>
-
-                  </div>
-                </div>
-              </>
-            ))}
-          </div>
-        )}
+          <Slider {...settings} classNmae="df">
+          {data.map((movie) => (
+            <div key={movie._id} className='dfr'>
+              <NavLink to={`/city/movies/${movie.name}/${movie._id}`}>
+                <img src={movie.MovieIcon[0]} alt="" className='img' />
+              </NavLink>
+        
+              <div className="deta">
+                <p style={{ wordSpacing: "83px" }}>&#x2B50;</p>
+                <p style={{ marginTop: "-5px" }}>{movie.name}</p>
+                <p>{movie.Genre.join('/')}</p>
+              </div>
+            </div>
+          ))}
+        </Slider>
+      )}
       </div>
       <div className='container mt-3'>
         <h3 style={{ paddingLeft: "18px" }}><MapOutlinedIcon style={{ fontSize: "1em" }} />The Best Events This Week</h3>
