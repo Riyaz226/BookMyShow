@@ -7,6 +7,7 @@ import axios from 'axios'
 import './Style.css'
 import StripeCheckout from 'react-stripe-checkout';
 import six from '../../Images/seat.png'
+import Swal from 'sweetalert2';
 
 function Seat2({ movie, date, time, theater, language, screen, ticketsToBook }) {
   const { movieId } = useParams();
@@ -138,15 +139,16 @@ function Seat2({ movie, date, time, theater, language, screen, ticketsToBook }) 
     try {
       const result = await axios.post('http://localhost:5000/api/bookings/bookTickets', bookingDetails);
       console.log(result)
-      alert(result)
+      Swal.fire('Congratulations','Your Movie Booked Sucessfully','success').then(result=>(
+        window.location.href='/Profile'
+      ))
     } catch (error) {
       console.log(error);
-      alert("Server issue...")
+      Swal.fire('OOps','Something went wrong','error')
     }
   }
 
-
-  return (
+return (
     <>
       <div className="seat-container">
 

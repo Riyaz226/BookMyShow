@@ -16,6 +16,7 @@ import {
 import './Style.css';
 
 import Review from '../Screens/CommandDis'
+import Nav from '../Navbar'
 import axios from 'axios'
 import Load from '../Loader/load'
 import HouseIcon from '@mui/icons-material/House';
@@ -38,13 +39,32 @@ function BookTab() {
         setLoading(false);
         setBackgroundImage(data.MovieIcon[1]);
         const today = new Date().toISOString().split('T')[0];
-        setIsInCinemas(data.Released === today);
+        const movieReleaseDate = new Date(data.Released);
+  
+        const daysToShowButtonFor = 7;
+  
+        const isInCinemas = (releaseDate) => {
+          const currentDate = new Date();
+          for (let i = 0; i < daysToShowButtonFor; i++) {
+            const currentDateISO = currentDate.toISOString().split('T')[0];
+            if (releaseDate === currentDateISO) {
+              return true;
+            }
+            currentDate.setDate(currentDate.getDate() + 1);
+          }
+          return false;
+        };
+        
+        setIsInCinemas(isInCinemas(movieReleaseDate.toISOString().split('T')[0]));
+        
       } catch (error) {
         console.error('Error fetching movie:', error);
       }
     };
+  
     fetchMovie();
   }, [movieId]);
+  
 
   const handleMovieClick = (movie) => {
     const movieName = encodeURIComponent(movie.name);
@@ -94,6 +114,7 @@ function BookTab() {
         </div>
       ) : (
         <>
+        <Nav/>
           {movie && (
             <>
               <div className='book'
@@ -104,7 +125,7 @@ function BookTab() {
                   backgroundAttachment: 'fixed',
                   minHeight: '55vh',
                 }}>
-                <a href='/'><HouseIcon style={{ fontSize: "1.8em", color: "blue" }} /></a>
+                <a href='/home'><HouseIcon style={{ fontSize: "1.8em", color: "blue" }} /></a>
                 <iframe
                   title={movie?.name}
                   width="265"

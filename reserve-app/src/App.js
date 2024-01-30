@@ -2,6 +2,7 @@ import './App.css';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Nav from './Client/Navbar'
+import Fr from './Client/FrontendScreen'
 import Ho1 from './Client/Screens/HomeScroll'
 import Admin from './Client/AdminPanel/Admin'
 import Bo1 from './Client/TicketEntry/BookTab'
@@ -22,10 +23,20 @@ function App() {
     <>
   <Provider store={store}>
     <Router>
-        <Nav />
         <Routes>
           <Route path='*' element={<No/>} />
-          <Route path='/' element={<Ho1 />} />
+          <Route path='' element={<Fr />} />
+          <Route
+          path='/home'
+          element={
+            <>
+              <Nav />
+              <Ho1 />
+            </>
+          }
+        />
+
+          {/* <Route path='/home' element= /> */}
           <Route path='/admin' element={<Admin />} />
           <Route path='/city/movies/:name/:movieId' element={<Bo1 />} />
           <Route path='/explore/home/list' element={<Ty />} />

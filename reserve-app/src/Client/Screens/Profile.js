@@ -11,10 +11,10 @@ import DownloadIcon from '@mui/icons-material/Download';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Grid, Paper } from '@mui/material'
 import QRCode from 'react-qr-code';
-//import Load from '../Loader/load'
+import Load from '../Loader/load'
 import axios from 'axios'
 import HouseIcon from '@mui/icons-material/House';
-
+import Nav from '../Navbar'
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -47,8 +47,8 @@ export default function Profile() {
 
   return (
     <>
-    
-    <a href='/'><HouseIcon style={{fontSize:"1.8em",color:"black"}}/></a>
+<Nav/>    
+    <a href='/home'><HouseIcon style={{fontSize:"1.8em",color:"black"}}/></a>
     
       <Box sx={{ bgcolor: 'background.paper', width: 500 }}>
         <Tabs
@@ -124,27 +124,30 @@ export function Ticket() {
   const user = JSON.parse(localStorage.getItem("currentUser"));
 
   const [bookings, setbookings] = useState([])
-  // const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.post('http://localhost:5000/api/bookings/getbookingsbyuserid', { userid: user._id });
-        setbookings(response.data);
-        console.log(response.data)
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  const [loading, setLoading] = useState(true);
 
-    fetchData();
-  }, [user._id]);
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await axios.post('http://localhost:5000/api/bookings/getbookingsbyuserid', { userid: user._id });
+      setbookings(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchData();
+}, [user._id]);
 
   async function cancelBooking(bookingid, movieid) {
     try {
       const result = await axios.post('http://localhost:5000/api/bookings/cancelbooking', { bookingid, movieid });
       console.log(result.data); 
       alert('Your booking is cancelled');
-      window.location.href = '/'; 
+      window.location.href = '/home'; 
     } catch (error) {
       console.error(error);
     }
@@ -152,69 +155,70 @@ export function Ticket() {
 
   return (
     <>
-      <div id="pop">
-        {/* {loading ? (
-          <div className="spinner-border" role="status">
-            <span className="visually-hidden"><Load /></span>
-          </div>
-        ) : ( */}
-        {bookings.map((item) => (
-          <>
-            <Grid>
-              <Paper elevation={10} style={paperStyle} id="paper4">
-                <div className='tic' style={{ marginLeft: "-4px", fontSize: "15px !important" }}>
-                  <img src={item.bookImg} alt="" id="booo" />
-                  <div className='tic2'>
-                    <b style={{ fontSize: "18px" }}>{item.movie}<br />({item.language})</b>
-                    <p style={{ color: "#b8b8b8" }}>{item.language},{item.screen}</p>
-                    <p style={{ marginTop: "-16px", fontSize: "14px", wordSpacing: "2px", color: "#b8b8b8" }}>{item.date}| {item.time}</p>
-                    <p style={{ marginTop: "-16px", fontSize: "14px", wordSpacing: "1px", color: "#b8b8b8" }}>{item.theater}</p>
-                    <p id="full">
-                      {item.status == 'booked' ? 'CONFIRMED' : "CANCELLED"}</p>
-                    <br />
-                  </div>
-                </div>
-                <div className="re">
-                  <p style={{ marginLeft: "0px", fontSize: "16px",color: "#b8b8b8"}}>{item.selectedSeats.length}Ticket(s)</p>
-                  <p style={{fontSize:"16px"}}>{item.theater}</p>
-                  <p style={{ marginLeft: "0px", fontSize: "17px", color: "#b8b8b8" }}>Elite-{item.selectedSeats.join(',')}</p>
-                  {item.status === 'booked' && (
-                   <><p>
-                      <QRCode value={JSON.stringify({
-                        bookingId: item._id,
-                        date: item.date,
-                        time: item.time,
-                        theater: item.theater,
-                        seats:item.selectedSeats,
-                        language: item.language,
-                        paymentAmount: item.paymentAmount,
-                        status: 'booked'
-                      })} />
-                    </p><br /><b style={{ fontSize: "18px" }}>ID:{item._id}</b></>
-                  )}
-                  <p id="i12"><AddIcCallIcon />contact support</p>
-                  <p id="full2" onClick={() => cancelBooking(item._id, item.movieid)}>
-                    Cancelation Available
-                  </p>
-                  <hr />
-                  <div style={{backgroundColor:"#e5e5e5"}}>
-                  <p id="vb1"><b style={{ fontSize: "16px" }}> Total Amount <b id="qw">Rs.{item.paymentAmount}</b></b></p>
-                  <p id="vb2" style={{ color: "#b8b8b8" }}>Ticket Price({item.selectedSeats.length}) <p id="qw1">Rs.{item.seatRate * item.selectedSeats.length}</p></p>
-                  <p id="vb2" style={{ color: "#b8b8b8" }}>Convenices fees <p id="qw1">Rs.{item.convenienceFee}</p></p>
-                  <p id="vb2" style={{ color: "#b8b8b8" }}>Discount <p id="qw1">-Rs.0.00</p></p>
-                </div>
-                </div>
-                <div style={{ display: "flex", paddingLeft: "10px", color: "red" }} id="do">
-                <DeleteIcon style={{ cursor: "pointer" }}/>
-               <DownloadIcon onClick={() => handleDownload(item.bookImg)} style={{ color: "black", cursor: "pointer" }}>Download Ticket</DownloadIcon>
-                </div>
-              </Paper>
-            </Grid>
-          </>
-        ))}
-
-        {/* )} */}
-      </div>
+    <div id="pop">
+  {loading ? (
+    <div className="spinner-border" role="status">
+      <span className="visually-hidden"><Load /></span>
+    </div>
+  ) : (
+    bookings.map((item) => (
+      <>
+        <Grid>
+          <Paper elevation={10} style={paperStyle} id="paper4">
+            <div className='tic' style={{ marginLeft: "-4px", fontSize: "15px !important" }}>
+              <img src={item.bookImg} alt="" id="booo" />
+              <div className='tic2'>
+                <b style={{ fontSize: "18px" }}>{item.movie}<br />({item.language})</b>
+                <p style={{ color: "#b8b8b8" }}>{item.language},{item.screen}</p>
+                <p style={{ marginTop: "-16px", fontSize: "14px", wordSpacing: "2px", color: "#b8b8b8" }}>{item.date}| {item.time}</p>
+                <p style={{ marginTop: "-16px", fontSize: "14px", wordSpacing: "1px", color: "#b8b8b8" }}>{item.theater}</p>
+                <p id="full">
+                  {item.status == 'booked' ? 'CONFIRMED' : "CANCELLED"}</p>
+                <br />
+              </div>
+            </div>
+            <div className="re">
+              <p style={{ marginLeft: "0px", fontSize: "16px", color: "#b8b8b8" }}>{item.selectedSeats.length}Ticket(s)</p>
+              <p style={{ fontSize: "16px" }}>{item.theater}</p>
+              <p style={{ marginLeft: "0px", fontSize: "17px", color: "#b8b8b8" }}>Elite-{item.selectedSeats.join(',')}</p>
+              {item.status === 'booked' && (
+                <>
+                  <p>
+                    <QRCode value={JSON.stringify({
+                      bookingId: item._id,
+                      date: item.date,
+                      time: item.time,
+                      theater: item.theater,
+                      seats: item.selectedSeats,
+                      language: item.language,
+                      paymentAmount: item.paymentAmount,
+                      status: 'booked'
+                    })} />
+                  </p><br /><b style={{ fontSize: "18px" }}>ID:{item._id}</b>
+                </>
+              )}
+              <p id="i12"><AddIcCallIcon />contact support</p>
+              <p id="full2" onClick={() => cancelBooking(item._id, item.movieid)}>
+                Cancelation Available
+              </p>
+              <hr />
+              <div style={{ backgroundColor: "#e5e5e5" }}>
+                <p id="vb1"><b style={{ fontSize: "16px" }}> Total Amount <b id="qw">Rs.{item.paymentAmount}</b></b></p>
+                <p id="vb2" style={{ color: "#b8b8b8" }}>Ticket Price({item.selectedSeats.length}) <p id="qw1">Rs.{item.seatRate * item.selectedSeats.length}</p></p>
+                <p id="vb2" style={{ color: "#b8b8b8" }}>Convenices fees <p id="qw1">Rs.{item.convenienceFee}</p></p>
+                <p id="vb2" style={{ color: "#b8b8b8" }}>Discount <p id="qw1">-Rs.0.00</p></p>
+              </div>
+            </div>
+            <div style={{ display: "flex", paddingLeft: "10px", color: "red" }} id="do">
+              <DeleteIcon style={{ cursor: "pointer" }} />
+              <DownloadIcon onClick={() => handleDownload(item.bookImg)} style={{ color: "black", cursor: "pointer" }}>Download Ticket</DownloadIcon>
+            </div>
+          </Paper>
+        </Grid>
+      </>
+    ))
+  )}
+</div>
     </>
   )
 }

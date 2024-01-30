@@ -10,6 +10,7 @@ import theaterData from '../../Json/States.json';
 import soo from '../../Json/Coming.json';
 import page from '../../Images/page.jpg'
 import HouseIcon from '@mui/icons-material/House';
+import Nav from '../Navbar';
 import './Style.css';
 
 function TabPanel(props) {
@@ -42,7 +43,8 @@ export default function Admin() {
   };
   return (
     <>
-    <a href='/'><HouseIcon style={{fontSize:"1.8em"}}/></a>
+    <Nav/>
+    <a href='/home'><HouseIcon style={{fontSize:"1.8em"}}/></a>
     
       <Box
         sx={{
@@ -141,30 +143,36 @@ export function Movie() {
 export function Cinema() {
   const { district_name } = useParams();
 
-  const district = theaterData && theaterData.districts
-    ? theaterData.districts.find(
-      (district) => district.district_name === district_name
-    )
+  // Assuming theaterData is imported correctly
+  const district = theaterData && theaterData.states
+    ? theaterData.states.find(
+        (state) =>
+          state.districts &&
+          state.districts.some(
+            (district) => district.district_name === district_name
+          )
+      )
     : undefined;
 
-  if (district) {
-    console.log(district.theaters); // Logging theaters if district is found
-  } else {
-    console.log('District not found or theater information not available');
-  }
+  console.log('District:', district);
 
   return (
     <div>
-      <h2>Theaters in {district_name}</h2>
+      <h3 style={{textAlign:"center"}}>Theaters in {district_name}</h3>
+      <br/>
       {district ? (
-        <ul>
-          {district.theaters.map((theater, index) => (
-            <li key={index}>
-              <h3>{theater.theater_name}</h3>
-              <p>Location: {theater.location}</p>
-              <p>Screens: {theater.screens}</p>
-            </li>
-          ))}
+        <ul style={{listStyleType:"upper-roman"}}>
+          {district.districts.map((district) =>
+            district.district_name === district_name ? (
+              district.theaters.map((theater, index) => (
+                <li key={index}>
+                  <h5>{theater.theater_name}</h5>
+                  <p>Location: <a href={`https://www.${theater.theater_name}${theater.location}.com`}>{theater.location}</a></p>
+                  <p>Screens: {theater.screens}</p>
+                </li>
+              ))
+            ) : null
+          )}
         </ul>
       ) : (
         <p>No theaters found for {district_name}</p>
@@ -172,6 +180,7 @@ export function Cinema() {
     </div>
   );
 }
+
 /*Soon*/
 export function Soon() {
   const [selectedLanguage, setSelectedLanguage] = useState(null);
@@ -204,7 +213,7 @@ export function Soon() {
         {filteredItems.length > 0 ? (
           filteredItems.map((item, index) => (
             <div key={index}>
-             <a href={`https://www.${item.name}.com`} style={{cursor:"pointer"}}><img src={item.image} alt="" /></a>
+          <a href={`http://www.${item.name}.com`} target="_blank" style={{cursor:"pointer"}}><img src={item.image} alt="" /></a>
               <p style={{ wordSpacing: "5px", paddingLeft: "35px", marginTop: "10px", backgroundColor: "#e5e5e5", color: "Black", borderRadius: "11px" }}>
                 &#x1F44D;{item.like}<i style={{ paddingLeft: "28px" }}>{item.Release}</i>
               </p>

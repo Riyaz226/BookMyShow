@@ -17,6 +17,7 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux';
 import { ADD } from '../redux/actions/action'
 import { DLT } from '../redux/actions/action';
+import axios from 'axios'
 
 import ads from '../../Json/ads.json';
 import Load from '../Loader/load'
@@ -49,7 +50,7 @@ function HomeMovie() {
       });
   }, [])
 
-  
+
   const getdata = useSelector((state) => state.cartreducer.carts)
 
   const dispatch = useDispatch();
@@ -77,6 +78,23 @@ function HomeMovie() {
     total()
   }, [total])
 
+  // const user = JSON.parse(localStorage.getItem("currentUser"));
+
+  // const [bookings, setbookings] = useState([])
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.post('http://localhost:5000/api/bookings/getbookingsbyuserid', { userid: user._id });
+  //       setbookings(response.data);
+  //       console.log(response.data)
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, [user._id]);
+
   var settings = {
     infinite: false,
     speed: 500,
@@ -89,7 +107,7 @@ function HomeMovie() {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
-         
+
         }
       },
       {
@@ -127,21 +145,21 @@ function HomeMovie() {
           </div>
         ) : (
           <Slider {...settings} classNmae="df">
-          {data.map((movie) => (
-            <div key={movie._id} className='dfr'>
-              <NavLink to={`/city/movies/${movie.name}/${movie._id}`}>
-                <img src={movie.MovieIcon[0]} alt="" className='img' />
-              </NavLink>
-        
-              <div className="deta">
-                <p style={{ wordSpacing: "83px" }}>&#x2B50;</p>
-                <p style={{ marginTop: "-5px" }}>{movie.name}</p>
-                <p>{movie.Genre.join('/')}</p>
+            {data.map((movie) => (
+              <div key={movie._id} className='dfr'>
+                <NavLink to={`/city/movies/${movie.name}/${movie._id}`}>
+                  <img src={movie.MovieIcon[0]} alt="" className='img' />
+                </NavLink>
+
+                <div className="deta">
+                  <p style={{ wordSpacing: "83px" }}>&#x2B50;</p>
+                  <p style={{ marginTop: "-5px" }}>{movie.name}</p>
+                  <p>{movie.Genre.join('/')}</p>
+                </div>
               </div>
-            </div>
-          ))}
-        </Slider>
-      )}
+            ))}
+          </Slider>
+        )}
       </div>
       <div className='container mt-3'>
         <h3 style={{ paddingLeft: "18px" }}><MapOutlinedIcon style={{ fontSize: "1em" }} />The Best Events This Week</h3>
@@ -153,7 +171,7 @@ function HomeMovie() {
               return (
                 <>
                   <Card style={{ width: '22rem', border: "none" }} id="ADS" className="mx-2 mt-1 card_style">
-                    <Card.Img variant="top" src={element.Image} onClick={() => send(element)} style={{ width: "18rem", height: "11rem", cursor: "pointer",borderRadious:"12px"}} className="mt-3" />
+                    <Card.Img variant="top" src={element.Image} onClick={() => send(element)} style={{ width: "18rem", height: "11rem", cursor: "pointer", borderRadious: "12px" }} className="mt-3" />
                     <Card.Body>
                       <Card.Title>{element.name}</Card.Title>
                       <Card.Text>
@@ -208,7 +226,7 @@ function HomeMovie() {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
             onClick={handleClick}>
-            <EmojiEventsOutlinedIcon style={{ fontSize: '2.1em',cursor:"pointer" }} />
+            <EmojiEventsOutlinedIcon style={{ fontSize: '2.1em', cursor: "pointer" }} />
           </Badge>
           <br />
           Events</li>
@@ -217,9 +235,12 @@ function HomeMovie() {
           <OndemandVideoOutlinedIcon style={{ fontSize: '2.1em' }} />
           <br />Movies</a></li>
         <li><a href='/Profile' style={{ textDecoration: "none", color: "#cccccc" }}>
-          <Badge badgeContent={0} color="primary">
-            <GroupAddOutlinedIcon style={{ fontSize: '2.1em' }} />
-          </Badge>
+
+          {/* {bookings.length === 0 && ( */}
+            <Badge badgeContent={0} color="primary">
+              <GroupAddOutlinedIcon style={{ fontSize: '2.1em' }} />
+            </Badge>
+          {/* )} */}
           <br />Profile</a></li>
 
 

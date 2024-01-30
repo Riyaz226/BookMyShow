@@ -6,6 +6,8 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import './Style.css';
 import six from '../../Images/seat.png'
+import Swal from 'sweetalert2';
+import StripeCheckout from 'react-stripe-checkout';
 
 function Seat1({ movie, date, time, theater, screen, language, ticketsToBook }) {
   const { movieId } = useParams();
@@ -42,27 +44,23 @@ function Seat1({ movie, date, time, theater, screen, language, ticketsToBook }) 
       const currentIndex = prevSelectedSeats.indexOf(seatNumber);
 
       if (currentIndex !== -1) {
-        // Deselect the seat
         const updatedSeats = prevSelectedSeats.filter((seat) => seat !== seatNumber);
         updatePayment(updatedSeats);
         return updatedSeats;
       }
 
       if (prevSelectedSeats.length < ticketsToBook) {
-        // Select the seat
         const updatedSeats = [...prevSelectedSeats, seatNumber];
         updatePayment(updatedSeats);
         return updatedSeats;
       }
 
-      // Check if the user is trying to select more than the allowed number of tickets
       if (prevSelectedSeats.length >= ticketsToBook) {
         alert(`You can only book up to ${ticketsToBook} tickets.`);
         return prevSelectedSeats;
       
       }
 
-      // Rearrange seats by removing all seats and adding the new one
       const updatedSeats = [seatNumber];
       updatePayment(updatedSeats);
       return updatedSeats;
@@ -175,7 +173,11 @@ function Seat1({ movie, date, time, theater, screen, language, ticketsToBook }) 
   const user = JSON.parse(localStorage.getItem('currentUser'));
 
   /*Push data */
-  async function bookTickets() {
+  async function onToken(token) {
+    if (!user || !movie || !date || !time || !language || !theater || !screen || !paymentAmount || !seatRate || !convenienceFee || !selectedSeats) {
+      console.error('Error: Some user details are missing.');
+      return;
+    }
     const bookingDetails = {
       user,
       movie,
@@ -188,6 +190,7 @@ function Seat1({ movie, date, time, theater, screen, language, ticketsToBook }) 
       seatRate,
       convenienceFee,
       selectedSeats,
+      token
     };
 
     console.log("Client-Side Data:", bookingDetails);
@@ -195,13 +198,15 @@ function Seat1({ movie, date, time, theater, screen, language, ticketsToBook }) 
     try {
       const result = await axios.post('http://localhost:5000/api/bookings/bookTickets', bookingDetails);
       console.log(result)
-      alert('Ticket Booked Successfully')
-      //window.location.href = '/Profile'
+      Swal.fire('Congratulations','Your Movie Booked Sucessfully','success').then(result=>(
+        window.location.href='/Profile'
+      ))
     } catch (error) {
       console.log(error);
-      alert('Network issue...')
+      Swal.fire('OOps','Something went wrong','error')
     }
   }
+
 
   return (
     <>
@@ -240,9 +245,18 @@ function Seat1({ movie, date, time, theater, screen, language, ticketsToBook }) 
 
         {showPaymentButton && (
           <div>
-            <button id="ve" onClick={bookTickets}>
-              Pay ₹{paymentAmount}
-            </button>
+            <StripeCheckout
+              amount={paymentAmount}
+              token={onToken}
+              currency='INR'
+              stripeKey="pk_test_51OQt3kSIXBEadNhyghBQLv2XBKgBJ5CYyIVyibsJlfRz9uQiOIgQZasS9Wa3LObke2JcuAR6BhmJv5EwBwQOUCph004QAASCSG"
+            >
+              <button id="ve">
+                Pay ₹{paymentAmount}
+              </button>
+
+            </StripeCheckout>
+
           </div>
         )}
       </div>

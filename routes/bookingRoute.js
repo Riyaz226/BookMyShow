@@ -2,6 +2,9 @@ require('dotenv').config();
 const router = require('express').Router();
 const os = require('os');
 const moment = require('moment');
+const {v4 :uuidv4} =require('uuid')
+const stripe =require('stripe')
+('sk_test_51OQt3kSIXBEadNhyBliTe74ZrUu0Ys1O43c7Yy5LZ1oZFrptTHTcEPTdVq0Xl0xf0CLkHWdrwOTQRfGm6o7BKJhy00nOvjYsR0')
 const nodemailer = require('nodemailer');
 const Movie = require('../modules/movie')
 const Booking = require('../modules/receive');
@@ -31,6 +34,27 @@ try {
 router.post("/bookTickets", async (req, res) => {
   const { user, movie, date, time, theater, language, screen, paymentAmount, seatRate, convenienceFee, selectedSeats } = req.body;
 
+try{
+const customber = await stripe.custombers.create({
+  email:token.email,
+  source:token.id
+})
+const payment=await stripe.charges.create(
+  {
+amount:paymentAmount * 0,
+customber:customber.id,
+currency:'inr',
+receipt_email:token.email
+},{
+  idempotencyKey:uuidv4()
+}
+)
+
+if(payment)
+{
+  if (!user) {
+    return res.status(400).json({ error: 'User information is missing in the request body' });
+  }
   try {
     const newBooking = new Booking({
       userid: user._id,
@@ -69,6 +93,13 @@ router.post("/bookTickets", async (req, res) => {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
+
+}
+
+res.send('Payment Sucessfull ,You Movie is booked')
+}catch(error){
+return res.status(400).json({error})
+}
 });
 
 async function sendConfirmationEmail(userEmail, user, booking, res) {

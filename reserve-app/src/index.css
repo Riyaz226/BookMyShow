@@ -262,3 +262,72 @@ margin-top:23px;
     margin-left: 34px;
     }   
 }
+
+/*Frontend Design*/
+.landing{
+  background-color: red;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: clamp(2rem, 2.8vw, 5rem);
+  font-family: Raleway;
+}
+.typewriter {
+ width: 21.5ch;
+	white-space: nowrap;
+	overflow: hidden;
+	border-right: 4px solid #212121;
+	animation: cursor 1s step-start infinite, 
+    text 5s steps(18) alternate infinite;
+}
+
+@keyframes cursor {
+	0%, 100% { 
+    border-color: #212121; 
+  }
+}
+
+@keyframes text {
+	0% { 
+    width: 0; 
+  }
+	100% { 
+    width: 21.5ch; 
+  }
+}
+#h21{
+  font-size:66px;
+  color: white;
+  font-weight:normal;
+}
+#h22{
+  padding-top: 5px;
+  font-size:24.8px;
+  color: white;
+}
+
+.landingbtn{
+  background-color: white !important;
+  color: black !important;
+  margin-top: 20px;
+}
+
+.landing .col-md-12{
+  border-right: 5px solid white !important;
+}
+
+@media only screen and (max-width: 423px) {
+  #h21{
+    font-size:40px;
+    color: #ffffff;
+    font-weight:normal;
+  }
+  #h22{
+    padding-top: 4px;
+    font-size:22px;
+    color: white;
+    font-weight:normal;
+  }
+  }

@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import Load from '../Loader/load'
 import Table from 'react-bootstrap/Table'
 import HouseIcon from '@mui/icons-material/House';
+//import Nav from '../Navbar'
 import './Style.css'
 
 import Add from '../AdminPanel/Create'
@@ -45,7 +46,8 @@ export default function Admin() {
 
   return (
     <>
-    <a href='/'><HouseIcon style={{fontSize:"1.8em"}}/></a>
+    {/* <Nav/> */}
+    <a href='/home'><HouseIcon style={{fontSize:"1.8em"}}/></a>
       <h1 style={{ textAlign: "center" }} className='anim'><i>Admin Panel</i></h1>
       <Box
         sx={{

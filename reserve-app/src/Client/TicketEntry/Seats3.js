@@ -7,6 +7,7 @@ import axios from 'axios'
 import './Style.css'
 import StripeCheckout from 'react-stripe-checkout';
 import six from '../../Images/seat.png'
+import Swal from 'sweetalert2';
 
 function Seat3({ movie, date, time, theater, language, screen, ticketsToBook }) {
   const { movieId } = useParams();
@@ -128,8 +129,7 @@ function Seat3({ movie, date, time, theater, language, screen, ticketsToBook }) 
 
   /*Push data */
   async function onToken(token) {
-    console.log(token)
-    if (!user || !movie || !date || !language || !time || !theater || !screen || !paymentAmount || !seatRate || !convenienceFee || !selectedSeats) {
+    if (!user || !movie || !date || !time || !language || !theater || !screen || !paymentAmount || !seatRate || !convenienceFee || !selectedSeats) {
       console.error('Error: Some user details are missing.');
       return;
     }
@@ -138,8 +138,8 @@ function Seat3({ movie, date, time, theater, language, screen, ticketsToBook }) 
       movie,
       date,
       time,
-      theater,
       language,
+      theater,
       screen,
       paymentAmount,
       seatRate,
@@ -153,12 +153,15 @@ function Seat3({ movie, date, time, theater, language, screen, ticketsToBook }) 
     try {
       const result = await axios.post('http://localhost:5000/api/bookings/bookTickets', bookingDetails);
       console.log(result)
-      alert(result)
+      Swal.fire('Congratulations','Your Movie Booked Sucessfully','success').then(result=>(
+        window.location.href='/Profile'
+      ))
     } catch (error) {
       console.log(error);
-      alert("Server error...")
+      Swal.fire('OOps','Something went wrong','error')
     }
   }
+
   return (
     <>
       <div className="seat-container">

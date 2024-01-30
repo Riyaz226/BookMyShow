@@ -33,7 +33,7 @@ function LoginScreen() {
         const result=(await axios.post("http://localhost:5000/api/users/login",user)).data;
 
         localStorage.setItem('currentUser', JSON.stringify(result));
-        window.location.href='/'
+        window.location.href='/home'
         }catch(error){
          console.log(error)
          alert("Password Not Match")
