@@ -12,6 +12,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Grid, Paper } from '@mui/material'
 import QRCode from 'react-qr-code';
 import Load from '../Loader/load'
+import Load2 from '../Loader/load2'
 import axios from 'axios'
 import HouseIcon from '@mui/icons-material/House';
 import Nav from '../Navbar'
@@ -158,7 +159,7 @@ useEffect(() => {
     <div id="pop">
   {loading ? (
     <div className="spinner-border" role="status">
-      <span className="visually-hidden"><Load /></span>
+      <span className="visually-hidden"><Load2 /></span>
     </div>
   ) : (
     bookings.map((item) => (

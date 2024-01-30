@@ -130,7 +130,7 @@ function Seat3({ movie, date, time, theater, language, screen, ticketsToBook }) 
   /*Push data */
   async function onToken(token) {
     if (!user || !movie || !date || !time || !language || !theater || !screen || !paymentAmount || !seatRate || !convenienceFee || !selectedSeats) {
-      console.error('Error: Some user details are missing.');
+      alert('Error: Some details are missing.');
       return;
     }
     const bookingDetails = {
@@ -153,12 +153,12 @@ function Seat3({ movie, date, time, theater, language, screen, ticketsToBook }) 
     try {
       const result = await axios.post('http://localhost:5000/api/bookings/bookTickets', bookingDetails);
       console.log(result)
-      Swal.fire('Congratulations','Your Movie Booked Sucessfully','success').then(result=>(
-        window.location.href='/Profile'
+      Swal.fire('Congratulations', 'Your Movie Booked Sucessfully', 'success').then(result => (
+        window.location.href = '/Profile'
       ))
     } catch (error) {
       console.log(error);
-      Swal.fire('OOps','Something went wrong','error')
+      Swal.fire('OOps', 'Something went wrong', 'error')
     }
   }
 
@@ -200,11 +200,13 @@ function Seat3({ movie, date, time, theater, language, screen, ticketsToBook }) 
 
         {showPaymentButton && (
           <div>
-
             <StripeCheckout
-              amount={paymentAmount}
+              amount={paymentAmount * 100}
               token={onToken}
               currency='INR'
+              name='Almost there|'
+              description={movie.name}
+              locale='auto'
               stripeKey="pk_test_51OQt3kSIXBEadNhyghBQLv2XBKgBJ5CYyIVyibsJlfRz9uQiOIgQZasS9Wa3LObke2JcuAR6BhmJv5EwBwQOUCph004QAASCSG"
             >
               <button id="ve">
@@ -212,7 +214,6 @@ function Seat3({ movie, date, time, theater, language, screen, ticketsToBook }) 
               </button>
 
             </StripeCheckout>
-
 
           </div>
         )}

@@ -213,7 +213,7 @@ export function Soon() {
         {filteredItems.length > 0 ? (
           filteredItems.map((item, index) => (
             <div key={index}>
-          <a href={`http://www.${item.name}.com`} target="_blank" style={{cursor:"pointer"}}><img src={item.image} alt="" /></a>
+          <a href={`https://www.google.com/search?q=${item.name}`} target="_blank" style={{cursor:"pointer"}}><img src={item.image} alt="" /></a>
               <p style={{ wordSpacing: "5px", paddingLeft: "35px", marginTop: "10px", backgroundColor: "#e5e5e5", color: "Black", borderRadius: "11px" }}>
                 &#x1F44D;{item.like}<i style={{ paddingLeft: "28px" }}>{item.Release}</i>
               </p>

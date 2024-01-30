@@ -35,7 +35,7 @@ function HomeAds() {
   
   const dlt = (id)=>{
     dispatch(DLT(id));
-    history("/");
+    history("/home");
 }
 
 const remove = (item)=>{

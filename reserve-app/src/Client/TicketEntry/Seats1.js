@@ -175,7 +175,7 @@ function Seat1({ movie, date, time, theater, screen, language, ticketsToBook }) 
   /*Push data */
   async function onToken(token) {
     if (!user || !movie || !date || !time || !language || !theater || !screen || !paymentAmount || !seatRate || !convenienceFee || !selectedSeats) {
-      console.error('Error: Some user details are missing.');
+      alert('Error: Some details are missing.');
       return;
     }
     const bookingDetails = {
@@ -246,12 +246,15 @@ function Seat1({ movie, date, time, theater, screen, language, ticketsToBook }) 
         {showPaymentButton && (
           <div>
             <StripeCheckout
-              amount={paymentAmount}
+              amount={paymentAmount * 100}
               token={onToken}
               currency='INR'
+              name='Almost there|'
+              description={movie.name}
+              locale='auto'
               stripeKey="pk_test_51OQt3kSIXBEadNhyghBQLv2XBKgBJ5CYyIVyibsJlfRz9uQiOIgQZasS9Wa3LObke2JcuAR6BhmJv5EwBwQOUCph004QAASCSG"
             >
-              <button id="ve">
+              <button id="ve" >
                 Pay ₹{paymentAmount}
               </button>
 

@@ -32,74 +32,88 @@ try {
 
 
 router.post("/bookTickets", async (req, res) => {
-  const { user, movie, date, time, theater, language, screen, paymentAmount, seatRate, convenienceFee, selectedSeats } = req.body;
+  const { token,user, movie, date, time, theater, language, screen, paymentAmount, seatRate, convenienceFee, selectedSeats } = req.body;
 
-try{
-const customber = await stripe.custombers.create({
-  email:token.email,
-  source:token.id
-})
-const payment=await stripe.charges.create(
-  {
-amount:paymentAmount * 0,
-customber:customber.id,
-currency:'inr',
-receipt_email:token.email
-},{
-  idempotencyKey:uuidv4()
-}
-)
-
-if(payment)
-{
-  if (!user) {
-    return res.status(400).json({ error: 'User information is missing in the request body' });
-  }
   try {
-    const newBooking = new Booking({
-      userid: user._id,
-      username: user.name,
-      movie: movie.name,
-      movieid: movie._id,
-      bookImg: movie.MovieIcon[0] || movie.MovieIcon[1],
-      Certificate: movie.Certificate,
-      date: moment(date).format('DD-MM-YYYY'),
-      time,
-      theater,
-      screen,
-      language,
-      paymentAmount,
-      seatRate,
-      convenienceFee,
-      selectedSeats,
-      transactionId: '1234',
-      status: 'booked'
+    
+const customer = await stripe.customers.create({
+      email: token.email,
+      source: token.id
     });
 
-    const booking = await newBooking.save();
-    const movietemp = await Movie.findOne({ _id: movie._id });
-    movietemp.currentbookings.push({
-      userid: user._id,
-      bookingid: booking._id,
-      date: moment(date).format('DD-MM-YYYY'),
-      name: movie.name,
-      status: booking.status
-    });
+    const payment = await stripe.paymentIntents.create(
+      {
+        amount: paymentAmount * 100,
+        customer: customer.id,
+        currency: 'inr',
+        receipt_email: token.email
+      },
+      {
+        idempotencyKey: uuidv4()
+      }
+    );
 
-    await movietemp.save();
-    await sendConfirmationEmail(user.email, user, booking, res);
+    if (payment) {
+      if (!user) {
+        return res.status(400).json({ error: 'User information is missing in the request body' });
+      }
 
+      const existingBookings = await Booking.find({
+        date: moment(date).format('DD-MM-YYYY'),
+        time,
+        theater,
+        status: 'booked'
+      });
+
+      const bookedSeats = existingBookings.reduce((seats, booking) => seats.concat(booking.selectedSeats), []);
+
+      const duplicates = selectedSeats.filter(seat => bookedSeats.includes(seat));
+
+      if (duplicates.length > 0) {
+        return res.status(400).json({ error: "Some selected seats are already booked. Please choose different seats." });
+      }
+      
+        const newBooking = new Booking({
+        userid: user._id,
+        username: user.name,
+        movie: movie.name,
+        movieid: movie._id,
+        bookImg: movie.MovieIcon[0] || movie.MovieIcon[1],
+        Certificate: movie.Certificate,
+        date: moment(date).format('DD-MM-YYYY'),
+        time,
+        theater,
+        screen,
+        language,
+        paymentAmount,
+        seatRate,
+        convenienceFee,
+        selectedSeats,
+        transactionId: '1234', 
+        status: 'booked'
+      });
+
+      const booking = await newBooking.save();
+
+      const movietemp = await Movie.findOne({ _id: movie._id });
+      movietemp.currentbookings.push({
+        userid: user._id,
+        bookingid: booking._id,
+        date: moment(date).format('DD-MM-YYYY'),
+        name: movie.name,
+        status: booking.status
+      });
+
+      await movietemp.save();
+
+      await sendConfirmationEmail(user.email, user, booking, res);
+
+    }
+    res.send('Payment Successful, Your Movie is booked');
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
-
-}
-
-res.send('Payment Sucessfull ,You Movie is booked')
-}catch(error){
-return res.status(400).json({error})
-}
 });
 
 async function sendConfirmationEmail(userEmail, user, booking, res) {

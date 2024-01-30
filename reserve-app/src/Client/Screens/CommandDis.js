@@ -35,8 +35,7 @@ function CommandDis({movieId}) {
             <b id="rec3">#{com.selectedOptions.join('#')}</b>
             <h6 id="rec4">{com.command}</h6>
             <p id="rec5"><ThumbUpOffAltIcon/>{com.voting}<ThumbDownOffAltIcon/></p>
-            <p id="rec6">{com.uploadTime}</p> 
-          </div>
+         </div>
         ))}
       </div> 
     </>

@@ -78,22 +78,22 @@ function HomeMovie() {
     total()
   }, [total])
 
-  // const user = JSON.parse(localStorage.getItem("currentUser"));
+  const user = JSON.parse(localStorage.getItem("currentUser"));
 
-  // const [bookings, setbookings] = useState([])
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axios.post('http://localhost:5000/api/bookings/getbookingsbyuserid', { userid: user._id });
-  //       setbookings(response.data);
-  //       console.log(response.data)
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
+  const [bookings, setbookings] = useState([])
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post('http://localhost:5000/api/bookings/getbookingsbyuserid', { userid: user._id });
+        setbookings(response.data);
+        console.log(response.data)
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-  //   fetchData();
-  // }, [user._id]);
+    fetchData();
+  }, [user._id]);
 
   var settings = {
     infinite: false,
@@ -236,11 +236,10 @@ function HomeMovie() {
           <br />Movies</a></li>
         <li><a href='/Profile' style={{ textDecoration: "none", color: "#cccccc" }}>
 
-          {/* {bookings.length === 0 && ( */}
-            <Badge badgeContent={0} color="primary">
+          
+            <Badge badgeContent={bookings.length} color="primary">
               <GroupAddOutlinedIcon style={{ fontSize: '2.1em' }} />
             </Badge>
-          {/* )} */}
           <br />Profile</a></li>
 
 

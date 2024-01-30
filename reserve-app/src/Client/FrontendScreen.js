@@ -6,7 +6,7 @@ function FrontendScreen() {
   return (
     <>
     <div className='landing'>
-        <div className='text-center' style={{borderRight:"5px solid white"}}>
+        <div className='text-center'>
             <h2 id="h21" className='typewriter'>
               book<i style={{borderRadius:"17px",border:"1px solid red",width:"123px",height:"13px",backgroundColor:"white",color:"red"}}>my</i>show
               </h2>

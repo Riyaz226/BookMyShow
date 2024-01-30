@@ -38,24 +38,17 @@ function BookTab() {
         console.log(data);
         setLoading(false);
         setBackgroundImage(data.MovieIcon[1]);
-        const today = new Date().toISOString().split('T')[0];
+        const today = new Date();
         const movieReleaseDate = new Date(data.Released);
-  
+        
         const daysToShowButtonFor = 7;
-  
+        
         const isInCinemas = (releaseDate) => {
-          const currentDate = new Date();
-          for (let i = 0; i < daysToShowButtonFor; i++) {
-            const currentDateISO = currentDate.toISOString().split('T')[0];
-            if (releaseDate === currentDateISO) {
-              return true;
-            }
-            currentDate.setDate(currentDate.getDate() + 1);
-          }
-          return false;
+          const differenceInDays = Math.floor((today - releaseDate) / (1000 * 60 * 60 * 24));
+          return differenceInDays >= 0 && differenceInDays < daysToShowButtonFor;
         };
         
-        setIsInCinemas(isInCinemas(movieReleaseDate.toISOString().split('T')[0]));
+        setIsInCinemas(isInCinemas(movieReleaseDate));
         
       } catch (error) {
         console.error('Error fetching movie:', error);

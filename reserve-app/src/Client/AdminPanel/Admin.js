@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { Link } from 'react-router-dom';
 import Load from '../Loader/load'
+import Load2 from '../Loader/load2'
 import Table from 'react-bootstrap/Table'
 import HouseIcon from '@mui/icons-material/House';
 //import Nav from '../Navbar'
@@ -212,7 +213,7 @@ export function AllUsers() {
     <>
       {loading ? (
         <div className="spinner-border" role="status">
-          <span className="visually-hidden"><Load /></span>
+          <span className="visually-hidden"><Load2 /></span>
         </div>
       ) : error ? (
         <h5>Error: {error.message}</h5>
