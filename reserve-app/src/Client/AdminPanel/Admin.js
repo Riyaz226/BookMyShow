@@ -9,7 +9,6 @@ import Load from '../Loader/load'
 import Load2 from '../Loader/load2'
 import Table from 'react-bootstrap/Table'
 import HouseIcon from '@mui/icons-material/House';
-//import Nav from '../Navbar'
 import './Style.css'
 
 import Add from '../AdminPanel/Create'

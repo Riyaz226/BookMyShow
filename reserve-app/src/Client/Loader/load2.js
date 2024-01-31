@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-unused-vars */
 import { useState} from "react";
-import RingLoader from "react-spinners/RingLoader";
+import RingLoader from "react-spinners/HashLoader";
 
 
 function load2() {
@@ -10,7 +10,7 @@ function load2() {
 
   return (
    <div className="sweet-loading">
-        <RingLoader color="#36d7b7"  loading={loading} size={82}/>
+        <RingLoader color="blue"  loading={loading} size={42}/>
   </div>
   );
 }

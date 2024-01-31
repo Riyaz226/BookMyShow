@@ -31,8 +31,8 @@ router.post('/addCommand', async (req, res) => {
       });
 
       await newCommand.save();
-      const movietemp = await Movie.findOne({ _id: movie._id });
-      movietemp.reviews.push({
+      const movieCommands = await Movie.findOne({ _id: movie._id });
+      movieCommands.reviews.push({
         user,
         command,
         range,
@@ -40,7 +40,7 @@ router.post('/addCommand', async (req, res) => {
         selectedOptions,
       });
 
-      await movietemp.save();
+      await movieCommands.save();
      
       res.status(201).send('User Review Registered');
     }

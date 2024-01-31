@@ -15,7 +15,7 @@ import nine from '../../Images/Mysore.jpg'
 import ten from '../../Images/Andhra.jpg'
 
 import data from '../../Json/States.json'
-
+import './Style.css'
 function Search({ show, handleClose }) {
     const [show2, setShow2] = useState(false);
     const handleClose2 = () => {

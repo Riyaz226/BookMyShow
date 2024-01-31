@@ -148,14 +148,15 @@ useEffect(() => {
       const result = await axios.post('http://localhost:5000/api/bookings/cancelbooking', { bookingid, movieid });
       console.log(result.data); 
       alert('Your booking is cancelled');
-      window.location.href = '/home'; 
-    } catch (error) {
+      window.location.href='/Profile'
+     } catch (error) {
       console.error(error);
     }
   }
 
   return (
     <>
+    <div style={{overflowX:"scroll"}}>
     <div id="pop">
   {loading ? (
     <div className="spinner-border" role="status">
@@ -219,6 +220,7 @@ useEffect(() => {
       </>
     ))
   )}
+</div>
 </div>
     </>
   )

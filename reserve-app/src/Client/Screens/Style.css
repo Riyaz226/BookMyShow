@@ -355,13 +355,13 @@ padding-left: 16px;
    box-shadow: yellowgreen;
 }
 .search .close{
-    width:460px;
+    width:100%;
     margin-left: 1px;
     background-color: whitesmoke;
 }
 
 #dis{
-   list-style: none;
+    list-style: none;
 display: flex;
 flex-wrap: wrap;
 row-gap: 18px;
@@ -387,6 +387,14 @@ padding-left: 26px;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+    }
+    .search .close{
+        width:100%;
+        margin-left: 1px;
+        background-color: whitesmoke;
+    }
+    #dis{
+    row-gap: 10px;
     }
 }
 
@@ -725,7 +733,8 @@ gap: 28px;
        margin-top: 8px;
        padding-left: 22px;
        padding-top: 17px;
-       overflow-x: hidden;
+       overflow-x: scroll;
+       overflow-y: hidden;
     }
     
 
@@ -779,7 +788,6 @@ flex-wrap: wrap;
     .recieve{
         width:286px;
         height: 223px;
-       overflow-x: hidden;
     }
 }
 /*tickets*/
@@ -872,9 +880,7 @@ margin-left:3px;
 }
 }    
 @media only screen and (max-width: 798px) {
-    #paper4 {
-   overflow-x: hidden;
-    }
+    
        
     #pop{
         display:flex;

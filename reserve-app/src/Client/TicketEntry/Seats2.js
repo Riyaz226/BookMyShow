@@ -190,7 +190,7 @@ function Seat2({ movie, date, time, theater, language, screen, ticketsToBook }) 
               amount={paymentAmount * 100}
               token={onToken}
               currency='INR'
-              name='Almost there|'
+              name='Almost there!'
               description={movie.name}
               locale='auto'
               stripeKey="pk_test_51OQt3kSIXBEadNhyghBQLv2XBKgBJ5CYyIVyibsJlfRz9uQiOIgQZasS9Wa3LObke2JcuAR6BhmJv5EwBwQOUCph004QAASCSG"

@@ -36,9 +36,8 @@ function App() {
           }
         />
 
-          {/* <Route path='/home' element= /> */}
           <Route path='/admin' element={<Admin />} />
-          <Route path='/city/movies/:name/:movieId' element={<Bo1 />} />
+          <Route path='/city/movies/:name/:movieId/ET00311489' element={<Bo1 />} />
           <Route path='/explore/home/list' element={<Ty />} />
           <Route path='/explore/home/:district_name' element={<Ty />} />
           <Route path='/explore/Ads/:id' element={<Ad />} />

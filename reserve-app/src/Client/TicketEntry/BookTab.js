@@ -40,24 +40,24 @@ function BookTab() {
         setBackgroundImage(data.MovieIcon[1]);
         const today = new Date();
         const movieReleaseDate = new Date(data.Released);
-        
-        const daysToShowButtonFor = 7;
-        
+
+        const daysToShowButtonFor = 10;
+
         const isInCinemas = (releaseDate) => {
           const differenceInDays = Math.floor((today - releaseDate) / (1000 * 60 * 60 * 24));
-          return differenceInDays >= 0 && differenceInDays < daysToShowButtonFor;
+          return differenceInDays >= 0 && differenceInDays <= daysToShowButtonFor;
         };
-        
+
         setIsInCinemas(isInCinemas(movieReleaseDate));
-        
+
       } catch (error) {
         console.error('Error fetching movie:', error);
       }
     };
-  
+
     fetchMovie();
   }, [movieId]);
-  
+
 
   const handleMovieClick = (movie) => {
     const movieName = encodeURIComponent(movie.name);
@@ -107,7 +107,7 @@ function BookTab() {
         </div>
       ) : (
         <>
-        <Nav/>
+          <Nav />
           {movie && (
             <>
               <div className='book'
@@ -162,13 +162,13 @@ function BookTab() {
                     <p style={{ marginTop: "-5px" }}>.</p>
                     <p style={{ wordSpacing: "3px" }}>{movie.Released}</p>
                   </p>
-                  <p style={{marginTop:"-15.5px",paddingLeft:"14.5px",color:"white",fontSize:"18px",wordSpacing: "3px"}}>{isInCinemas ? 'In cinemas' : 'Not in cinemas'}</p>
-                
+                  <p style={{ marginTop: "-15.5px", paddingLeft: "14.5px", color: "white", fontSize: "18px", wordSpacing: "3px" }}>{isInCinemas ? 'In cinemas' : 'Not in cinemas'}</p>
+
                   {isInCinemas && (
-            <button className="bt-1" onClick={() => handleMovieClick(movie)} style={{ color: 'white' }}>
-              Book tickets
-            </button>
-          )}
+                    <button className="bt-1" onClick={() => handleMovieClick(movie)} style={{ color: 'white' }}>
+                      Book tickets
+                    </button>
+                  )}
                 </div>
                 <div className='box-3'>
                   <div class="b3">
@@ -200,7 +200,7 @@ function BookTab() {
                     <p style={{ marginInline: "10px", color: "white" }}>{movie.Certificate}</p>
                     <p style={{ marginTop: "-4px", color: "white" }}>.</p>
                     <p style={{ wordSpacing: "3px", color: "white" }}>{movie.Released}</p>
-                    <p style={{marginTop:"-15.5px",paddingLeft:"14.5px",color:"white",fontSize:"18px",wordSpacing: "3px"}}>{isInCinemas ? 'In cinemas' : 'Not in cinemas'}</p>
+                    <p style={{ marginTop: "-15.5px", paddingLeft: "14.5px", color: "white", fontSize: "18px", wordSpacing: "3px" }}>{isInCinemas ? 'In cinemas' : 'Not in cinemas'}</p>
                   </div>
                 </div>
                 <ShareIcon className='i1' style={{ color: "white", cursor: "pointer" }} onClick={handleShow} />
@@ -307,11 +307,11 @@ function BookTab() {
                   <ContactMailIcon style={{ color: "#838385", fontSize: "3.5em" }} id="i7" />
                 </div>
               </div>
-         {isInCinemas && (
-            <button className="bt-2" onClick={() => handleMovieClick(movie)} style={{ color: 'white' }}>
-              Book tickets
-            </button>
-          )}
+              {isInCinemas && (
+                <button className="bt-2" onClick={() => handleMovieClick(movie)} style={{ color: 'white' }}>
+                  Book tickets
+                </button>
+              )}
             </>
           )}
         </>

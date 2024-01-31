@@ -17,7 +17,6 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux';
 import { ADD } from '../redux/actions/action'
 import { DLT } from '../redux/actions/action';
-import axios from 'axios'
 
 import ads from '../../Json/ads.json';
 import Load from '../Loader/load'
@@ -78,22 +77,6 @@ function HomeMovie() {
     total()
   }, [total])
 
-  const user = JSON.parse(localStorage.getItem("currentUser"));
-
-  const [bookings, setbookings] = useState([])
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.post('http://localhost:5000/api/bookings/getbookingsbyuserid', { userid: user._id });
-        setbookings(response.data);
-        console.log(response.data)
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, [user._id]);
 
   var settings = {
     infinite: false,
@@ -134,6 +117,7 @@ function HomeMovie() {
       }
     ]
   };
+  
   return (
     <>
       <div className="roll">
@@ -147,7 +131,7 @@ function HomeMovie() {
           <Slider {...settings} classNmae="df">
             {data.map((movie) => (
               <div key={movie._id} className='dfr'>
-                <NavLink to={`/city/movies/${movie.name}/${movie._id}`}>
+                <NavLink to={`/city/movies/${movie.name}/${movie._id}/ET00311489`}>
                   <img src={movie.MovieIcon[0]} alt="" className='img' />
                 </NavLink>
 
@@ -237,9 +221,9 @@ function HomeMovie() {
         <li><a href='/Profile' style={{ textDecoration: "none", color: "#cccccc" }}>
 
           
-            <Badge badgeContent={bookings.length} color="primary">
+            {/* <Badge badgeContent={bookings.length} color="primary"> */}
               <GroupAddOutlinedIcon style={{ fontSize: '2.1em' }} />
-            </Badge>
+            {/* </Badge> */}
           <br />Profile</a></li>
 
 
