@@ -46,10 +46,10 @@ const customer = await stripe.customers.create({
         amount: paymentAmount * 100,
         customer: customer.id,
         currency: 'inr',
-        receipt_email: token.email
+        receipt_email: token.email,
       },
       {
-        idempotencyKey: uuidv4()
+        idempotencyKey: uuidv4(),
       }
     );
 
