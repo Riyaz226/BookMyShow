@@ -285,7 +285,7 @@ margin-top:23px;
 
 @keyframes cursor {
 	0%, 100% { 
-    border-color: #212121; 
+    border-color:white; 
   }
 }
 

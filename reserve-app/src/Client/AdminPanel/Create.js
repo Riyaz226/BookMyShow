@@ -141,7 +141,7 @@ const Add = () => {
                         value={Language3}
                         onChange={(e) => { Language3change(e.target.value) }}
                         className="form-control" id="input5"
-                        placeholder="Lang4:"
+                        placeholder="Lang3:"
                     />
                     <input
                         value={Language4}

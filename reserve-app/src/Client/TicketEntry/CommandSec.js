@@ -127,8 +127,8 @@ function CommandSec() {
             onChange={(e) => setCommand(e.target.value)}
             placeholder="Write your review..."
           /><br />
-          <button onClick={handleSubmit} style={{fontSize:"15px", width: "156px", cursor: "pointer", borderRadius: "2px",border:"none"}}>Submit Rating</button>
-        </form>
+          <button className='btn landingbtn' onClick={handleSubmit} style={{fontSize:"15px", width: "156px", cursor: "pointer", borderRadius: "2px",border:"none",fontFamily:"Raleway"}}>Submit Reviews</button>
+      </form>
       </div>
     </>
   );

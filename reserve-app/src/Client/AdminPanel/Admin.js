@@ -168,7 +168,7 @@ export function Show() {
                   <Link to="#" onClick={() => handleDelete(item._id)} className='btn btn-danger'>
                     Remove
                   </Link>
-                  <Link to={`/city/movies/${item.name}/${item._id}`} className='btn btn-primary'>
+                  <Link to={`/city/movies/${item.name}/${item._id}/ET00311489`} className='btn btn-primary'>
                     Details
                   </Link>
                 </td>

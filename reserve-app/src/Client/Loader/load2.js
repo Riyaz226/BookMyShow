@@ -10,7 +10,7 @@ function load2() {
 
   return (
    <div className="sweet-loading">
-        <RingLoader color="blue"  loading={loading} size={42}/>
+        <RingLoader color="#36d7b7"  loading={loading} size={42}/>
   </div>
   );
 }
