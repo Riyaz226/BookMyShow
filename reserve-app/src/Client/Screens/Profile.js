@@ -11,11 +11,11 @@ import DownloadIcon from '@mui/icons-material/Download';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Grid, Paper } from '@mui/material'
 import QRCode from 'react-qr-code';
-import Load from '../Loader/load'
 import Load2 from '../Loader/load2'
 import axios from 'axios'
 import HouseIcon from '@mui/icons-material/House';
 import Nav from '../Navbar'
+import Error from '../Loader/Error'
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -162,7 +162,9 @@ useEffect(() => {
     <div className="spinner-border" role="status">
       <span className="visually-hidden"><Load2 /></span>
     </div>
-  ) : (
+  ) :error?(
+    <Error/>
+  ):(
     bookings.map((item) => (
       <>
         <Grid>

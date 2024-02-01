@@ -20,6 +20,7 @@ import Nav from '../Navbar'
 import axios from 'axios'
 import Load from '../Loader/load'
 import HouseIcon from '@mui/icons-material/House';
+import Error from '../Loader/Error'
 
 function BookTab() {
   const { movieId } = useParams();
@@ -105,6 +106,8 @@ function BookTab() {
         <div className="spinner-border" role="status">
           <span className="visually-hidden"><Load /></span>
         </div>
+      ): error?(
+        <Error/>
       ) : (
         <>
           <Nav />
