@@ -108,11 +108,18 @@ function HomeMovie() {
         }
       },
       {
+        breakpoint: 679,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
         breakpoint: 600,
         settings: {
           slidesToShow: 1.5,
           slidesToScroll: 1,
-          initialSlide: 2
         }
       },
       {
