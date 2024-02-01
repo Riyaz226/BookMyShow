@@ -151,7 +151,7 @@ function Seat3({ movie, date, time, theater, language, screen, ticketsToBook }) 
     console.log("Client-Side Data:", bookingDetails);
 
     try {
-      const result = await axios.post('http://localhost:5000/api/bookings/bookTickets', bookingDetails);
+      const result = await axios.post('/api/bookings/bookTickets', bookingDetails);
       console.log(result)
       Swal.fire('Congratulations', 'Your Movie Booked Sucessfully', 'success').then(result => (
         window.location.href = '/Profile'

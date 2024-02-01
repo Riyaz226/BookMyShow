@@ -53,7 +53,7 @@ const Add = () => {
         };
 
         try {
-            const result = await (await axios.post("http://localhost:5000/api/movies/addMovies", newMovie)).data;
+            const result = await (await axios.post("/api/movies/addMovies", newMovie)).data;
             console.log(result)
             alert(result)
             window.location.href='/admin'

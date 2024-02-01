@@ -14,7 +14,7 @@ function CommandDis({movieId}) {
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        const data = (await axios.post('http://localhost:5000/api/movies/getMovieById', { movieId: movieId })).data;
+        const data = (await axios.post('/api/movies/getMovieById', { movieId: movieId })).data;
         setComm(data.reviews); 
         console.log(data);
       } catch (error) {

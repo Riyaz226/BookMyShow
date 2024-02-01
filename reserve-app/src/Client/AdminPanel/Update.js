@@ -24,7 +24,7 @@ function Update() {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/movies/updateMovieById', {
+      const response = await axios.post('/api/movies/updateMovieById', {
         movieId,
         updatedMovieData,
       });
