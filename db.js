@@ -1,6 +1,6 @@
 const mongoose=require("mongoose")
 PORT= 5000
-var mongoURL='mongodb+srv://riyaz:riyazapp@cluster0.a8akqze.mongodb.net/BookMyShow?retryWrites=true'
+var mongoURL='mongodb+srv://riyaz:riyazapp@cluster0.a8akqze.mongodb.net/BookMyShow?retryWrites=true&w=majority'
 
 mongoose.connect(mongoURL,{useUnifiedTopology:true,useNewUrlParser:true})
 
