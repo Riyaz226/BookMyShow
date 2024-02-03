@@ -96,7 +96,7 @@ export function Show() {
 
   useEffect(() => {
     setLoading(true);
-    fetch('http://localhost:5000/api/movies/getallMovies')
+    fetch(' http://localhost:5000/api/movies/getallMovies')
       .then((response) => response.json())
       .then((json) => {
         setData(json.movies);
@@ -122,7 +122,7 @@ export function Show() {
 
   const handleDelete = async (movieId) => {
     try {
-      const response = await axios.delete(`http://localhost:5000/api/movies/deleteMovieById/${movieId}`);
+      const response = await axios.delete(` http://localhost:5000/api/movies/deleteMovieById/${movieId}`);
       console.log(response.data);
       alert("Remove Sucessfully😎")
       window.location.href='/admin'
@@ -189,7 +189,7 @@ export function AllUsers() {
   const [error, setError] = useState(null);
   useEffect(() => {
     setLoading(true);
-    fetch('http://localhost:5000/api/users/getallUsers')
+    fetch(' http://localhost:5000/api/users/getallUsers')
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -255,7 +255,7 @@ export function BoHis() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.post("http://localhost:5000/api/bookings/getallbookings");
+        const response = await axios.post(" http://localhost:5000/api/bookings/getallbookings");
         setBookings(response.data);
         setLoading(false);
       } catch (error) {

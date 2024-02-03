@@ -87,7 +87,7 @@ export function Movie() {
 
   useEffect(() => {
     setLoading(true);
-    fetch('http://localhost:5000/api/movies/getallMovies')
+    fetch(' http://localhost:5000/api/movies/getallMovies')
       .then((response) => response.json())
       .then((json) => {
         setData(json.movies);

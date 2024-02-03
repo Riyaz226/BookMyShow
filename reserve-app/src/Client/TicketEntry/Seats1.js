@@ -27,7 +27,7 @@ function Seat1({ movie, date, time, theater, screen, language, ticketsToBook }) 
   useEffect(() => {
     const fetchPaymentData = async () => {
       try {
-        const response = await axios.post('http://localhost:5000/api/movies/getMovieById', { movieId: movieId });
+        const response = await axios.post(' http://localhost:5000  /api/movies/getMovieById', { movieId: movieId });
         const data = response.data;
         setConvenienceFee(data.convenience || 35.40);
         setSeatRate(data.payment);
@@ -196,7 +196,7 @@ function Seat1({ movie, date, time, theater, screen, language, ticketsToBook }) 
     console.log("Client-Side Data:", bookingDetails);
 
     try {
-      const result = await axios.post('http://localhost:5000/api/bookings/bookTickets', bookingDetails);
+      const result = await axios.post(' http://localhost:5000/api/bookings/bookTickets', bookingDetails);
       console.log(result)
       Swal.fire('Congratulations','Your Movie Booked Sucessfully','success').then(result=>(
         window.location.href='/Profile'

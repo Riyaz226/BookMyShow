@@ -30,7 +30,7 @@ function LoginScreen() {
         password
        }
        try{
-        const result=(await axios.post("http://localhost:5000/api/users/login",user)).data;
+        const result=(await axios.post(" http://localhost:5000/api/users/login",user)).data;
 
         localStorage.setItem('currentUser', JSON.stringify(result));
         window.location.href='/home'

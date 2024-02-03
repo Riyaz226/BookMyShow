@@ -32,7 +32,7 @@ function BookTab() {
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        const data = (await axios.post('http://localhost:5000/api/movies/getMovieById', { movieId: movieId })).data;
+        const data = (await axios.post(' http://localhost:5000/api/movies/getMovieById', { movieId: movieId })).data;
         setLoading(true);
         setMovie(data);
         console.log(data);
@@ -80,7 +80,7 @@ function BookTab() {
 
   const [data2, setData] = useState([]);
   useEffect(() => {
-    fetch('/api/movies/getallMovies')
+    fetch('http://localhost:5000/api/movies/getallMovies')
       .then((response) => response.json())
       .then((json) => {
         setData(json.movies);
@@ -275,7 +275,7 @@ function BookTab() {
                   <div className='df'>
                     {data2.map((movie) => (
                       <div key={movie._id} className='dfr'>
-                        <NavLink to={`/city/movies/${movie.name}/${movie._id}`}>
+                        <NavLink to={`/city/movies/${movie.name}/${movie._id}/ET00311489`}>
                           <img src={movie.MovieIcon[0]} alt="" className='img' />
                         </NavLink>
                         <div className="deta">

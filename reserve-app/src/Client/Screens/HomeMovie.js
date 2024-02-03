@@ -40,7 +40,7 @@ function HomeMovie() {
 
   useEffect(() => {
     setLoading(true);
-    fetch('http://localhost:5000/api/movies/getallMovies')
+    fetch(' http://localhost:5000/api/movies/getallMovies')
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
