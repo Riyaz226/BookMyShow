@@ -61,7 +61,7 @@ const Receive = () => {
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        const data = (await axios.post(' https://bookmyshow2-cr8a.onrender.com/api/movies/getMovieById', { movieId: movieId })).data;
+        const data = (await axios.post(' http://localhost:5000/api/movies/getMovieById', { movieId: movieId })).data;
         setMovie(data);
       } catch (error) {
         console.error('Error fetching movie:', error);

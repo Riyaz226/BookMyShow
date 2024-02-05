@@ -53,7 +53,7 @@ const Add = () => {
         };
 
         try {
-            const result = await (await axios.post(" https://bookmyshow2-cr8a.onrender.com/api/movies/addMovies", newMovie)).data;
+            const result = await (await axios.post(" http://localhost:5000/api/movies/addMovies", newMovie)).data;
             console.log(result)
             alert(result)
             window.location.href='/admin'

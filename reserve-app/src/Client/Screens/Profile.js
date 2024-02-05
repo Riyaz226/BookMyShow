@@ -130,7 +130,7 @@ export function Ticket() {
 useEffect(() => {
   const fetchData = async () => {
     try {
-      const response = await axios.post(' https://bookmyshow2-cr8a.onrender.com/api/bookings/getbookingsbyuserid', { userid: user._id });
+      const response = await axios.post(' http://localhost:5000/api/bookings/getbookingsbyuserid', { userid: user._id });
       setbookings(response.data);
       console.log(response.data);
     } catch (error) {
@@ -145,7 +145,7 @@ useEffect(() => {
 
   async function cancelBooking(bookingid, movieid) {
     try {
-      const result = await axios.post(' https://bookmyshow2-cr8a.onrender.com/api/bookings/cancelbooking', { bookingid, movieid });
+      const result = await axios.post(' http://localhost:5000/api/bookings/cancelbooking', { bookingid, movieid });
       console.log(result.data); 
       alert('Your booking is cancelled');
       window.location.href='/Profile'
@@ -156,15 +156,12 @@ useEffect(() => {
 
   return (
     <>
-    <div style={{overflowX:"scroll"}}>
     <div id="pop">
   {loading ? (
     <div className="spinner-border" role="status">
       <span className="visually-hidden"><Load2 /></span>
     </div>
-  ) :error?(
-    <Error/>
-  ):(
+  ) :(
     bookings.map((item) => (
       <>
         <Grid>
@@ -223,7 +220,6 @@ useEffect(() => {
     ))
   )}
 </div>
-</div>
-    </>
+   </>
   )
 }
