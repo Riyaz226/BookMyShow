@@ -40,8 +40,8 @@ function HomeMovie() {
 
   useEffect(() => {
     setLoading(true);
-    
-    fetch(' http://localhost:5000/api/movies/getallMovies')
+
+    fetch('https://bookmyshow2-cr8a.onrender.com/api/movies/getallMovies')
       .then((response) => response.json())
       .then((json) => {
         console.log(json);

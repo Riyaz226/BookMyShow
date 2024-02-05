@@ -15,7 +15,7 @@ function CommandSec() {
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        const data = (await axios.post(' http://localhost:5000/api/movies/getMovieById', { movieId })).data;
+        const data = (await axios.post(' https://bookmyshow2-cr8a.onrender.com/api/movies/getMovieById', { movieId })).data;
         setMovie(data);
       } catch (error) {
         console.error('Error fetching movie:', error);
@@ -61,7 +61,7 @@ function CommandSec() {
       };
 
       try {
-        const result = await axios.post(" http://localhost:5000/api/command/addCommand", addCommandData);
+        const result = await axios.post(" https://bookmyshow2-cr8a.onrender.com/api/command/addCommand", addCommandData);
         console.log(result.data);
         alert(result.data);
         window.location.href=`/city/movies/${movie.name}/${movie._id}`
