@@ -610,7 +610,13 @@ margin-left: -22px;
              }   
      
     } 
+    #MOV{
+        display: block;
+    }
     @media screen and (max-width: 800px) {
+        #MOV{
+            display: none;
+        }
         #ad{
             width: 380px;
             height: 440px;

@@ -150,7 +150,7 @@ const Receive = () => {
             </div>
 
           </div>
-      {/* <p style={{listStyle:"none"}}>
+          {/* <p style={{listStyle:"none"}}>
            <li>Amount:{movie.payment}</li>
           <li>convenienceFee:{movie.convenience}</li>
       </p> */}
@@ -186,8 +186,8 @@ const Receive = () => {
             <p>.</p>
             <p>{screen}</p>
           </b>
-          <p style={{cursor:"pointer"}}>ℂ𝕒𝕟𝕔𝕖𝕝𝕒𝕥𝕚𝕠𝕟 𝔸𝕧𝕒𝕚𝕝𝕒𝕓𝕝𝕖</p>
-       
+          <p style={{ cursor: "pointer" }}>ℂ𝕒𝕟𝕔𝕖𝕝𝕒𝕥𝕚𝕠𝕟 𝔸𝕧𝕒𝕚𝕝𝕒𝕓𝕝𝕖</p>
+
           {time && (
             <div>
               {time === '08:00 AM' &&
@@ -256,21 +256,21 @@ const Receive = () => {
 
         </>
       )}
- <div className="foot3">
-  <li>
-    <p style={{backgroundColor:"white",color:"white"}}>1</p>
-    Available
-  </li>
-  <li>
-    <p style={{backgroundColor:"#1EA83c",color:"#1EA83c",borderColor:"#1EA83c"}}>2</p>
-    Selected
-  </li>
-  <li>
-    <p style={{backgroundColor:"#eee",color:"#eee",borderColor:"#eee"}}>3</p>
-    Sold
-  </li>
-</div>
- <Modal show={show} onHide={handleClose} id="mo6">
+      <div className="foot3">
+        <li>
+          <p style={{ backgroundColor: "white", color: "white" }}>1</p>
+          Available
+        </li>
+        <li>
+          <p style={{ backgroundColor: "#1EA83c", color: "#1EA83c", borderColor: "#1EA83c" }}>2</p>
+          Selected
+        </li>
+        <li>
+          <p style={{ backgroundColor: "#eee", color: "#eee", borderColor: "#eee" }}>3</p>
+          Sold
+        </li>
+      </div>
+      <Modal show={show} onHide={handleClose} id="mo6">
         <Modal.Header>
           <Modal.Title>How many seats?</Modal.Title>
         </Modal.Header>
@@ -299,7 +299,7 @@ const Receive = () => {
               <p style={{ color: "orange" }}>AVAILABLE</p>
             </div>
           </div>
-   </Modal.Body>
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={handleClose} style={{ width: "100%" }}>
             Select Seats

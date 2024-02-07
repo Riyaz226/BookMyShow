@@ -7,12 +7,15 @@ import LocalFireDepartmentOutlinedIcon from '@mui/icons-material/LocalFireDepart
 import OndemandVideoOutlinedIcon from '@mui/icons-material/OndemandVideoOutlined';
 import EmojiEventsOutlinedIcon from '@mui/icons-material/EmojiEventsOutlined';
 import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
+import SecurityUpdateGoodIcon from '@mui/icons-material/SecurityUpdateGood';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CloseIcon from '@mui/icons-material/Close';
 import Badge from '@mui/material/Badge'
 import Menu from '@mui/material/Menu';
 import Table from 'react-bootstrap/Table'
 import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux';
 import { ADD } from '../redux/actions/action'
@@ -79,6 +82,27 @@ function HomeMovie() {
   }, [total])
 
 
+  const [show, setShow] = useState(false);
+  const [isConnected, setIsConnected] = useState(true); 
+  
+  const handleUpdate = () => {
+    if (isConnected) {
+      setTimeout(() => {
+        setShow(false);
+      }, 2000);
+    } else {
+      alert('Error: Network not connected. Update not completed.');
+    }
+  };
+
+  useEffect(() => {
+    setIsConnected(true);
+  }, []);
+
+
+  const handleClose2 = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   var settings = {
     infinite: false,
     speed: 500,
@@ -130,9 +154,9 @@ function HomeMovie() {
           slidesToScroll: 1
         }
       }
-      ]
+    ]
   };
-  
+
   return (
     <>
       <div className="roll">
@@ -230,17 +254,19 @@ function HomeMovie() {
           <br />
           Events</li>
 
-        <li><a href='https://www.google.com/search?q=new+movies+all+2024&rlz=1C1CHBF_enIN1015IN1015&oq=new+movies+all+2024&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIPCAEQABgNGIMBGLEDGIAEMg8IAhAAGA0YgwEYsQMYgAQyCQgDEAAYDRiABDIJCAQQABgNGIAEMgkIBRAAGA0YgAQyCQgGEAAYDRiABDIJCAcQABgNGIAEMgkICBAAGA0YgAQyCQgJEAAYDRiABNIBCDk3OTRqMWo3qAIAsAIA&sourceid=chrome&ie=UTF-8#wxpd=browse:true' style={{ textDecoration: "none", color: "#cccccc" }}>
+        <li id="MOV"><a href='https://www.google.com/search?q=new+movies+all+2024&rlz=1C1CHBF_enIN1015IN1015&oq=new+movies+all+2024&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIPCAEQABgNGIMBGLEDGIAEMg8IAhAAGA0YgwEYsQMYgAQyCQgDEAAYDRiABDIJCAQQABgNGIAEMgkIBRAAGA0YgAQyCQgGEAAYDRiABDIJCAcQABgNGIAEMgkICBAAGA0YgAQyCQgJEAAYDRiABNIBCDk3OTRqMWo3qAIAsAIA&sourceid=chrome&ie=UTF-8#wxpd=browse:true' style={{ textDecoration: "none", color: "#cccccc" }}>
           <OndemandVideoOutlinedIcon style={{ fontSize: '2.1em' }} />
           <br />Movies</a></li>
-        <li><a href='/Profile' style={{ textDecoration: "none", color: "#cccccc" }}>
-
-          
-            {/* <Badge badgeContent={bookings.length} color="primary"> */}
-              <GroupAddOutlinedIcon style={{ fontSize: '2.1em' }} />
-            {/* </Badge> */}
+         
+         <li><a href='/Profile' style={{ textDecoration: "none", color: "#cccccc" }}>
+           <GroupAddOutlinedIcon style={{ fontSize: '2.1em' }} />
           <br />Profile</a></li>
 
+          <li>
+            <SecurityUpdateGoodIcon style={{ fontSize: '2.1em',cursor:"pointer" }} onClick={handleShow} />
+           <br />Update
+           </li>
+          
 
         <Menu
           id="basic-menu"
@@ -305,7 +331,21 @@ function HomeMovie() {
 
         </Menu>
 
+        <Modal show={show} onHide={handleClose2}>
+        <Modal.Body>
+          Updating... 
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose2}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleUpdate}>
+            Update
+          </Button>
+        </Modal.Footer>
+      </Modal>
       </div>
+
 
     </>
   );
