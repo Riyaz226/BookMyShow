@@ -280,14 +280,14 @@ function BookTab() {
 
                   <div className='df'>
                     {data2.map((movie) => (
-                      <div key={movie._id} className='dfr' data-aos="fade-up">
+                      <div key={movie._id} className='dfr' data-aos="zoom-in">
                         <NavLink to={`/city/movies/${movie.name}/${movie._id}/ET00311489`}>
                           <img src={movie.MovieIcon[0]} alt="" className='img' />
                         </NavLink>
                         <div className="deta">
-                          <p style={{ wordSpacing: "83px" }}>&#x2B50;votes</p>
-                          <p style={{ marginTop: "-7px" }}>{movie.name}</p>
-                          <p >{movie.Genre.join('/')}</p>
+                          <p style={{ wordSpacing: "83px" }} data-aos="fade-right">&#x2B50;votes</p>
+                          <p style={{ marginTop: "-7px" }} data-aos="zoom-in">{movie.name}</p>
+                          <p data-aos="fade-left">{movie.Genre.join('/')}</p>
                         </div>
                       </div>
                     ))}

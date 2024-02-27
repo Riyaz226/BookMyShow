@@ -177,13 +177,13 @@ function HomeMovie() {
             {data.map((movie) => (
               <div key={movie._id} className='dfr'>
                 <NavLink to={`/city/movies/${movie.name}/${movie._id}/ET00311489`}>
-                  <img src={movie.MovieIcon[0]} alt="" className='img' data-aos="zoom-in" />
+                  <img src={movie.MovieIcon[0]} alt="" className='img' data-aos="fade-down" />
                 </NavLink>
 
                 <div className="deta">
-                  <p style={{ wordSpacing: "83px" }}>&#x2B50;</p>
-                  <p style={{ marginTop: "-5px" }}>{movie.name}</p>
-                  <p>{movie.Genre.join('/')}</p>
+                  <p style={{ wordSpacing: "83px" }} data-aos="fade-left" >&#x2B50;</p>
+                  <p style={{ marginTop: "-5px" }} data-aos="zoom-in" >{movie.name}</p>
+                  <p data-aos="fade-right">{movie.Genre.join('/')}</p>
                 </div>
               </div>
             ))}
