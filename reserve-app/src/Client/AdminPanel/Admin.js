@@ -9,6 +9,9 @@ import Load from '../Loader/load'
 import Load2 from '../Loader/load2'
 import Table from 'react-bootstrap/Table'
 import HouseIcon from '@mui/icons-material/House';
+import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
+import DeleteIcon from '@mui/icons-material/Delete';
+import FolderIcon from '@mui/icons-material/Folder';
 import './Style.css'
 
 import Add from '../AdminPanel/Create'
@@ -136,11 +139,11 @@ export function Show() {
         <select onChange={handleGenreChange} value={selectedGenre}>
           <option value="All">All</option>
           <option value="Action">Action</option>
-          <option value="crime">Crime</option>
-          <option value="drama">Drama</option>
-          <option value="horrer">Horrer</option>
-          <option value="period">Period</option>
-          <option value="romantic">Romantic</option>
+          <option value="Crime">Crime</option>
+          <option value="Comedy">Comedy</option>
+          <option value="Horror">Horror</option>
+          <option value="Period">Period</option>
+          <option value="Romantic">Romantic</option>
         </select>
       </div>
 
@@ -149,7 +152,7 @@ export function Show() {
           <span className="visually-hidden"><Load /></span>
         </div>
       ) : (
-        <Table className='table table-dark table-bordered'>
+        <Table className='table'>
           <thead>
             <tr>
               <th>Name</th>
@@ -162,14 +165,14 @@ export function Show() {
               <tr key={item.id}>
                 <td>{item.name}</td>
                 <td>
-                  <Link to={`/cart/update/${item._id}`} className='btn btn-success'>
-                    Edit
+                  <Link to={`/cart/update/${item._id}`}>
+                    <ModeEditOutlineIcon  id="i"/>
                   </Link>
-                  <Link to="#" onClick={() => handleDelete(item._id)} className='btn btn-danger'>
-                    Remove
+                  <Link to="#" onClick={() => handleDelete(item._id)}>
+                    <DeleteIcon id="i" />
                   </Link>
-                  <Link to={`/city/movies/${item.name}/${item._id}/ET00311489`} className='btn btn-primary'>
-                    Details
+                  <Link to={`/city/movies/${item.name}/${item._id}/ET00311489`}>
+                   <FolderIcon id="i" />
                   </Link>
                 </td>
                 <td>{item.currentbookings.length}</td>
@@ -219,7 +222,7 @@ export function AllUsers() {
       ) : (
         <div className='row' style={{backgroundColor:"rose"}}>
           <div className="col-md-12">
-            <Table className='table table-dark table-bordered' id="table">
+            <Table className='table' id="table">
               <thead>
                 <tr>
                   <th>name</th>

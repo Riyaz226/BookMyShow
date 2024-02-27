@@ -1,8 +1,16 @@
 /*All*/
+table {
+    font-family: Raleway;
+    border: none;
+}    
 table tbody{
     background-color: white;
 }
 table tbody td{
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    white-space: nowrap;
     color:black;
 }
 .flex{
@@ -11,7 +19,11 @@ table tbody td{
 .flex input{
     flex-direction: column;
 }
-
+#i{
+font-size: 18px;
+margin-left: 12px;
+color:rosybrown
+}
 @media screen and (max-width: 519px) {
     .table{
         width: 434px;

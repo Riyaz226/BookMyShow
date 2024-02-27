@@ -1,6 +1,8 @@
 /* eslint-disable no-undef */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
@@ -16,6 +18,7 @@ import axios from 'axios'
 import HouseIcon from '@mui/icons-material/House';
 import Nav from '../Navbar'
 import Error from '../Loader/Error'
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -154,9 +157,12 @@ useEffect(() => {
     }
   }
 
+  useEffect(()=>{
+    AOS.init({duration:2000})
+  },[])
   return (
     <>
-    <div id="pop">
+    <div id="pop" data-aos="zoom-in">
   {loading ? (
     <div className="spinner-border" role="status">
       <span className="visually-hidden"><Load2 /></span>

@@ -26,6 +26,9 @@ import Load from '../Loader/load'
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+
 import './Style.css';
 
 function HomeMovie() {
@@ -157,6 +160,9 @@ function HomeMovie() {
     ]
   };
 
+  useEffect(()=>{
+    AOS.init({duration:2000})
+  },[])
   return (
     <>
       <div className="roll">
@@ -171,7 +177,7 @@ function HomeMovie() {
             {data.map((movie) => (
               <div key={movie._id} className='dfr'>
                 <NavLink to={`/city/movies/${movie.name}/${movie._id}/ET00311489`}>
-                  <img src={movie.MovieIcon[0]} alt="" className='img' />
+                  <img src={movie.MovieIcon[0]} alt="" className='img' data-aos="zoom-in" />
                 </NavLink>
 
                 <div className="deta">
@@ -194,10 +200,10 @@ function HomeMovie() {
               return (
                 <>
                   <Card style={{ width: '22rem', border: "none" }} id="ADS" className="mx-2 mt-1 card_style">
-                    <Card.Img variant="top" src={element.Image} onClick={() => send(element)} style={{ width: "18rem", height: "11rem", cursor: "pointer", borderRadious: "12px" }} className="mt-3" />
+                    <Card.Img variant="top" src={element.Image} onClick={() => send(element)}  data-aos="fade-up"  style={{ width: "18rem", height: "11rem", cursor: "pointer", borderRadious: "12px" }} className="mt-3" />
                     <Card.Body>
-                      <Card.Title>{element.name}</Card.Title>
-                      <Card.Text>
+                      <Card.Title data-aos="fade-right">{element.name}</Card.Title>
+                      <Card.Text data-aos="fade-left">
                         Price : ₹ {element.Price}
                       </Card.Text>
                     </Card.Body>

@@ -27,7 +27,7 @@ function Seat1({ movie, date, time, theater, screen, language, ticketsToBook }) 
   useEffect(() => {
     const fetchPaymentData = async () => {
       try {
-        const response = await axios.post(' http://localhost:5000  /api/movies/getMovieById', { movieId: movieId });
+        const response = await axios.post(' http://localhost:5000/api/movies/getMovieById', { movieId: movieId });
         const data = response.data;
         setConvenienceFee(data.convenience || 35.40);
         setSeatRate(data.payment);

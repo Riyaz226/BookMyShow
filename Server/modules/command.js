@@ -10,7 +10,7 @@ const commandSchema = new mongoose.Schema({
     required: [true, 'A command must have a name'],
   },
   command: {
-    type: String,
+    type: mongoose.Schema.Types.Mixed,
     required: [true, 'A command must have a name'],
   },
   range: {

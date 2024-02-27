@@ -109,14 +109,14 @@ align-items: center;
     cursor: pointer;
     width: 263px;
     height: 307px;
-border-radius:8px;
+border-radius:26px;
 }
 .deta{
     display:flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
+    
 }
 .deta2{
     display:flex;

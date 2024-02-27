@@ -13,6 +13,9 @@ import {
   PinterestShareButton, PinterestIcon, TelegramShareButton, TelegramIcon, TwitterShareButton, TwitterIcon,
   WhatsappShareButton, WhatsappIcon
 } from 'react-share'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+
 import './Style.css';
 
 import Review from '../Screens/CommandDis'
@@ -99,6 +102,9 @@ function BookTab() {
   const shareUrl6 = "https://twitter.com/i/flow/login"
   const shareUrl7 = "https://web.whatsapp.com/"
 
+  useEffect(()=>{
+    AOS.init({duration:2000})
+  },[])
   return (
     <>
       {loading ? (
@@ -225,14 +231,14 @@ function BookTab() {
 
                 <div className="cast">
                   <h3>Cast</h3>
-                  <p className="ca">
+                  <p className="ca" data-aos="zoom-in">
                     {movie.CastImages.map((cr, index) => (
                       <span key={index} style={{ marginRight: '6px' }}>
                         <img src={cr} alt="" />
                       </span>
                     ))}
                   </p>
-                  <p className="caname">
+                  <p className="caname" data-aos="fade-right">
                     {movie.Cast.map((ca, index) => (
                       <span key={index} >
                         {ca}
@@ -243,14 +249,14 @@ function BookTab() {
                 <hr />
                 <div className="cast">
                   <h3>Crew</h3>
-                  <p className="ca">
+                  <p className="ca" data-aos="zoom-in">
                     {movie.CrewImages.map((cr, index) => (
                       <span key={index} style={{ marginRight: '6px' }}>
                         <img src={cr} alt="" />
                       </span>
                     ))}
                   </p>
-                  <p className="caname">
+                  <p className="caname" data-aos="fade-left">
                     {movie.Crew.map((ca, index) => (
                       <span key={index} >
                         {ca}
@@ -274,7 +280,7 @@ function BookTab() {
 
                   <div className='df'>
                     {data2.map((movie) => (
-                      <div key={movie._id} className='dfr'>
+                      <div key={movie._id} className='dfr' data-aos="fade-up">
                         <NavLink to={`/city/movies/${movie.name}/${movie._id}/ET00311489`}>
                           <img src={movie.MovieIcon[0]} alt="" className='img' />
                         </NavLink>

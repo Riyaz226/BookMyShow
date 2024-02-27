@@ -7,11 +7,11 @@ const movieSchema = mongoose.Schema({
     required: true
   },
   Released: {
-    type: String,
+    type: mongoose.Schema.Types.Mixed,
     required: true
   },
   Runtime: {
-    type: String,
+    type: mongoose.Schema.Types.Mixed,
     required: true
   },
   Genre: [],

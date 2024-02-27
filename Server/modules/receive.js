@@ -14,7 +14,7 @@ const bookingSchema = new mongoose.Schema({
         default: '',
     },
     userid: {
-        type: String,
+        type: mongoose.Schema.Types.Mixed,
         required: true
     },
     username: {
